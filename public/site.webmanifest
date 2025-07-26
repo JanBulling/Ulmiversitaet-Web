@@ -1,0 +1,21 @@
+{
+  "name": "Ulmiversität",
+  "short_name": "Ulmiversität",
+  "description": "Management Seite für die Universität Ulm",
+  "icons": [
+    {
+      "src": "/public/logo192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/public/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000"
+}
