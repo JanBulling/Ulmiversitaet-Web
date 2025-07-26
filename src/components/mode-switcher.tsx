@@ -8,7 +8,7 @@ import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { Button } from "@/ui/button";
 
-export function ThemeSwitcher() {
+export function ModeSwitcher() {
   const { setTheme, resolvedTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
 

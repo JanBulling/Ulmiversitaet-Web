@@ -1,11 +1,12 @@
 import "@/styles/globals.css";
-import type { Metadata, Viewport } from "next";
+import type { Metadata } from "next";
 
 import { META_THEME_COLORS, siteConfig } from "@/config/site";
 import { fontMono, fontSans } from "@/styles/fonts";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TailwindIndicator } from "@/ui/tailwind-indicator";
+import { AnalyticsProvider } from "@/components/analytics-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -58,10 +59,6 @@ export const metadata: Metadata = {
   manifest: `${siteConfig.url}/site.webmanifest`,
 };
 
-export const viewport: Viewport = {
-  themeColor: META_THEME_COLORS.light,
-};
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
@@ -81,6 +78,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             `,
           }}
         />
+        <meta name="theme-color" content={META_THEME_COLORS.light} />
       </head>
       <body
         className={cn(
@@ -89,17 +87,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontMono.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          enableColorScheme
-        >
-          <div className="bg-background relative flex min-h-svh flex-col">
+        <ThemeProvider>
+          <div className="bg-background text-foreground relative flex min-h-svh flex-col">
             {children}
           </div>
           <TailwindIndicator />
+          <AnalyticsProvider />
         </ThemeProvider>
       </body>
     </html>
