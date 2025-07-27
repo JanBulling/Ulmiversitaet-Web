@@ -7,8 +7,8 @@ import Link from "next/link";
 export function SiteFooter() {
   return (
     <footer className="bg-card border-t">
-      <div className="mx-auto flex max-w-screen-xl flex-col gap-2 px-12 pt-4 pb-1">
-        <div className="flex items-center gap-2">
+      <div className="mx-auto flex max-w-screen-xl flex-col gap-2 px-4 pt-4 pb-1 md:px-12">
+        <div className="flex flex-col items-center gap-2 md:flex-row">
           <Logo size="sm" />
 
           <div className="flex flex-1 items-center justify-center text-sm">
@@ -27,7 +27,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icons.gitHub className="text-foreground size-8" />
+                <Icons.gitHub className="text-foreground size-6" />
               </Link>
             </Button>
             <Button variant="ghost" size="icon">
@@ -36,7 +36,7 @@ export function SiteFooter() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Icons.instagram className="text-foreground size-8" />
+                <Icons.instagram className="text-foreground size-6" />
               </Link>
             </Button>
           </div>

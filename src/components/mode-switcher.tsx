@@ -24,7 +24,7 @@ export function ModeSwitcher() {
   return (
     <Button
       variant="ghost"
-      className="group/toggle h-8 w-8 px-0"
+      className="group/toggle h-8 w-8 px-0 hover:cursor-pointer"
       size="icon"
       onClick={toggleTheme}
     >

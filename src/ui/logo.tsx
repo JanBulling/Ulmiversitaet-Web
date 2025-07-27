@@ -4,6 +4,7 @@ import Link from "next/link";
 interface LogoProps {
   className?: string;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
+  textHiddenOnSmall?: boolean;
 }
 
 const sizeMap = {
@@ -14,7 +15,11 @@ const sizeMap = {
   xl: { logo: "w-16 h-16", bigText: "text-3xl", text: "text-xl" },
 };
 
-export default function Logo({ className, size = "md" }: LogoProps) {
+export default function Logo({
+  className,
+  size = "md",
+  textHiddenOnSmall,
+}: LogoProps) {
   return (
     <Link href="/" className="flex items-center gap-2">
       <img
@@ -22,7 +27,13 @@ export default function Logo({ className, size = "md" }: LogoProps) {
         alt="Ulmiversität Logo"
         className={cn("dark:invert", sizeMap[size].logo, className)}
       />
-      <p className={cn("font-semibold", sizeMap[size].text)}>
+      <p
+        className={cn(
+          "font-semibold",
+          sizeMap[size].text,
+          textHiddenOnSmall && "hidden md:inline-block",
+        )}
+      >
         <span
           className={cn("text-primary font-extrabold", sizeMap[size].bigText)}
         >
