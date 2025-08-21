@@ -25,4 +25,8 @@ export const navItems = [
     href: "/guides",
     label: "Anleitungen",
   },
+  {
+    href: "/links",
+    label: "Alle Links",
+  },
 ];

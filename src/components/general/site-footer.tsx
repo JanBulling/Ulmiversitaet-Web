@@ -3,6 +3,7 @@ import { Button } from "@/ui/button";
 import { Icons } from "@/ui/icons";
 import Logo from "@/ui/logo";
 import Link from "next/link";
+import NetworkChecker from "./network-checker";
 
 export function SiteFooter() {
   return (
@@ -40,6 +41,9 @@ export function SiteFooter() {
               </Link>
             </Button>
           </div>
+        </div>
+        <div>
+          <NetworkChecker />
         </div>
         <div className="text-muted-foreground ml-auto flex items-center gap-2 text-xs">
           <p>© {new Date().getFullYear()}</p>

@@ -175,3 +175,10 @@ header.scrolled {
   @apply bg-card/25;
   @apply saturate-200 backdrop-blur-sm;
 }
+
+header.scrolled #header-search {
+  @apply flex;
+}
+header #header-search {
+  @apply hidden;
+}
