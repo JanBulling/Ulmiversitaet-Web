@@ -3,8 +3,6 @@ import { MensaCategory } from "@/lib/mensa/menu.type";
 import { cn } from "@/lib/utils";
 import React from "react";
 
-interface MensaSectionProps extends React.ComponentProps<"section"> {}
-
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
   "TOPF UND PFANNE",
@@ -14,7 +12,9 @@ const shownSingleCategories: MensaCategory[] = [
 
 const shownListCategories: MensaCategory[] = ["PIZZA", "PASTA", "SNACKS"];
 
-export async function MensaSection({ className }: MensaSectionProps) {
+export async function MensaSection({
+  className,
+}: React.ComponentProps<"section">) {
   const { date, mensaPlan } = await getMensaMenu();
 
   const dateFormatter = Intl.DateTimeFormat("de-DE", {

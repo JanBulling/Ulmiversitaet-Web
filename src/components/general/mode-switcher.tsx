@@ -9,9 +9,7 @@ import { useMetaColor } from "@/hooks/use-meta-color";
 import { Button } from "@/ui/button";
 import { cn } from "@/lib/utils";
 
-interface ModeSwitcherProps extends React.ComponentProps<"button"> {}
-
-export function ModeSwitcher({ className }: ModeSwitcherProps) {
+export function ModeSwitcher({ className }: React.ComponentProps<"button">) {
   const { setTheme, resolvedTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
 
