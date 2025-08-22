@@ -2,6 +2,10 @@ import { getMensaMenu } from "@/lib/mensa/get-mensa-menu";
 import { MensaCategory } from "@/lib/mensa/menu.type";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { MensaSingleMeal } from "./mensa-single-meal";
+import { MensaListMeal } from "./mensa-list-meal";
+import { Button } from "@/ui/button";
+import Link from "next/link";
 
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
@@ -10,7 +14,12 @@ const shownSingleCategories: MensaCategory[] = [
   "FLEISCH UND FISCH",
 ];
 
-const shownListCategories: MensaCategory[] = ["PIZZA", "PASTA", "SNACKS"];
+const shownListCategories: MensaCategory[] = [
+  "PIZZA",
+  "PASTA",
+  "SNACKS",
+  "DESSERT",
+];
 
 export async function MensaSection({
   className,
@@ -32,34 +41,45 @@ export async function MensaSection({
   );
 
   return (
-    <section className={cn("bg-card border-y px-4 py-2 md:border", className)}>
-      <div className="flex items-center justify-between">
+    <section className={cn("bg-card border-y py-4 md:border", className)}>
+      <div className="flex items-center gap-4 px-4 md:justify-between">
         <h2 className="text-2xl font-bold">Mensa</h2>
         <p className="text-muted-foreground text-sm">
-          {dateFormatter.format(date)}
+          Heute, {dateFormatter.format(date)}
         </p>
       </div>
       {!singleCategoriesMensaPlan && !listCategoriesMensaPlan && (
         <div>Mensa heute geschlossen</div>
       )}
-      <div className="divide-y">
+      <div className="divide-accent divide-y">
         {singleCategoriesMensaPlan &&
-          singleCategoriesMensaPlan.map((p) => {
-            const meal = p.meals[0];
+          singleCategoriesMensaPlan.map((p) => (
+            <MensaSingleMeal
+              key={p.category}
+              meal={p.meals[0]}
+              category={p.category}
+            />
+          ))}
+      </div>
+      {listCategoriesMensaPlan &&
+        listCategoriesMensaPlan.map((p) => (
+          <MensaListMeal
+            key={p.category}
+            meals={p.meals}
+            category={p.category}
+          />
+        ))}
 
-            return (
-              <div key={p.category} className="py-2">
-                <div className="flex items-center justify-between">
-                  <p>{p.category}</p>
-                  <p>{meal.rating}</p>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h4 className="font-bold">{meal.name}</h4>
-                  <p>{meal.prices.student}€</p>
-                </div>
-              </div>
-            );
-          })}
+      <div className="flex items-center justify-center">
+        <Link
+          href="https://mensa.ulmiversitaet.de"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button variant="outline" className="cursor-pointer">
+            Mehr Gerichte
+          </Button>
+        </Link>
       </div>
     </section>
   );
