@@ -82,15 +82,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <body
         className={cn(
-          "bg-background min-h-svh font-sans antialiased",
+          "bg-background text-foreground min-h-svh font-sans antialiased",
           fontSans.variable,
           fontMono.variable,
         )}
       >
         <ThemeProvider>
-          <div className="bg-background text-foreground relative flex min-h-svh flex-col">
-            {children}
-          </div>
+          <div className="relative flex min-h-svh flex-col">{children}</div>
           <TailwindIndicator />
           <AnalyticsProvider />
         </ThemeProvider>

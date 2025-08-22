@@ -17,7 +17,7 @@ export function SiteFooter() {
               <Link href="/impressum">Impressum</Link>
             </Button>
             <Button variant="link">
-              <Link href="/impressum">About</Link>
+              <Link href="/about">About</Link>
             </Button>
           </div>
 

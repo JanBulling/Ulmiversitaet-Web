@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -7,8 +8,8 @@
   --breakpoint-3xl: 1600px;
   --breakpoint-4xl: 2000px;
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -133,9 +134,11 @@
   ::selection {
     @apply bg-selection text-selection-foreground;
   }
+
   html {
     @apply scroll-smooth;
   }
+
   body {
     font-synthesis-weight: none;
     text-rendering: optimizeLegibility;
@@ -162,37 +165,7 @@
   }
 }
 
-@utility step {
-  counter-increment: step;
-  @apply relative;
-
-  &:before {
-    @apply text-muted-foreground right-0 mr-2 hidden size-7 items-center justify-center rounded-full text-center -indent-px font-mono text-sm font-medium md:absolute;
-    content: counter(step);
-  }
-}
-
-@utility extend-touch-target {
-  @media (pointer: coarse) {
-    @apply relative touch-manipulation after:absolute after:-inset-2;
-  }
-}
-
-body {
-  background: hsl(var(--background));
-  color: hsl(var(--foreground));
-  font-family: Arial, Helvetica, sans-serif;
-  @apply scroll-smooth;
-}
-
 header.scrolled {
   @apply bg-card/25;
   @apply saturate-200 backdrop-blur-sm;
-}
-
-header.scrolled #header-search {
-  @apply flex;
-}
-header #header-search {
-  @apply hidden;
 }
