@@ -15,7 +15,7 @@ export default async function NetworkChecker() {
     return (
       <div className="flex items-center">
         <div className="bg-success h-4 w-4 rounded-full" />
-        <p className="text-sm font-bold">Uni-VPN aktiv</p>
+        <p className="text-xs font-bold">Uni-VPN aktiv</p>
       </div>
     );
 
@@ -24,7 +24,7 @@ export default async function NetworkChecker() {
     return (
       <div className="flex items-center">
         <div className="bg-success h-4 w-4 rounded-full" />
-        <p className="text-sm font-bold">Eduroam aktiv</p>
+        <p className="text-xs font-bold">Eduroam aktiv</p>
       </div>
     );
 

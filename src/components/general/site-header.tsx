@@ -1,11 +1,10 @@
 import { navItems } from "@/config/site";
 import { ModeSwitcher } from "./mode-switcher";
 
-import { Separator } from "@/ui/separator";
 import { MainNav } from "./main-nav";
 import Logo from "@/ui/logo";
 import MobileNav from "./mobile-nav";
-import HeaderMobileSearchBtn from "./header-mobile-search-btn";
+import HeaderSearchField from "./search-field";
 
 export function SiteHeader() {
   return (
@@ -22,19 +21,11 @@ export function SiteHeader() {
             className="hidden md:flex md:flex-1 md:justify-center"
           />
 
-          <div className="flex gap-4 md:hidden">
-            <HeaderMobileSearchBtn />
+          <div className="ml-auto flex items-center justify-end gap-4">
+            <HeaderSearchField />
+            <ModeSwitcher className="hidden md:flex" />
 
             <MobileNav items={navItems} />
-          </div>
-
-          <div className="ml-auto hidden items-center gap-2 md:flex md:justify-end">
-            {/* <Search /> */}
-            <Separator
-              orientation="vertical"
-              className="ml-2 hidden lg:block"
-            />
-            <ModeSwitcher />
           </div>
         </div>
       </header>

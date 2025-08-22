@@ -12,6 +12,7 @@ import { Menu } from "lucide-react";
 import Link from "next/link";
 import { ModeSwitcher } from "./mode-switcher";
 import * as React from "react";
+import { cn } from "@/lib/utils";
 
 export default function MobileNav({
   className,
@@ -23,7 +24,7 @@ export default function MobileNav({
   const [open, setOpen] = React.useState<boolean>(false);
 
   return (
-    <div className={className}>
+    <div className={cn("block md:hidden", className)}>
       <Sheet onOpenChange={setOpen} open={open}>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon">

@@ -1,5 +1,5 @@
 import { QuickLink } from "@/content/quick-links";
-import { ImageIcon } from "lucide-react";
+import { LinkIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -25,9 +25,9 @@ export function QuickLinkIcon({ quickLink }: QuickLinkProps) {
               className="size-10 sm:size-12"
             />
           ) : (
-            <ImageIcon className="size-10 sm:size-12" />
+            <LinkIcon className="size-10 sm:size-12" />
           )}
-          <div className="from-primary/20 pointer-events-none absolute inset-px rounded-lg bg-radial-[at_30%_20%] from-0% to-transparent to-70% mix-blend-overlay" />
+          <div className="from-primary/35 pointer-events-none absolute inset-px rounded-lg bg-radial-[at_30%_20%] from-0% to-transparent to-70% mix-blend-overlay" />
         </div>
 
         <p className="mt-1 line-clamp-1 px-1 text-center text-xs font-bold">

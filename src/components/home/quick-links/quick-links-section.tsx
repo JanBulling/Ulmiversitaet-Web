@@ -1,5 +1,6 @@
 import { QuickLinkIcon } from "./quick-link-icon";
 import { defaultQuickLinks, moreLinksQuickLink } from "@/content/quick-links";
+import { QuickLinksEdit } from "./quick-links-edit";
 
 export function QuickLinksSection() {
   return (
@@ -8,7 +9,7 @@ export function QuickLinksSection() {
         <QuickLinkIcon key={q.href} quickLink={q} />
       ))}
       <QuickLinkIcon quickLink={moreLinksQuickLink} />
-      {/* <EditQuickLink /> */}
+      <QuickLinksEdit />
     </section>
   );
 }

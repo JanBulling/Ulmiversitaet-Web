@@ -7,8 +7,11 @@ import { useTheme } from "next-themes";
 import { META_THEME_COLORS } from "@/config/site";
 import { useMetaColor } from "@/hooks/use-meta-color";
 import { Button } from "@/ui/button";
+import { cn } from "@/lib/utils";
 
-export function ModeSwitcher() {
+interface ModeSwitcherProps extends React.ComponentProps<"button"> {}
+
+export function ModeSwitcher({ className }: ModeSwitcherProps) {
   const { setTheme, resolvedTheme } = useTheme();
   const { setMetaColor } = useMetaColor();
 
@@ -24,7 +27,10 @@ export function ModeSwitcher() {
   return (
     <Button
       variant="ghost"
-      className="group/toggle h-8 w-8 px-0 hover:cursor-pointer"
+      className={cn(
+        "group/toggle h-8 w-8 px-0 hover:cursor-pointer",
+        className,
+      )}
       size="icon"
       onClick={toggleTheme}
     >

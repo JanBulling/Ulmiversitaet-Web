@@ -1,23 +1,16 @@
-import { QuickLinksSection } from "@/components/home/quick-links-section";
-import SearchBar from "@/components/home/search-bar";
+import { MensaSection } from "@/components/home/mensa/mensa-section";
+import { PublicTransportSection } from "@/components/home/public-transport/public-transport-section";
+import { QuickLinksSection } from "@/components/home/quick-links/quick-links-section";
 
 export default function Home() {
   return (
-    <div className="mx-auto w-full max-w-screen-xl space-y-4 md:space-y-8">
-      <SearchBar />
-
+    <div className="mx-auto my-8 w-full max-w-screen-xl space-y-8 md:my-8 md:space-y-8">
       <QuickLinksSection />
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-        {/* Mensa Menu */}
-        <div className="md:col-span-2">
-          <div className="bg-card h-64 border shadow md:rounded-md"></div>
-        </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-7">
+        <MensaSection className="md:col-span-4" />
 
-        {/* Public transport */}
-        <div className="md:col-span-1">
-          <div className="bg-card h-64 border shadow md:rounded-md"></div>
-        </div>
+        <PublicTransportSection className="md:col-span-3" />
       </div>
     </div>
   );
