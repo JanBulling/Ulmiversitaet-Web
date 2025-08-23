@@ -6,6 +6,7 @@ import { MensaSingleMeal } from "./mensa-single-meal";
 import { MensaListMeal } from "./mensa-list-meal";
 import { Button } from "@/ui/button";
 import Link from "next/link";
+import { ExternalLink } from "lucide-react";
 
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
@@ -48,9 +49,14 @@ export async function MensaSection({
           Heute, {dateFormatter.format(date)}
         </p>
       </div>
-      {!singleCategoriesMensaPlan && !listCategoriesMensaPlan && (
-        <div>Mensa heute geschlossen</div>
-      )}
+
+      {singleCategoriesMensaPlan?.length === 0 &&
+        listCategoriesMensaPlan!.length === 0 && (
+          <div className="text-muted-foreground mt-8 mb-12 text-center italic">
+            Mensa heute geschlossen
+          </div>
+        )}
+
       <div className="divide-accent divide-y">
         {singleCategoriesMensaPlan &&
           singleCategoriesMensaPlan.map((p) => (
@@ -78,6 +84,7 @@ export async function MensaSection({
         >
           <Button variant="outline" className="cursor-pointer">
             Mehr Gerichte
+            <ExternalLink className="size-3" />
           </Button>
         </Link>
       </div>

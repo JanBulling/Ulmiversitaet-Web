@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 
-export function BaseLayout({
+export default function BaseLayout({
   children,
   className,
 }: {

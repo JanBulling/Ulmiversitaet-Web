@@ -17,12 +17,6 @@ const defaultQuickLinksLabel: QuickLinkLabelType[] = [
   "Campus Map",
 ];
 
-export const moreLinksQuickLink: QuickLink = {
-  label: "Mehr Links",
-  href: "/links",
-  internalLink: true,
-};
-
 export const quickLinks = [
   {
     label: "Bib Kathalog",

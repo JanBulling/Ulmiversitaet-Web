@@ -33,7 +33,8 @@
     "**/*.mjs",
     "next.config.ts",
     "drizzle.config.js",
-    "mdx-components.js"
+    "mdx-components.js",
+    "src/content/guides/rueckmeldung-master.mdx"
   ],
   "exclude": ["node_modules"]
 }

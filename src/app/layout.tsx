@@ -88,7 +88,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider>
-          <div className="relative flex min-h-svh flex-col">{children}</div>
+          {children}
           <TailwindIndicator />
           <AnalyticsProvider />
         </ThemeProvider>

@@ -23,7 +23,7 @@ export function MensaListMeal({ category, meals }: MensaListMealProps) {
         className="flex items-center gap-2 px-4"
         style={{ color: mensaCategoryColorMap[category] }}
       >
-        <h3 className="font-bold">{category}</h3>
+        <h3 className="font-mono font-bold">{category}</h3>
         <Icon size={16} />
       </div>
       {meals.map((meal) => (
@@ -40,7 +40,7 @@ export function MensaListMeal({ category, meals }: MensaListMealProps) {
                 numberRatings={meal.numberRatings ?? 0}
               />
             </div>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground font-mono text-sm">
               {meal.prices.student}€
             </p>
           </div>

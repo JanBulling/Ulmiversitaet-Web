@@ -22,15 +22,15 @@ export function MensaSingleMeal({ category, meal }: MensaSingleMealProps) {
           className="flex items-center justify-between"
           style={{ color: mensaCategoryColorMap[category] }}
         >
-          <h3 className="font-bold">{category}</h3>
+          <h3 className="font-mono font-bold">{category}</h3>
           <Rating
             value={meal.rating ?? 0}
             numberRatings={meal.numberRatings ?? 0}
           />
         </div>
-        <div className="mt-1 flex items-center justify-between">
+        <div className="mt-1 flex items-center justify-between gap-4">
           <h4 className="font-semibold">{meal.name}</h4>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground font-mono text-sm">
             {meal.prices.student}€
           </p>
         </div>
@@ -39,7 +39,7 @@ export function MensaSingleMeal({ category, meal }: MensaSingleMealProps) {
             <b>Kalorien:</b> {meal.nutrition.calories}kcal
           </p>
           <p>
-            <b>Protein:</b> {meal.nutrition.protein}kcal
+            <b>Protein:</b> {meal.nutrition.protein}g
           </p>
         </div>
       </div>
