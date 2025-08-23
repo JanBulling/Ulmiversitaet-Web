@@ -1,6 +1,6 @@
 import { MensaSection } from "@/components/home/mensa/mensa-section";
 import MensaSectionLoading from "@/components/home/mensa/mensa-section-loading";
-import { PublicTransportSection } from "@/components/home/public-transport/public-transport-section";
+import { PublicTransportSection } from "@/components/home/public-transport/pub-tra-section";
 import { QuickLinksSection } from "@/components/home/quick-links/quick-links-section";
 import BaseLayout from "@/layouts/base-layout";
 import { Suspense } from "react";

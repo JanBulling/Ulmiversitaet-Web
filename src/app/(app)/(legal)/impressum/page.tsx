@@ -5,6 +5,8 @@ import BaseLayout from "@/layouts/base-layout";
 import { readMdxFile } from "@/lib/mdx-utils";
 import { CustomMDX } from "@/mdx-components";
 
+export const dynamic = "force-static";
+
 export default function ImpressumPage() {
   const fileContent = readMdxFile(
     path.join(process.cwd(), "src", "content", "legal", "impressum") + ".md",
