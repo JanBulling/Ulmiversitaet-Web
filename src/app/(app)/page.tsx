@@ -7,7 +7,8 @@ import BaseLayout from "@/layouts/base-layout";
 import { CalendarClock } from "lucide-react";
 import { Suspense } from "react";
 
-export const dynamic = "force-static";
+// mensa won't load
+// export const dynamic = "force-static";
 
 export default function Home() {
   return (
