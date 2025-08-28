@@ -7,6 +7,7 @@ import { MensaListMeal } from "./mensa-list-meal";
 import { Button } from "@/ui/button";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
+import GuruButton from "../mensa-guru/guru-btn";
 
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
@@ -87,6 +88,10 @@ export async function MensaSection({
             <ExternalLink className="size-3" />
           </Button>
         </Link>
+      </div>
+
+      <div className="mt-4 flex items-center justify-center">
+        <GuruButton />
       </div>
     </section>
   );
