@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import { getVehiclePassage, ApiError, ParsingError } from "@/lib/public-transport/swu-api";
 import { Alert, AlertDescription, AlertTitle } from "@/ui/alert";
 import { TriangleAlert } from "lucide-react";
+import { ExternalLink } from "lucide-react"; // add this import
 
 interface VehicleRouteDisplayProps {
   vehiclePassage: VehiclePassage | null;
@@ -37,7 +38,6 @@ export default function VehicleRouteDisplay({
 
   useEffect(() => {
     const updateInterval = setInterval(() => updateSecondCountdowns(), 1000);
-    let fetchInterval: NodeJS.Timeout;
 
     const fetchNewVehiclePassageData = async () => {
       if (currentVehiclePassage?.VehicleNumber) {
@@ -59,13 +59,12 @@ export default function VehicleRouteDisplay({
       }
     };
 
+    let fetchInterval: NodeJS.Timeout = setInterval(fetchNewVehiclePassageData, 15000);
 
     // Initial fetch if a vehicle is selected
     if (currentVehiclePassage?.VehicleNumber && !currentVehiclePassage.PassageData.length) {
       fetchNewVehiclePassageData();
     }
-
-    fetchInterval = setInterval(fetchNewVehiclePassageData, 15000);
 
     return () => {
       clearInterval(updateInterval);
@@ -131,36 +130,50 @@ export default function VehicleRouteDisplay({
         </Alert>
       )}
       <div className="flex items-center gap-2 mb-4">
-        <PublicTransportRouteIcon route={currentVehiclePassage?.RouteName || ""} className="size-7" />
-        <div className="flex items-center gap-4 h-full">
-            <h2 className="flex-1 text-2xl font-bold">
-              {error === "No vehicle selected or the route has not yet started." ? "Unbekanntes Fahrzeug" : `Fahrzeug ${currentVehiclePassage?.VehicleNumber}`}
-            </h2>
+        <div className="flex flex-col flex-1 min-w-0">
+            <div className="flex items-center gap-2">
+              <PublicTransportRouteIcon route={currentVehiclePassage?.RouteName || ""} className="size-7 shrink-0" />
+              <h2 className="text-2xl font-bold truncate flex-1">
+                {error === "No vehicle selected or the route has not yet started." ? "Unbekanntes Fahrzeug" : `Fahrzeug ${currentVehiclePassage?.VehicleNumber}`}
+              </h2>
+                {/* SWU link button */}
+              {currentVehiclePassage?.VehicleNumber && (
+                <a
+                  href={`https://echtzeit.swu.de/index.php?fzg=${currentVehiclePassage.VehicleNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-1 rounded hover:bg-muted transition-colors"
+                  title="Zur SWU Echtzeit-Seite"
+                >
+                  <ExternalLink className="h-4 w-4 text-muted-foreground" />
+                </a>
+              )}
+              
+              {nextStop && (
+                <p
+                  className={cn(
+                    "text-xs font-semibold text-right",
+                    isDelayed(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual)) < 0
+                      ? "text-success"
+                      : isDelayed(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual)) > 0
+                        ? "text-destructive"
+                        : "text-muted-foreground",
+                  )}
+                >
+                  {delayFormatter(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual))}
+                </p>
+              )}
+            </div>
           </div>
-         {nextStop && (
-          <p
-            className={cn(
-              "text-xs font-semibold ml-2 text-right",
-              isDelayed(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual)) < 0
-                ? "text-success"
-                : isDelayed(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual)) > 0
-                  ? "text-destructive"
-                  : "text-muted-foreground",
-            )}
-            style={{ flex: 1, textAlign: "right" }}
-          >
-            {delayFormatter(new Date(nextStop.ArrivalTimeScheduled), new Date(nextStop.ArrivalTimeActual))}
-          </p>
-        )}
       </div>
-      <ul className="mt-2 divide-y max-h-[420px] overflow-y-auto pr-2 scrollbar-hide">
+      <ul className="mt-2 divide-y max-h-[40svh] overflow-y-auto pr-2 scrollbar-hide md:max-h-[420px]">
         {futureStops.length > 0 ? (
           futureStops.map((stop, idx) => (
             <li key={idx} className="flex items-center gap-4 py-2">
-              <div className="flex-1">
-                <p className="font-semibold">{stop.StopName}</p>
+              <div className="flex-1 min-w-0">
+                <p className="font-semibold truncate">{stop.StopName}</p>
               </div>
-              <p className="text-muted-foreground mx-2 font-mono font-semibold">
+              <p className="text-muted-foreground mx-2 font-mono font-semibold shrink-0">
                 {countdownFormatter(stop.ArrivalCountdown, new Date(stop.ArrivalTimeActual))}
               </p>
             </li>

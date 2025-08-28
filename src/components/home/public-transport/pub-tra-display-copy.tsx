@@ -11,36 +11,37 @@ import {
   isDelayed,
 } from "@/lib/public-transport/pub-tra-time-formatter";
 import { cn } from "@/lib/utils";
-import { initialPublicTransportStop, publicTransportStops } from "@/config/public-transport";
+import { publicTransportStops } from "@/config/public-transport";
 
 interface PublicTransportDisplayCopyProps {
   initialStopNumber: number;
-  initialDepartures: Departure[];
+  departures: Departure[]; // Add departures prop
   onDepartureClick?: (vehicleNumber: number) => void;
   selectedVehicleNumber?: number | null; // New prop
+  onStopSelectFromTabs?: (stopId: string) => void; // New prop for tab selection
 }
 
 export default function PublicTransportDisplayCopy({
   initialStopNumber,
-  initialDepartures,
+  departures, // Destructure departures prop
   onDepartureClick,
   selectedVehicleNumber, // Destructure new prop
+  onStopSelectFromTabs, // Destructure new prop
 }: PublicTransportDisplayCopyProps) {
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
-  const [departures, setDepartures] =
-    React.useState<Departure[]>(initialDepartures);
+  const [internalDepartures, setInternalDepartures] = React.useState<Departure[]>(departures);
 
   async function fetchNewDeparture(stopNr: number) {
     try {
       const data = await getDeparturesAtStop(stopNr);
-      setDepartures(data || []);
+      setInternalDepartures(data || []);
     } catch (error) {
       console.error("Failed to fetch new departures:", error);
     }
   }
 
   function updateSecondDepartures() {
-    setDepartures((current) =>
+    setInternalDepartures((current) =>
       current?.map((cur) => ({
         ...cur,
         countdown: cur.countdown - 1,
@@ -61,16 +62,22 @@ export default function PublicTransportDisplayCopy({
     };
   }, [stopNumber]);
 
-  async function updateStopNumber(number: string) {
-    const newStopNumber = +number;
-    setStopNumber(newStopNumber);
-    await fetchNewDeparture(newStopNumber); // Re-added this line
-  }
+  React.useEffect(() => {
+    if (initialStopNumber !== stopNumber) {
+      setStopNumber(initialStopNumber);
+      fetchNewDeparture(initialStopNumber);
+    }
+  }, [initialStopNumber]);
+
+  // Update internal departures when prop changes
+  React.useEffect(() => {
+    setInternalDepartures(departures);
+  }, [departures]);
 
   return (
     <div className="my-2"> {/* Removed relative class */}
-      <Tabs defaultValue={initialPublicTransportStop} onValueChange={updateStopNumber}>
-        <TabsList className="w-full">
+      <Tabs value={stopNumber.toString()} onValueChange={onStopSelectFromTabs}>
+        <TabsList className="w-full overflow-x-auto">
           {publicTransportStops.map((stop) => (
             <TabsTrigger key={stop.value} value={stop.value}>
               {stop.label}
@@ -79,18 +86,20 @@ export default function PublicTransportDisplayCopy({
         </TabsList>
       </Tabs>
       <ol className="mt-2 divide-y">
-        {departures?.length > 0 ? (
-          departures.map((d, idx) => (
+        {internalDepartures?.length > 0 ? (
+          internalDepartures.map((d, idx) => (
             <li key={idx} className={cn("flex cursor-pointer items-center gap-4 py-2 hover:bg-muted/50 transition-colors",
                 d.vehicleNumber === selectedVehicleNumber && "bg-muted"
               )}
                 onClick={() => onDepartureClick?.(d.vehicleNumber)}>
-              <PublicTransportRouteIcon route={d.route} className="size-7" />
-              <div className="flex-1">
-                <h4 className="text-sm font-semibold">{d.directionText}</h4>
+              <PublicTransportRouteIcon route={d.route} className="size-7 shrink-0" />
+              <div className="flex-1 min-w-0">
+                <h4 className="text-sm font-semibold truncate max-w-full">
+                  {d.directionText}
+                </h4>
                 <p
                   className={cn(
-                    "text-xs",
+                    "text-xs truncate max-w-full",
                     isDelayed(d.scheduledTime, d.actualTime) < 0
                       ? "text-success"
                       : isDelayed(d.scheduledTime, d.actualTime) > 0
@@ -101,7 +110,7 @@ export default function PublicTransportDisplayCopy({
                   {delayFormatter(d.scheduledTime, d.actualTime)}
                 </p>
               </div>
-              <p className="text-muted-foreground mx-2 font-mono font-semibold">
+              <p className="text-muted-foreground mx-2 font-mono font-semibold shrink-0">
                 {countdownFormatter(d.countdown, d.actualTime)}
               </p>
             </li>

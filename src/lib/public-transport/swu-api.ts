@@ -1,5 +1,5 @@
 import { Departure, PassengerAlertData } from "./public-transport.type";
-import { VehiclePassage, VehicleTripData } from "./vehicle-passage.type";
+import { VehiclePassage } from "./vehicle-passage.type";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SWU_API_BASE_URL || "https://api.swu.de/mobility/v1/";
 

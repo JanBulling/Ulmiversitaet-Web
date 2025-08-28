@@ -12,6 +12,7 @@ import PublicTransportAlert from "@/components/home/public-transport/public-tran
 import { Alert, AlertDescription, AlertTitle } from "@/ui/alert";
 import { initialPublicTransportStop } from "@/config/public-transport";
 import { TriangleAlert } from "lucide-react";
+import StopSelector from "@/components/home/public-transport/stop-selector";
 
 
 export default function PublicTransportPage() {
@@ -19,11 +20,12 @@ export default function PublicTransportPage() {
   const [selectedVehicleNumber, setSelectedVehicleNumber] = useState<number | null>(null);
   const [vehiclePassage, setVehiclePassage] = useState<VehiclePassage | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [currentStopId, setCurrentStopId] = useState<string>(initialPublicTransportStop);
 
   useEffect(() => {
     async function fetchInitialData() {
       try {
-        const initialDepartures = await getDeparturesAtStop(+initialPublicTransportStop);
+        const initialDepartures = await getDeparturesAtStop(+currentStopId);
         setDepartures(initialDepartures);
 
         if (initialDepartures && initialDepartures.length > 0) {
@@ -47,7 +49,7 @@ export default function PublicTransportPage() {
       }
     }
     fetchInitialData();
-  }, []);
+  }, [currentStopId]);
 
   useEffect(() => {
     async function fetchVehicleRoute() {
@@ -74,6 +76,12 @@ export default function PublicTransportPage() {
     setSelectedVehicleNumber(vehicleNumber);
   };
 
+  const handleStopSelect = (stopId: string) => {
+    setCurrentStopId(stopId);
+    setSelectedVehicleNumber(null); // Reset selected vehicle when stop changes
+    setVehiclePassage(null); // Clear vehicle passage when stop changes
+  };
+
   return (
     <BaseLayout className="space-y-8 md:space-y-8">
       <PublicTransportAlert />
@@ -90,20 +98,22 @@ export default function PublicTransportPage() {
           <div className="flex items-center gap-4">
             <TramFront className="text-primary size-8" />
             <h2 className="flex-1 text-2xl font-bold">Echtzeit-ÖPNV</h2>
+            <StopSelector onSelectStop={handleStopSelect} currentStopId={currentStopId} />
           </div>
           {departures ? (
             <PublicTransportDisplayCopy 
-              initialDepartures={departures}
-              initialStopNumber={+initialPublicTransportStop}
+              initialStopNumber={+currentStopId}
+              departures={departures}
               onDepartureClick={handleDepartureClick}
               selectedVehicleNumber={selectedVehicleNumber} // Pass selectedVehicleNumber
+              onStopSelectFromTabs={handleStopSelect} // Pass the handler for tab selection
             />
           ) : (
             <p className="text-muted-foreground mt-4">Loading departures...</p>
           )}
         </div>
         {/* Right box: 3/7 of screen width */}
-        <div className="bg-card border-y px-4 py-4 md:border md:col-span-3 flex flex-col md:sticky md:top-4 md:self-start">
+        <div className="bg-card border-y px-4 py-4 md:border md:col-span-3 flex flex-col static md:sticky md:top-4 md:self-start">
           <VehicleRouteDisplay vehiclePassage={vehiclePassage} />
         </div>
       </section>
