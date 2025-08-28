@@ -13,15 +13,19 @@ import {
 import { cn } from "@/lib/utils";
 import { initialPublicTransportStop, publicTransportStops } from "@/config/public-transport";
 
-interface PublicTransportDisplayProps {
+interface PublicTransportDisplayCopyProps {
   initialStopNumber: number;
   initialDepartures: Departure[];
+  onDepartureClick?: (vehicleNumber: number) => void;
+  selectedVehicleNumber?: number | null; // New prop
 }
 
-export default function PublicTransportDisplay({
+export default function PublicTransportDisplayCopy({
   initialStopNumber,
   initialDepartures,
-}: PublicTransportDisplayProps) {
+  onDepartureClick,
+  selectedVehicleNumber, // Destructure new prop
+}: PublicTransportDisplayCopyProps) {
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
     React.useState<Departure[]>(initialDepartures);
@@ -77,7 +81,10 @@ export default function PublicTransportDisplay({
       <ol className="mt-2 divide-y">
         {departures?.length > 0 ? (
           departures.map((d, idx) => (
-            <li key={idx} className="flex items-center gap-4 py-2">
+            <li key={idx} className={cn("flex cursor-pointer items-center gap-4 py-2 hover:bg-muted/50 transition-colors",
+                d.vehicleNumber === selectedVehicleNumber && "bg-muted"
+              )}
+                onClick={() => onDepartureClick?.(d.vehicleNumber)}>
               <PublicTransportRouteIcon route={d.route} className="size-7" />
               <div className="flex-1">
                 <h4 className="text-sm font-semibold">{d.directionText}</h4>
