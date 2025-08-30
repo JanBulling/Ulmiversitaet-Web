@@ -43,9 +43,15 @@ function Alert({
   className,
   variant,
   children,
+  icon,
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
-  const Icon = variant ? (variantIconMap[variant] ?? null) : null;
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof alertVariants> & {
+    icon?: React.ForwardRefExoticComponent<
+      Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>
+    >;
+  }) {
+  const Icon = icon ?? (variant ? (variantIconMap[variant] ?? null) : null);
   return (
     <div
       data-slot="alert"

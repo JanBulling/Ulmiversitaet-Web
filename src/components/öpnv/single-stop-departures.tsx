@@ -1,41 +1,40 @@
 "use client";
 
 import { Departure } from "@/lib/public-transport/public-transport.type";
-import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
 import * as React from "react";
-import PublicTransportRouteIcon from "./pub-tra-icon";
-import { Tabs, TabsList, TabsTrigger } from "@/ui/tabs";
+import PublicTransportRouteIcon from "../home/public-transport/pub-tra-icon";
+import { cn } from "@/lib/utils";
 import {
   countdownFormatter,
   delayFormatter,
   isDelayed,
 } from "@/lib/public-transport/pub-tra-time-formatter";
-import { cn } from "@/lib/utils";
-import { featuredStops, defaultStop } from "@/content/public-transport/config";
+import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
+import StopSelectorButton from "./stop-select-btn";
 
-interface PublicTransportDisplayProps {
+interface SingleStopDeparturesProps {
   initialStopNumber: number;
   initialDepartures: Departure[];
 }
 
-export default function PublicTransportDisplay({
+export default function SingleStopDepartures({
   initialStopNumber,
   initialDepartures,
-}: PublicTransportDisplayProps) {
+}: SingleStopDeparturesProps) {
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
     React.useState<Departure[]>(initialDepartures);
 
   async function fetchNewDeparture(stopNr: number) {
     try {
-      const data = await getDeparturesAtStop(stopNr);
+      const data = await getDeparturesAtStop(stopNr, 12);
       setDepartures(data || []);
     } catch (error) {
       console.error("Failed to fetch new departures:", error);
     }
   }
 
-  function updateSecondDepartures() {
+  function updateDepartureCountdown() {
     setDepartures((current) =>
       current?.map((cur) => ({
         ...cur,
@@ -45,7 +44,7 @@ export default function PublicTransportDisplay({
   }
 
   React.useEffect(() => {
-    const updateInterval = setInterval(() => updateSecondDepartures(), 1000);
+    const updateInterval = setInterval(() => updateDepartureCountdown(), 1000);
     const fetchInterval = setInterval(
       async () => await fetchNewDeparture(stopNumber),
       15000,
@@ -57,26 +56,21 @@ export default function PublicTransportDisplay({
     };
   }, [stopNumber]);
 
-  async function updateStopNumber(number: string) {
-    const newStopNumber = +number;
+  async function updateStopNumber(stopId: number) {
+    const newStopNumber = stopId;
     setStopNumber(newStopNumber);
     await fetchNewDeparture(newStopNumber); // Re-added this line
   }
 
   return (
-    <div className="my-2">
-      <Tabs
-        defaultValue={defaultStop.stopId.toString()}
-        onValueChange={updateStopNumber}
-      >
-        <TabsList className="w-full">
-          {featuredStops.map((stop) => (
-            <TabsTrigger key={stop.stopId} value={stop.stopId.toString()}>
-              {stop.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+    <div className="bg-card border-y px-4 py-4 md:border">
+      <div className="flex items-center justify-center">
+        <StopSelectorButton
+          stopId={stopNumber}
+          onStopIdChange={updateStopNumber}
+        />
+      </div>
+
       <ol className="mt-2 divide-y">
         {departures?.length > 0 ? (
           departures.map((d, idx) => (

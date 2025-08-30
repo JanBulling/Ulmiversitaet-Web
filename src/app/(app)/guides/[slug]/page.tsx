@@ -64,8 +64,6 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
   if (!content) return notFound();
 
-  console.log(metadata);
-
   return (
     <GuideLayout>
       <CustomMDX source={content} />

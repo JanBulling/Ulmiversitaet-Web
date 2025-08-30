@@ -8,21 +8,32 @@ export type Departure = {
   vehicleNumber: number;
 };
 
-export enum AlertStatus {
-  NoResult = "no result found",
-  Disruption = "disruption",
-  OK = "OK",
-  // Add other relevant statuses if known
-}
+export type PassengerAlert = {
+  currentStatus?: "DISRUPTION" | "OK";
+  timestamp: Date;
+  title?: string;
+  data?: string;
+};
 
-export interface PassengerAlertData {
-  UpdateInterval: string;
-  CurrentStatus: AlertStatus | string;
-  CurrentTimestamp: string;
-  AlertTitle?: string;
-  AlertData?: string;
-}
+type PassageStatus =
+  | "UPCOMING"
+  | "IN-PROGRESS"
+  | "ARRIVED"
+  | "PASSED"
+  | "CANCELLED";
+export type Passage = {
+  name: string;
+  status: PassageStatus;
+  scheduledTime: Date;
+  actualTime: Date;
+  deviation: number;
+  countdown: number;
+};
 
-export interface PassengerAlertResponse {
-  PassengerAlert: PassengerAlertData;
-}
+export const passageStatusMap: Record<number, PassageStatus> = {
+  1: "UPCOMING",
+  2: "IN-PROGRESS",
+  3: "ARRIVED",
+  4: "PASSED",
+  5: "CANCELLED",
+};

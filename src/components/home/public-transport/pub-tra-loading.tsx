@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils";
+import { Button } from "@/ui/button";
 import { Skeleton } from "@/ui/skeleton";
-import { Loader2, TramFront } from "lucide-react";
+import { ChevronRight, Loader2, TramFront } from "lucide-react";
+import Link from "next/link";
 
 export default function PublicTransportLoading({
   className,
@@ -19,6 +21,15 @@ export default function PublicTransportLoading({
         <Skeleton className="h-12 w-full" />
         <Skeleton className="h-12 w-full" />
         <Skeleton className="h-12 w-full" />
+      </div>
+
+      <div className="my-2 flex items-center justify-center">
+        <Link href="/public-transport">
+          <Button variant="outline">
+            Weitere Haltestellen
+            <ChevronRight />
+          </Button>
+        </Link>
       </div>
     </section>
   );
