@@ -1,4 +1,5 @@
 import { isInCidr } from "@/lib/ip-utils";
+import { CheckCircleIcon } from "lucide-react";
 import { headers } from "next/headers";
 
 const uniUlmVpnCidr = ["134.60.240.0/23", "134.60.246.0/23", "134.60.248.0/22"];
@@ -13,17 +14,17 @@ export default async function NetworkChecker() {
   const isVpn = uniUlmVpnCidr.some((cidr) => isInCidr(ip, cidr));
   if (isVpn)
     return (
-      <div className="flex items-center">
-        <div className="bg-success h-4 w-4 rounded-full" />
-        <p className="text-xs font-bold">Uni-VPN aktiv</p>
+      <div className="text-success bg-card flex w-fit items-center gap-2 rounded-sm border p-1 shadow">
+        <CheckCircleIcon className="size-4" />
+        <p className="text-xs font-bold">Uni VPN aktiv</p>
       </div>
     );
 
   const isEduroam = eduroamCidr.some((cidr) => isInCidr(ip, cidr));
   if (isEduroam)
     return (
-      <div className="flex items-center">
-        <div className="bg-success h-4 w-4 rounded-full" />
+      <div className="text-success bg-card flex w-fit items-center gap-2 rounded-sm border p-1 shadow">
+        <CheckCircleIcon className="size-4" />
         <p className="text-xs font-bold">Eduroam aktiv</p>
       </div>
     );

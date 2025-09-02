@@ -42,7 +42,7 @@ export function SiteFooter() {
             </Button>
           </div>
         </div>
-        <div>
+        <div className="lg:hidden">
           <NetworkChecker />
         </div>
         <div className="text-muted-foreground ml-auto flex items-center gap-2 text-xs">

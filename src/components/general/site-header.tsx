@@ -5,6 +5,7 @@ import { MainNav } from "./main-nav";
 import Logo from "@/ui/logo";
 import MobileNav from "./mobile-nav";
 import HeaderSearchField from "./search-field";
+import NetworkChecker from "./network-checker";
 
 export function SiteHeader() {
   return (
@@ -22,6 +23,9 @@ export function SiteHeader() {
           />
 
           <div className="ml-auto flex items-center justify-end gap-4">
+            <div className="hidden lg:inline-block">
+              <NetworkChecker />
+            </div>
             <HeaderSearchField />
             <ModeSwitcher className="hidden md:flex" />
 
