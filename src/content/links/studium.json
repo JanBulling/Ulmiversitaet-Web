@@ -1,10 +1,34 @@
 {
   "title": "Studium",
   "description": "Allgemeine Links der Universität Ulm",
-  "links": [
+  "content": [
     {
-      "label": "Moodle",
-      "href": "https://moodle.uni-ulm.de"
+      "type": "LINK",
+      "label": "Veranstaltungsverzeichnis",
+      "href": "https://portal.uni-ulm.de/PortalWI/sso/vvz.html",
+      "related": [
+        {
+          "type": "LINK",
+          "label": "Modulhandbücher",
+          "href": "https://campusonline.uni-ulm.de/qislsf/rds?state=change&type=1&moduleParameter=modulhandbuecherMenue&nextdir=change&next=menu.vm&subdir=applications&xml=menu&purge=y&database=n&navigationPosition=modules%2CModulhandbuecher&breadcrumb=mod_handbuecher_UL&topitem=modules&subitem=Modulhandbuecher"
+        },
+        {
+          "type": "LINK",
+          "label": "Veranstaltungsarchiev",
+          "href": "https://campusonline.uni-ulm.de/qislsf/rds?state=change&type=1&moduleParameter=VVZArchivMenue&nextdir=change&next=menu.vm&subdir=applications&xml=menu&purge=y&database=n&navigationPosition=lectures%2CVVZArchiv&topitem=lectures&subitem=VVZArchiv"
+        }
+      ]
+    },
+    {
+      "type": "LINK",
+      "label": "CoronaNG",
+      "href": "https://campusonline.uni-ulm.de/CoronaNG/index.html",
+      "description": "Anmeldungen für bestimmte Kurse (z.B. ASQ)."
+    },
+    {
+      "type": "LINK",
+      "label": "Höhrsaalfinder",
+      "href": "https://www.uni-ulm.de/einrichtungen/kiz/weiteres/campus-navigation/hoersaalfinder/"
     }
   ]
 }

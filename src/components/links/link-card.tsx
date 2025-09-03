@@ -39,6 +39,8 @@ export default function LinkCard({ link }: LinkCardProps) {
                     <NextLink
                       href={relatedLink.href}
                       className="text-sm underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       {relatedLink.label}
                     </NextLink>
