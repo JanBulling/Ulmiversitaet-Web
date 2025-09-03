@@ -9,10 +9,10 @@ export type Departure = {
 };
 
 export type PassengerAlert = {
-  currentStatus?: "DISRUPTION" | "OK";
+  status?: "DISRUPTION" | "OK";
   timestamp: Date;
   title?: string;
-  data?: string;
+  data?: string[];
 };
 
 type PassageStatus =

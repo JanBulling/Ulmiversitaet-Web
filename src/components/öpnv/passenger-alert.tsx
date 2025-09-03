@@ -7,14 +7,18 @@ export default async function PassengerAlert() {
 
   return (
     <Alert
-      variant={alert.currentStatus === "OK" ? "success" : "destructive"}
+      variant={alert.status === "OK" ? "success" : "destructive"}
       icon={AlertTriangleIcon}
     >
       <AlertTitle>
         {alert.title ??
-          (alert.currentStatus === "OK" ? "Keine Störung" : "Aktuelle Störung")}
+          (alert.status === "OK" ? "Keine Störung" : "Aktuelle Störung")}
       </AlertTitle>
-      <AlertDescription>{alert.data}</AlertDescription>
+      <AlertDescription>
+        {alert.data?.map((a) => (
+          <p key={a}>{a}</p>
+        ))}
+      </AlertDescription>
     </Alert>
   );
 }

@@ -130,14 +130,24 @@ export async function getPassengerAlert(): Promise<PassengerAlert> {
 
   try {
     const alertApiData = responseJson["PassengerAlert"];
-    const status =
+
+    const apiStatus =
       alertApiData["CurrentStatus"] === "no result found" ? "OK" : "DISRUPTION";
 
+    const status =
+      alertApiData["AlertData"] !== undefined ? "DISRUPTION" : apiStatus;
+
+    const alertDataResponse: string | undefined = alertApiData["AlertData"];
+    const alertData = alertDataResponse
+      ?.trim()
+      ?.split("+++")
+      .map((s: string) => s.trim());
+
     const departures: PassengerAlert = {
-      currentStatus: status,
+      status: status,
       timestamp: new Date(alertApiData["CurrentTimestamp"]),
-      title: alertApiData["Title"],
-      data: alertApiData["Data"],
+      title: alertApiData["AlertTitle"],
+      data: alertData,
     };
 
     return departures;

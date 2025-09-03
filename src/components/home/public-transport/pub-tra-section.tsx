@@ -1,4 +1,7 @@
-import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
+import {
+  getDeparturesAtStop,
+  getPassengerAlert,
+} from "@/lib/public-transport/swu-api";
 import { cn } from "@/lib/utils";
 import React from "react";
 import PublicTransportDisplay from "./pub-tra-display";
@@ -6,11 +9,13 @@ import { ChevronRight, Rss, TramFront } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/ui/button";
 import { defaultStop } from "@/content/public-transport/config";
+import { Alert, AlertDescription, AlertTitle } from "@/ui/alert";
 
 export async function PublicTransportSection({
   className,
 }: React.ComponentProps<"section">) {
   const departures = await getDeparturesAtStop(defaultStop.stopId);
+  const passengerAlert = await getPassengerAlert();
 
   return (
     <section className={cn("bg-card border-y px-4 py-4 md:border", className)}>
@@ -24,6 +29,17 @@ export async function PublicTransportSection({
           <Rss className="text-primary inline-flex size-4 animate-pulse" />
         </div>
       </div>
+
+      {passengerAlert.status === "DISRUPTION" && (
+        <Alert variant="destructive" className="mt-2">
+          <AlertTitle>{passengerAlert.title}</AlertTitle>
+          <AlertDescription>
+            {passengerAlert.data?.map((alert) => (
+              <p key={alert}>{alert}</p>
+            ))}
+          </AlertDescription>
+        </Alert>
+      )}
 
       <PublicTransportDisplay
         initialDepartures={departures!}
