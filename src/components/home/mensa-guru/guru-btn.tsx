@@ -7,7 +7,7 @@ export default function GuruButton({
   return (
     <button
       className={cn(
-        "relative max-w-sm cursor-pointer rounded-xl bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 px-6 py-3 text-lg shadow-xl transition duration-200 ease-out hover:scale-105",
+        "relative max-w-sm cursor-pointer overflow-hidden rounded-xl bg-gradient-to-r from-pink-400 via-purple-400 to-indigo-400 px-6 py-3 text-lg shadow-xl transition duration-200 ease-out hover:scale-105",
         className,
       )}
       {...props}

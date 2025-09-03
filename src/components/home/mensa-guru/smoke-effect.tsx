@@ -10,9 +10,9 @@ interface SmokeEffectProps {
 }
 
 export default function SmokeEffect({
-  particleCount = 50,
-  particleSize = 50,
-  color = ["#121212", "#424242", "#626262"],
+  particleCount = 35,
+  particleSize = 30,
+  color = ["#525252", "#727272", "#B2B2B2"],
   className,
 }: SmokeEffectProps) {
   const particles = Array.from({ length: particleCount });
@@ -26,10 +26,10 @@ export default function SmokeEffect({
           style={{
             opacity: 0,
             backgroundColor: color[i % color.length],
-            width: particleSize,
-            height: particleSize,
+            width: `${Math.random() * particleSize + 5}%`,
+            height: `${Math.random() * particleSize + 5}%`,
             left: `${Math.random() * 90 + 5}%`,
-            bottom: `${Math.random() * 20}%`,
+            bottom: `${Math.random() * 40}%`,
             animationDelay: `${i * 0.1 - 0.05 * particleCount}s`,
           }}
         />

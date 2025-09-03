@@ -1,0 +1,59 @@
+{
+  "title": "Account-Management",
+  "description": "Diverse accounts an der Uni Ulm, wie z.B. ",
+  "content": [
+    {
+      "type": "LINK",
+      "label": "Identitätsmanagement",
+      "href": "https://portal.uni-ulm.de/idmFrontend/",
+      "description": "Zentrale Verwaltung von Personendaten und Chipkarte.",
+      "related": [
+        {
+          "label": "Mehr informationen",
+          "href": "https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/account-zugang/idm/"
+        },
+        {
+          "type": "GUIDE",
+          "label": "Chipkarte verlängern",
+          "href": "/guides/chipkarte"
+        }
+      ]
+    },
+    {
+      "type": "LINK",
+      "label": "SGI-Account",
+      "href": "https://www.uni-ulm.de/in/sgi/services/account-system/account-erstellen/",
+      "description": "Zugang zu PC-Pools der Informatik",
+      "related": [
+        {
+          "label": "Passwort zurücksetzen",
+          "href": "https://psi.informatik.uni-ulm.de:1244/sgi/password-reset"
+        },
+        {
+          "type": "GUIDE",
+          "label": "PC-Pools",
+          "href": "/guides/pc-pools"
+        }
+      ]
+    },
+    {
+      "type": "LINK",
+      "label": "Mailing Listen",
+      "href": "https://imap.uni-ulm.de/lists",
+      "description": "Ein- / Austragen aus Mailinglisten."
+    },
+    {
+      "type": "LINK",
+      "label": "SONA",
+      "href": "https://uulm.sona-systems.com/",
+      "description": "Verwaltung psychologischer Experimente und Management der Versuchspersonenstunden.",
+      "related": [
+        {
+          "type": "LINK",
+          "label": "Passwort zurücksetzen",
+          "href": "https://uulm.sona-systems.com/lost_password.aspx"
+        }
+      ]
+    }
+  ]
+}

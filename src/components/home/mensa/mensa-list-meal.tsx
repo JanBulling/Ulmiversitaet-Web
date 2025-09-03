@@ -31,7 +31,7 @@ export function MensaListMeal({ category, meals }: MensaListMealProps) {
           key={meal.name}
           href={`https://mensa.ulmiversitaet.de/meal/${generateSlug(meal.name)}`}
         >
-          <div className="hover:bg-muted flex items-center justify-between px-4 py-1">
+          <div className="hover:bg-muted flex items-center justify-between gap-4 px-4 py-1">
             <div className="flex items-center gap-2">
               <h4 className="text-sm font-semibold">{meal.name}</h4>
               <Rating

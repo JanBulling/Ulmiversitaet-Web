@@ -1,0 +1,10 @@
+{
+  "title": "Studium",
+  "description": "Allgemeine Links der Universität Ulm",
+  "links": [
+    {
+      "label": "Moodle",
+      "href": "https://moodle.uni-ulm.de"
+    }
+  ]
+}

@@ -34,7 +34,7 @@ export const quickLinks = [
   },
   {
     label: "Campus Online",
-    href: "https://moodle.uni-ulm.de",
+    href: "https://campusonline.uni-ulm.de",
     icon: "/icons/quick-links/campusonline.png",
   },
   {
@@ -60,7 +60,7 @@ export const quickLinks = [
   },
   {
     label: "Moodle",
-    href: "https://campusonline.uni-ulm.de",
+    href: "https://moodle.uni-ulm.de",
     icon: "/icons/quick-links/moodle.png",
   },
   {

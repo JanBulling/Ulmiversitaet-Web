@@ -4,6 +4,7 @@ import * as React from "react";
 import GuruButton from "./guru-btn";
 import SmokeEffect from "./smoke-effect";
 import { ShineBorder } from "@/ui/effects/shine-border";
+import { Loader2 } from "lucide-react";
 
 type GuruState = "INITIAL" | "LOADING" | "ERROR" | "SUCCESS";
 
@@ -33,22 +34,23 @@ export default function MensaGuru() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      {state === "INITIAL" && <GuruButton onClick={guruRequest} />}
+      {state === "INITIAL" && (
+        <GuruButton onClick={guruRequest} className="mx-4" />
+      )}
       {state === "LOADING" && (
-        <div className="relative flex h-32 w-full max-w-sm items-center justify-center">
+        <div className="relative flex h-32 w-full items-center justify-center gap-2 overflow-x-clip text-white">
           <SmokeEffect className="absolute h-full w-full" />
-          <span className="z-10 font-mono text-white">
-            Der Guru denkt nach ...
-          </span>
+          <span className="z-10 font-mono">Der Guru denkt nach</span>
+          <Loader2 className="animate-spin" />
         </div>
       )}
       {state === "ERROR" && (
-        <div className="border-destructive text-destructive w-full max-w-xl rounded-xl border-2 px-2 py-4 text-center font-semibold">
+        <div className="border-destructive text-destructive mx-4 w-full max-w-xl rounded-xl border-2 px-2 py-4 text-center font-semibold">
           {content}
         </div>
       )}
       {state === "SUCCESS" && (
-        <div className="relative w-full max-w-xl rounded-xl bg-gradient-to-r from-pink-400/20 via-purple-400/20 to-indigo-400/20 px-2 py-4 text-center font-mono text-sm font-semibold">
+        <div className="relative mx-4 w-full max-w-xl rounded-xl bg-gradient-to-r from-pink-400/20 via-purple-400/20 to-indigo-400/20 px-2 py-4 text-center font-mono text-sm font-semibold">
           <ShineBorder
             shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]}
             borderWidth={2}

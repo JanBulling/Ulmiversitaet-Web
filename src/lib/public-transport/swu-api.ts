@@ -12,8 +12,15 @@ export async function getDeparturesAtStop(
   stopNumber: number,
   limit?: number,
 ): Promise<Departure[]> {
-  const url = `${BASE_URL}/stop/passage/Departures?StopNumber=${stopNumber}&Limit=${limit ?? 8}`;
-  const response = await fetch(url);
+  let response: Response;
+
+  try {
+    const url = `${BASE_URL}/stop/passage/Departures?StopNumber=${stopNumber}&Limit=${limit ?? 8}`;
+    response = await fetch(url);
+  } catch (error) {
+    console.error("[getDeparturesAtStop]", "Fetch Error", error);
+    throw new ApiError("Unable to reach the API", 0);
+  }
 
   if (!response.ok)
     throw new ApiError(
@@ -55,8 +62,15 @@ export async function getVehiclePassage(
   vehicleNumber: number,
   range?: string,
 ): Promise<Passage[]> {
-  const url = `${BASE_URL}/vehicle/trip/Passage?VehicleNumber=${vehicleNumber}&Range=${range ?? ""}`;
-  const response = await fetch(url);
+  let response: Response;
+
+  try {
+    const url = `${BASE_URL}/vehicle/trip/Passage?VehicleNumber=${vehicleNumber}&Range=${range ?? ""}`;
+    response = await fetch(url);
+  } catch (error) {
+    console.error("[getVehiclePassage]", "Fetch Error", error);
+    throw new ApiError("Unable to reach the API", 0);
+  }
 
   if (!response.ok) {
     throw new ApiError(
@@ -95,8 +109,15 @@ export async function getVehiclePassage(
 }
 
 export async function getPassengerAlert(): Promise<PassengerAlert> {
-  const url = `${BASE_URL}/passenger/alert/UnplannedAlert?ContentScope=minimal`;
-  const response = await fetch(url);
+  let response: Response;
+
+  try {
+    const url = `${BASE_URL}/passenger/alert/UnplannedAlert?ContentScope=minimal`;
+    response = await fetch(url);
+  } catch (error) {
+    console.error("[getUnplannedAlert]", "Fetch Error", error);
+    throw new ApiError("Unable to reach the API", 0);
+  }
 
   if (!response.ok) {
     throw new ApiError(

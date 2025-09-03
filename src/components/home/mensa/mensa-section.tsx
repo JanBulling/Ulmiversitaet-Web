@@ -80,8 +80,8 @@ export async function MensaSection({
       <div className="flex items-center justify-center">
         <Link
           href="https://mensa.ulmiversitaet.de"
-          target="_blank"
-          rel="noopener noreferrer"
+          // target="_blank"
+          // rel="noopener noreferrer"
         >
           <Button variant="outline" className="cursor-pointer">
             Mehr Gerichte

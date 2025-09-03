@@ -242,7 +242,7 @@ header.scrolled {
 }
 
 @theme inline {
-  --animate-smoke: smoke 4s ease-in-out infinite;
+  --animate-smoke: smoke 3s ease-in-out infinite;
 
   @keyframes smoke {
     0% {
