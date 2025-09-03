@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TailwindIndicator } from "@/ui/tailwind-indicator";
 import { AnalyticsProvider } from "@/components/analytics-provider";
+import { InsightsProvider } from "@/components/insights-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -91,6 +92,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
           <TailwindIndicator />
           <AnalyticsProvider />
+          <InsightsProvider />
         </ThemeProvider>
       </body>
     </html>
