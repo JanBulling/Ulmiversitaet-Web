@@ -1,6 +1,6 @@
 import GuideCard from "@/components/guides/guide-card";
 import { getAllGuides } from "@/content/guides/guides";
-import BaseLayout from "@/layouts/base-layout";
+import SiteLayout from "@/layouts/site-layout";
 
 export const dynamic = "force-static";
 
@@ -8,7 +8,7 @@ export default function GuidesPage() {
   const allGuides = getAllGuides();
 
   return (
-    <BaseLayout>
+    <SiteLayout>
       <h1 className="text-2xl font-bold">Anleitungen der Ulmiversität</h1>
       <p className="text-muted-foreground text-sm">
         Die Ulmiversität hat eine Sammlung von Anleitungen, die den Uni-Alltag
@@ -23,6 +23,6 @@ export default function GuidesPage() {
           <GuideCard key={guide.slug} guide={guide} />
         ))}
       </div>
-    </BaseLayout>
+    </SiteLayout>
   );
 }

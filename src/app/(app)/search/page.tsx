@@ -1,8 +1,8 @@
-import BaseLayout from "@/layouts/base-layout";
+import SiteLayout from "@/layouts/site-layout";
 
 export default function SearchPage() {
   return (
-    <BaseLayout>
+    <SiteLayout>
       <h1 className="text-center text-2xl font-bold">
         Suche noch nicht Implementiert
       </h1>
@@ -11,6 +11,6 @@ export default function SearchPage() {
         Es ist leider nicht ganz einfach und ich habe nicht so viel Zeit gerade
         🥲
       </p>
-    </BaseLayout>
+    </SiteLayout>
   );
 }

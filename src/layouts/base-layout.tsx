@@ -8,9 +8,7 @@ export default function BaseLayout({
   className?: string;
 }) {
   return (
-    <div
-      className={cn("mx-auto my-8 w-full max-w-screen-xl md:my-8", className)}
-    >
+    <div className={cn("mx-auto my-8 w-full max-w-screen-xl", className)}>
       {children}
     </div>
   );

@@ -22,11 +22,11 @@ export const navItems = [
     label: "Home",
   },
   {
-    href: "/guides",
-    label: "Anleitungen",
-  },
-  {
     href: "/links",
     label: "Alle Links",
+  },
+  {
+    href: "/guides",
+    label: "Anleitungen",
   },
 ];

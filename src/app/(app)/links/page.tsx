@@ -1,6 +1,6 @@
 import LinkCategoryCard from "@/components/links/link-category-card";
 import { getAllLinkCategories } from "@/content/links/links";
-import BaseLayout from "@/layouts/base-layout";
+import SiteLayout from "@/layouts/site-layout";
 
 export const dynamic = "force-static";
 
@@ -8,7 +8,7 @@ export default function LinksPage() {
   const allLinkCategories = getAllLinkCategories();
 
   return (
-    <BaseLayout>
+    <SiteLayout>
       <h1 className="text-2xl font-bold">Alle Links</h1>
       <p className="text-muted-foreground text-sm">
         Die Ulmiversität hat eine Sammlung von nützlichen Links, die den
@@ -23,6 +23,6 @@ export default function LinksPage() {
           <LinkCategoryCard key={category.slug} linkCategory={category} />
         ))}
       </div>
-    </BaseLayout>
+    </SiteLayout>
   );
 }

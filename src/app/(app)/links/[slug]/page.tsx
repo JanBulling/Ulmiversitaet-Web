@@ -1,6 +1,6 @@
 import LinkCard from "@/components/links/link-card";
 import { getAllLinkCategories, getLinkCategory } from "@/content/links/links";
-import BaseLayout from "@/layouts/base-layout";
+import SiteLayout from "@/layouts/site-layout";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
@@ -36,7 +36,7 @@ export default async function LinkPage({ params }: LinkPageProps) {
   if (!linkCategory) notFound();
 
   return (
-    <BaseLayout>
+    <SiteLayout>
       <h1 className="text-2xl font-bold">{linkCategory.title}</h1>
       <p className="text-muted-foreground text-sm">
         {linkCategory.description}
@@ -47,6 +47,6 @@ export default async function LinkPage({ params }: LinkPageProps) {
           <LinkCard key={link.href} link={link} />
         ))}
       </div>
-    </BaseLayout>
+    </SiteLayout>
   );
 }
