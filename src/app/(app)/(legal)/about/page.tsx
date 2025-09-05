@@ -4,8 +4,14 @@ import { notFound } from "next/navigation";
 import SiteLayout from "@/layouts/site-layout";
 import { readMdxFile } from "@/lib/mdx-utils";
 import { CustomMDX } from "@/mdx-components";
+import { Metadata } from "next";
 
 export const dynamic = "force-static";
+
+export const metadata: Metadata = {
+  title: "Über",
+  description: "Informationen über die Ulmiversität",
+};
 
 export default function AboutPage() {
   const fileContent = readMdxFile(

@@ -15,11 +15,15 @@ import StopSelectorButton from "./stop-select-btn";
 interface SingleStopDeparturesProps {
   initialStopNumber: number;
   initialDepartures: Departure[];
+  onVehicleClick?: (vehicleId: number) => void;
+  vehicleId?: number;
 }
 
 export default function SingleStopDepartures({
   initialStopNumber,
   initialDepartures,
+  onVehicleClick,
+  vehicleId,
 }: SingleStopDeparturesProps) {
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
@@ -74,7 +78,14 @@ export default function SingleStopDepartures({
       <ol className="mt-2 divide-y">
         {departures?.length > 0 ? (
           departures.map((d, idx) => (
-            <li key={idx} className="flex items-center gap-4 py-2">
+            <li
+              key={idx}
+              className={cn(
+                "hover:bg-muted flex cursor-pointer items-center gap-4 py-2",
+                vehicleId === d.vehicleNumber && vehicleId !== 0 && "bg-muted",
+              )}
+              onClick={() => onVehicleClick?.(d.vehicleNumber)}
+            >
               <PublicTransportRouteIcon route={d.route} className="size-7" />
               <div className="flex-1">
                 <h4 className="text-sm font-semibold">{d.directionText}</h4>

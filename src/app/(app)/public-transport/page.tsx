@@ -1,35 +1,38 @@
+import DeparturePassageSection from "@/components/öpnv/departues-passage-section";
 import PassengerAlert from "@/components/öpnv/passenger-alert";
-import SingleStopDepartures from "@/components/öpnv/single-stop-departures";
-import VehiclePassage from "@/components/öpnv/vehicle-passage";
 import { defaultStop } from "@/content/public-transport/config";
-import BaseLayout from "@/layouts/base-layout";
-import { Passage } from "@/lib/public-transport/public-transport.type";
-import {
-  getDeparturesAtStop,
-  getVehiclePassage,
-} from "@/lib/public-transport/swu-api";
+import SiteLayout from "@/layouts/site-layout";
+import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
+import { Metadata } from "next";
 
-export default async function PublicTransportPage() {
-  const initialDepartures = await getDeparturesAtStop(defaultStop.stopId, 12);
+export const metadata: Metadata = {
+  title: "Echtzeit ÖPNV",
+  description:
+    "Echtzeitdaten für den öffentlichen Nahverkehr in Ulm und Neu-Ulm",
+};
 
-  let initialPassage: Passage[] = [];
+export default async function PublicTransportPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const stopIdParam = (await searchParams)["stop-id"];
+  const stopId: number = Array.isArray(stopIdParam)
+    ? parseInt(stopIdParam[0])
+    : stopIdParam
+      ? parseInt(stopIdParam)
+      : defaultStop.stopId;
 
-  if (initialDepartures.length >= 1) {
-    const firstVehicle = initialDepartures[0].vehicleNumber;
-    initialPassage = await getVehiclePassage(firstVehicle);
-  }
+  const initialDepartures = await getDeparturesAtStop(stopId, 12);
 
   return (
-    <BaseLayout>
+    <SiteLayout className="px-0 md:px-4">
       <PassengerAlert />
 
-      <div className="my-8 grid h-min items-start gap-4 md:grid-cols-2">
-        <SingleStopDepartures
-          initialDepartures={initialDepartures}
-          initialStopNumber={defaultStop.stopId}
-        />
-        <VehiclePassage initialPassage={initialPassage} />
-      </div>
-    </BaseLayout>
+      <DeparturePassageSection
+        initialDepartures={initialDepartures}
+        initialStopNumber={stopId}
+      />
+    </SiteLayout>
   );
 }
