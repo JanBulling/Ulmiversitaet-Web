@@ -19,7 +19,7 @@ export default function GuideCard({ guide }: GuideCardProps) {
 
   return (
     <Link href={`/guides/${guide.slug}`}>
-      <div className="bg-card hover:bg-muted flex cursor-pointer items-center border-y p-4 md:rounded-lg md:border md:p-6">
+      <div className="bg-card hover:bg-muted flex cursor-pointer items-center border-y p-4 sm:border md:rounded-lg md:p-6">
         <div className="flex-1">
           <h3 className="text-xl font-bold">{guide.metadata.title}</h3>
           <p className="text-muted-foreground font-mono text-xs">

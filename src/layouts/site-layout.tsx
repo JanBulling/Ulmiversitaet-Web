@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import BaseLayout from "./base-layout";
 
 export default function SiteLayout({
@@ -7,5 +8,9 @@ export default function SiteLayout({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <BaseLayout className="px-4">{children}</BaseLayout>;
+  return (
+    <BaseLayout className={cn("px-0 md:px-4", className)}>
+      {children}
+    </BaseLayout>
+  );
 }

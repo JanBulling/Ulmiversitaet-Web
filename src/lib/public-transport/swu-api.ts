@@ -90,10 +90,10 @@ export async function getVehiclePassage(
         ({
           name: apiPas["StopName"],
           status: passageStatusMap[+apiPas["Status"]],
-          scheduledTime: new Date(apiPas["DepartureTimeScheduled"]),
-          actualTime: new Date(apiPas["DepartureTimeActual"]),
-          countdown: +apiPas["DepartureCountdown"],
-          deviation: +apiPas["DepartureDeviation"],
+          scheduledTime: new Date(apiPas["ArrivalTimeScheduled"]),
+          actualTime: new Date(apiPas["ArrivalTimeActual"]),
+          countdown: +apiPas["ArrivalCountdown"],
+          deviation: +apiPas["ArrivalDeviation"],
         }) satisfies Passage,
     );
 
