@@ -1,55 +1,58 @@
 import path from "path";
 import fs from "fs";
 
-export function getMdxDataFromDir<T extends Metadata>(directory: string) {
-  const files = getMdxFiles(directory);
+export type MdxFile<T extends DefaultMetadata> = {
+  metadata: T;
+  content: string;
+  filePath: string;
+};
 
-  const data = files
-    .map((file) => readMdxFile<T>(path.join(directory, file)))
-    .filter((fileData) => fileData !== null)
-    .map((fileData) => {
-      const slug = path.basename(
-        fileData.filePath,
-        path.extname(fileData.filePath),
-      );
+type DefaultMetadata = {
+  title: string;
+  publishedAt?: string;
+  summary?: string;
+};
 
-      return {
-        metadata: fileData.metadata,
-        slug,
-        content: fileData.content,
-      };
-    });
-
-  return data;
+export function getMdxFolders(basePath: string) {
+  try {
+    return fs
+      .readdirSync(basePath)
+      .map((file) => path.join(basePath, file))
+      .filter((file) => fs.statSync(file).isDirectory())
+      .map((dir) => path.basename(dir));
+  } catch {
+    return [];
+  }
 }
 
-export function readMdxFile<T extends Metadata>(filePath: string) {
+export function readMdxFile<T extends DefaultMetadata>(filePath: string) {
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
     const { metadata, content } = parseMdx<T>(rawContent);
 
     return { metadata, content, filePath };
-  } catch (err) {
-    console.error(err);
+  } catch {
     return null;
   }
 }
 
-export function getMdxFiles(directory: string) {
-  return fs
-    .readdirSync(directory)
-    .filter(
-      (file) => path.extname(file) === ".mdx" || path.extname(file) === ".md",
-    );
+export function getMdxFilesInDirectory(directory: string) {
+  try {
+    return fs
+      .readdirSync(directory)
+      .map((file) => path.join(directory, file))
+      .filter(
+        (file) =>
+          fs.statSync(file).isFile() &&
+          (path.extname(file) === ".mdx" || path.extname(file) === ".md"),
+      )
+      .map((file) => path.basename(file));
+  } catch {
+    return [];
+  }
 }
 
-export type Metadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-};
-
-function parseMdx<T extends Metadata>(rawContent: string) {
+function parseMdx<T extends DefaultMetadata>(rawContent: string) {
   const frontmatterReges = /---\s*([\s\S]*?)\s*---/;
 
   const frontmatter = frontmatterReges.exec(rawContent);

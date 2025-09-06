@@ -1,7 +1,12 @@
 import GuideCard from "@/components/guides/guide-card";
-import { getAllGuides } from "@/content/guides/guides";
+import {
+  getAllGuidesInFolder,
+  getAllGuideFolders,
+} from "@/content/guides/guides";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
+import Link from "next/link";
+import { ChevronRight, FolderOpenIcon } from "lucide-react";
 
 export const dynamic = "force-static";
 
@@ -12,7 +17,8 @@ export const metadata: Metadata = {
 };
 
 export default function GuidesPage() {
-  const allGuides = getAllGuides();
+  const allGuides = getAllGuidesInFolder();
+  const allFolders = getAllGuideFolders();
 
   return (
     <BaseLayout>
@@ -27,9 +33,23 @@ export default function GuidesPage() {
         </p>
       </div>
 
+      <div className="my-8 grid grid-cols-2 gap-4 px-4 sm:grid-cols-3 md:grid-cols-5">
+        {allFolders.map((folder) => (
+          <Link href={`/guides/${folder}`} key={folder}>
+            <div className="bg-secondary text-secondary-foreground hover:bg-secondary/70 flex cursor-pointer items-center gap-2 rounded-lg border p-2">
+              <div className="flex h-full flex-1 flex-col items-center justify-center gap-2">
+                <FolderOpenIcon className="size-10" />
+                <p className="text-center font-semibold capitalize">{folder}</p>
+              </div>
+              <ChevronRight className="size-6" />
+            </div>
+          </Link>
+        ))}
+      </div>
+
       <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:px-4 md:grid-cols-3">
         {allGuides.map((guide) => (
-          <GuideCard key={guide.slug} guide={guide} />
+          <GuideCard key={guide.filePath} guide={guide} />
         ))}
       </div>
     </BaseLayout>
