@@ -1,12 +1,9 @@
-import { Metadata } from "@/lib/mdx-utils";
+import { Guide } from "@/content/guides/guides";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 
 interface GuideCardProps {
-  guide: {
-    slug: string;
-    metadata: Metadata;
-  };
+  guide: Guide;
 }
 
 export default function GuideCard({ guide }: GuideCardProps) {
@@ -18,8 +15,8 @@ export default function GuideCard({ guide }: GuideCardProps) {
   };
 
   return (
-    <Link href={`/guides/${guide.slug}`}>
-      <div className="h-full bg-card hover:bg-muted flex cursor-pointer items-start border-y p-4 sm:border md:rounded-lg md:p-6">
+    <Link href={`/guides/${guide.filePath}`}>
+      <div className="bg-card hover:bg-muted flex h-full cursor-pointer items-start border-y p-4 sm:border md:rounded-lg md:p-6">
         <div className="flex-1">
           <h3 className="text-xl font-bold">{guide.metadata.title}</h3>
           <p className="text-muted-foreground font-mono text-xs">

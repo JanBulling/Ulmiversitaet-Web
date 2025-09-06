@@ -1,88 +1,58 @@
 import path from "path";
 import fs from "fs";
 
-export type MdxFile = {
-  metadata: Metadata;
+export type MdxFile<T extends DefaultMetadata> = {
+  metadata: T;
   content: string;
   filePath: string;
 };
 
-export function getMdxDataFromDir<T extends Metadata>(directory: string) {
-  const files = recursiveGetMdxFiles(directory);
+type DefaultMetadata = {
+  title: string;
+  publishedAt?: string;
+  summary?: string;
+};
 
-  const data = files
-    .map((file) => readMdxFile<T>(path.join(directory, file)))
-    .filter((fileData) => fileData !== null)
-    .map((fileData) => {
-      const slug = fileData.filePath
-        .replace(directory + "/", "")
-        .replace(path.extname(fileData.filePath), "");
-
-      return {
-        metadata: fileData.metadata,
-        slug,
-        content: fileData.content,
-      };
-    });
-
-  return data;
+export function getMdxFolders(basePath: string) {
+  try {
+    return fs
+      .readdirSync(basePath)
+      .map((file) => path.join(basePath, file))
+      .filter((file) => fs.statSync(file).isDirectory())
+      .map((dir) => path.basename(dir));
+  } catch {
+    return [];
+  }
 }
 
-export function readMdxFile<T extends Metadata>(filePath: string) {
+export function readMdxFile<T extends DefaultMetadata>(filePath: string) {
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
     const { metadata, content } = parseMdx<T>(rawContent);
 
     return { metadata, content, filePath };
-  } catch (err) {
-    console.error(err);
+  } catch {
     return null;
   }
 }
 
 export function getMdxFilesInDirectory(directory: string) {
-  return fs
-    .readdirSync(directory)
-    .map(file => path.join(directory, file))
-    .filter(
-      (file) => fs.statSync(file).isFile() && (path.extname(file) === ".mdx" || path.extname(file) === ".md"),
-    );
+  try {
+    return fs
+      .readdirSync(directory)
+      .map((file) => path.join(directory, file))
+      .filter(
+        (file) =>
+          fs.statSync(file).isFile() &&
+          (path.extname(file) === ".mdx" || path.extname(file) === ".md"),
+      )
+      .map((file) => path.basename(file));
+  } catch {
+    return [];
+  }
 }
 
-export function getDirectoriesInDirectory(directory: string) {
-  return fs
-    .readdirSync(directory)
-    .map(file => path.join(directory, file))
-    .filter(
-      (file) => fs.statSync(file).isDirectory(),
-    )
-    .map(dir => path.basename(dir));
-}
-
-function recursiveGetMdxFiles(directory: string, fileList: string[] = [], baseDir: string = directory) {
-  const files = fs.readdirSync(directory);
-
-  files.forEach((file) => {
-    const filePath = path.join(directory, file);
-    const stat = fs.statSync(filePath);
-
-    if (stat.isDirectory()) {
-      recursiveGetMdxFiles(filePath, fileList, baseDir);
-    } else if (path.extname(file) === ".mdx" || path.extname(file) === ".md") {
-      fileList.push(path.relative(baseDir, filePath));
-    }
-  });
-
-  return fileList;
-}
-
-export type Metadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-};
-
-function parseMdx<T extends Metadata>(rawContent: string) {
+function parseMdx<T extends DefaultMetadata>(rawContent: string) {
   const frontmatterReges = /---\s*([\s\S]*?)\s*---/;
 
   const frontmatter = frontmatterReges.exec(rawContent);

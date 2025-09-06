@@ -3,8 +3,9 @@ title: VPN-Zugang auf macOS
 summary: Anleitung zur Einrichtung VPN-Zugang für macOS
 publishedAt: 2025-09-05
 author: Stefan Rau
-keywords: eduroam, ios, iphone, ipad
+keywords: vpn, mac, macOS
 ---
+
 # 🔗 VPN-Zugang der Universität Ulm (macOS)
 
 Für den sicheren Zugang zum Campusnetzwerk stellt das **kiz** den **Cisco Secure Client** (SSL-VPN) zur Verfügung.  
@@ -17,7 +18,6 @@ Diese Anleitung beschreibt den **Download**, die **Installation** sowie die **Ve
 Der Download erfolgt über das kiz-Portal (nur nach Login mit kiz-Account möglich):
 
 👉 [Cisco Secure Client für macOS herunterladen](https://portal.uni-ulm.de/SoftwarePortalWI/secure/download.html?groupname=&sid=396&filename=secure-client-macos.dmg)
-
 
 ---
 
@@ -35,14 +35,14 @@ Der Download erfolgt über das kiz-Portal (nur nach Login mit kiz-Account mögli
 ## 🔐 3. Erste Verbindung aufbauen
 
 1. Starte den **Cisco Secure Client** (über Spotlight oder Programme-Ordner).
-2. Gib als VPN-Server-Adresse ein:  
-> vpn.uni-ulm.de
+2. Gib als VPN-Server-Adresse ein:
+   > vpn.uni-ulm.de
 3. Klicke auf **„Connect“**.
 4. Gib deine **kiz-Zugangsdaten** ein.
 5. Nach dem Passwort wird zusätzlich dein **aktueller TOTP-Code** (mehr dazu findest du [hier](https://)) abgefragt.
 
 🛑 **Wichtig:** Sollte eine Meldung wie  
-*„Untrusted VPN Server Blocked“* oder eine **Zertifikatswarnung** erscheinen,  
+_„Untrusted VPN Server Blocked“_ oder eine **Zertifikatswarnung** erscheinen,  
 **nicht akzeptieren!** → Sofort an den kiz-Helpdesk wenden.
 
 ---
@@ -59,7 +59,7 @@ Der Download erfolgt über das kiz-Portal (nur nach Login mit kiz-Account mögli
 ### Standardweg:
 
 - Nutze den mitgelieferten **Uninstaller**  
-(zu finden über Spotlight oder im Installationsordner von Cisco Secure Client)
+  (zu finden über Spotlight oder im Installationsordner von Cisco Secure Client)
 
 ### Falls der Client manuell gelöscht wurde:
 
@@ -70,28 +70,38 @@ Der Download erfolgt über das kiz-Portal (nur nach Login mit kiz-Account mögli
 cd /opt/cisco
 sudo find . | grep -i uninstall
 ```
-3.	Je nach Ergebnis:
+
+3. Je nach Ergebnis:
+
 ```bash
 sudo ./secureclient/bin/cisco_secure_client_uninstall.sh
 ```
+
 oder
+
 ```bash
 sudo ./anyconnect/bin/anyconnect_uninstall.sh
 ```
-4.	Wiederhole den find-Befehl und führe weitere Uninstall-Skripte aus, falls vorhanden:
+
+4. Wiederhole den find-Befehl und führe weitere Uninstall-Skripte aus, falls vorhanden:
+
 ```bash
 sudo <Ausgabezeile>
 ```
+
 ---
+
 ### 📎 Zusätzliche Hinweise
-•	Die Verwendung des VPN-Clients ist nur mit aktiviertem MFA (TOTP-Code) möglich.
+
+• Die Verwendung des VPN-Clients ist nur mit aktiviertem MFA (TOTP-Code) möglich.
 ➤ Mehr zur MFA: [Anleitung der Ulmiversität](https://)
-	•	Die App ist auch für iOS/iPadOS und Android verfügbar – direkt im jeweiligen App-Store.
-    
+• Die App ist auch für iOS/iPadOS und Android verfügbar – direkt im jeweiligen App-Store.
+
 Bei Problemen oder Fragen hilft dir der kiz-Support:
 
 📧 [helpdesk@uni-ulm.de](mailto:helpdesk@uni-ulm.de)  
 🌐 [https://www.uni-ulm.de/einrichtungen/kiz](https://www.uni-ulm.de/einrichtungen/kiz)
 
 ---
-🔗 *Diese Informationen basieren auf der offiziellen Anleitung des [kiz](https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/netzwerk-konnektivitaet/vpn/ssl-vpn/)*
+
+🔗 _Diese Informationen basieren auf der offiziellen Anleitung des [kiz](https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/netzwerk-konnektivitaet/vpn/ssl-vpn/)_
