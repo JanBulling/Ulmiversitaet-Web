@@ -18,11 +18,6 @@ export default function MensaGuru() {
     try {
       const response = await fetch(
         "https://mensa.ulmiversitaet.de/api/v1/guru",
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.GURU_SECRET}`,
-          },
-        },
       );
       const jsonResponse = await response.json();
 

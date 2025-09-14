@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "Ulmiversität",
-  url: "https://ulmiversitaet.de",
+  url: "https://www.ulmiversitaet.de",
   ogImage: "https://ulmiversitaet.de/og.jpg",
   description: "Link management Platform für die Universität Ulm",
   links: {
