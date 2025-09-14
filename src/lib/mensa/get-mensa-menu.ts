@@ -5,11 +5,11 @@ export async function getMensaMenu(): Promise<{
   mensaPlan: MensaMenu[] | null;
 }> {
   try {
-    const request = await fetch("https://mensa.ulmiversitaet.de/api/v1");
+    const request = await fetch("https://mensa.ulmiversitaet.de/api/v1/today");
     const data = await request.json();
 
-    const date = new Date(data.date);
-    const mensaPlan = data["meal_plan"] as MensaMenu[];
+    const date = new Date();
+    const mensaPlan = data as MensaMenu[];
 
     return { date: date, mensaPlan: mensaPlan };
   } catch (err) {
