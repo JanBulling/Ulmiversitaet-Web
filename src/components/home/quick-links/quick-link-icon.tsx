@@ -7,6 +7,7 @@ interface QuickLinkProps {
   quickLink: QuickLink;
 }
 
+
 export function QuickLinkIcon({ quickLink }: QuickLinkProps) {
   return (
     <Link
