@@ -14,7 +14,7 @@ const defaultQuickLinksLabel: QuickLinkLabelType[] = [
   "Campus4",
   "Sogo",
   "Print@Uni",
-  "Campus Map",
+  "CloudStore",
 ];
 
 export const quickLinks = [
@@ -30,6 +30,7 @@ export const quickLinks = [
   {
     label: "Campus Map",
     href: "/campus-map",
+    icon: "/icons/quick-links/map.png",
     internalLink: true,
   },
   {
@@ -40,6 +41,7 @@ export const quickLinks = [
   {
     label: "CloudStore",
     href: "https://cloudstore.uni-ulm.de",
+    icon: "/icons/quick-links/nextcloud.png",
   },
   {
     label: "CoronaNG",
@@ -66,12 +68,12 @@ export const quickLinks = [
   {
     label: "Print@Uni",
     href: "https://print.uni-ulm.de",
-    icon: "/icons/quick-links/print-logo.png",
+    icon: "/icons/quick-links/print.png",
   },
   {
     label: "Sogo",
     href: "https://sogo.uni-ulm.de",
-    icon: "/icons/quick-links/sogo.png",
+    icon: "/icons/quick-links/mail.png",
   },
   {
     label: "Sona",

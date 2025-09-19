@@ -6,10 +6,10 @@ author: Stefan Rau
 keywords: vpn, mac, macOS
 ---
 
-# 🔗 VPN-Zugang der Universität Ulm (macOS)
+# VPN-Zugang der Uni Ulm (macOS)
 
 Für den sicheren Zugang zum Campusnetzwerk stellt das **kiz** den **Cisco Secure Client** (SSL-VPN) zur Verfügung.  
-Diese Anleitung beschreibt den **Download**, die **Installation** sowie die **Verbindung** mit dem VPN-Server unter **macOS**. Zur Anleitung für **Windows** geht's [hier](https://).
+Diese Anleitung beschreibt den **Download**, die **Installation** sowie die **Verbindung** mit dem VPN-Server unter **macOS**. Zur Anleitung für **Windows** geht's [hier](https://www.ulmiversitaet.de/guides/vpn/windows).
 
 ---
 
@@ -36,10 +36,12 @@ Der Download erfolgt über das kiz-Portal (nur nach Login mit kiz-Account mögli
 
 1. Starte den **Cisco Secure Client** (über Spotlight oder Programme-Ordner).
 2. Gib als VPN-Server-Adresse ein:
-   > vpn.uni-ulm.de
+```bash
+vpn.uni-ulm.de 
+```
 3. Klicke auf **„Connect“**.
 4. Gib deine **kiz-Zugangsdaten** ein.
-5. Nach dem Passwort wird zusätzlich dein **aktueller TOTP-Code** (mehr dazu findest du [hier](https://)) abgefragt.
+5. Nach dem Passwort wird zusätzlich dein **aktueller TOTP-Code** (mehr dazu findest du [hier](https://www.ulmiversitaet.de/guides/mfa)) abgefragt.
 
 🛑 **Wichtig:** Sollte eine Meldung wie  
 _„Untrusted VPN Server Blocked“_ oder eine **Zertifikatswarnung** erscheinen,  
@@ -63,11 +65,13 @@ _„Untrusted VPN Server Blocked“_ oder eine **Zertifikatswarnung** erscheinen
 
 ### Falls der Client manuell gelöscht wurde:
 
-1. Öffne das Terminal (`Spotlight > "Terminal"`).
+1. Öffne das Terminal (unter `Spotlight > "Terminal"`).
 2. Führe folgende Befehle aus:
 
 ```bash
 cd /opt/cisco
+```
+```bash
 sudo find . | grep -i uninstall
 ```
 
@@ -94,7 +98,7 @@ sudo <Ausgabezeile>
 ### 📎 Zusätzliche Hinweise
 
 • Die Verwendung des VPN-Clients ist nur mit aktiviertem MFA (TOTP-Code) möglich.
-➤ Mehr zur MFA: [Anleitung der Ulmiversität](https://)
+➤ Mehr zur MFA: [Anleitung der Ulmiversität](https://www.ulmiversitaet.de/guides/mfa)
 • Die App ist auch für iOS/iPadOS und Android verfügbar – direkt im jeweiligen App-Store.
 
 Bei Problemen oder Fragen hilft dir der kiz-Support:

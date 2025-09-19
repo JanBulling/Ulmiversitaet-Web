@@ -263,3 +263,16 @@ header.scrolled {
     }
   }
 }
+
+
+.prose pre {
+  @apply relative rounded-lg border bg-muted text-muted-foreground shadow-sm overflow-x-auto leading-6 mb-2;
+}
+
+.prose pre code {
+  @apply grid min-w-0 break-words whitespace-pre-wrap px-4 py-3 sm:px-3 sm:py-0;
+}
+
+.prose :not(pre) > code {
+  @apply rounded border bg-muted px-1.5 py-0.5 text-[0.875em];
+}

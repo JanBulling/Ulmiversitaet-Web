@@ -20,12 +20,12 @@ export function QuickLinkIcon({ quickLink }: QuickLinkProps) {
             <Image
               src={quickLink.icon}
               alt={quickLink.label}
-              width={48}
-              height={48}
-              className="size-10 sm:size-12"
+              width={64}
+              height={64}
+              className="size-16 sm:size-14"
             />
           ) : (
-            <LinkIcon className="size-10 sm:size-12" />
+            <LinkIcon className="size-16 sm:size-14" />
           )}
           <div className="from-primary/35 pointer-events-none absolute inset-px rounded-lg bg-radial-[at_30%_20%] from-0% to-transparent to-70% mix-blend-overlay" />
         </div>

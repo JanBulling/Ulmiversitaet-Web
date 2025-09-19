@@ -1,16 +1,27 @@
+// mdx-utils.ts
 import path from "path";
 import fs from "fs";
+import matter from "gray-matter";
+import { serialize } from "next-mdx-remote/serialize";
+import rehypePrettyCode from "rehype-pretty-code";
+import remarkGfm from "remark-gfm";
 
 export type MdxFile<T extends DefaultMetadata> = {
   metadata: T;
-  content: string;
+  content: string; // raw MDX content (no frontmatter)
   filePath: string;
 };
 
-type DefaultMetadata = {
+export type DefaultMetadata = {
   title: string;
   publishedAt?: string;
   summary?: string;
+  // you can extend in callers with author, tags, etc.
+};
+
+export type MdxCompiled<T extends DefaultMetadata> = MdxFile<T> & {
+  // MDXRemoteSerializeResult type is generic; keep it loose to avoid coupling
+  code: any;
 };
 
 export function getMdxFolders(basePath: string) {
@@ -25,12 +36,17 @@ export function getMdxFolders(basePath: string) {
   }
 }
 
-export function readMdxFile<T extends DefaultMetadata>(filePath: string) {
+export function readMdxFile<T extends DefaultMetadata>(
+  filePath: string,
+): MdxFile<T> | null {
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
-    const { metadata, content } = parseMdx<T>(rawContent);
-
-    return { metadata, content, filePath };
+    const { data, content } = matter(rawContent);
+    return {
+      metadata: data as T,
+      content: content.trim(),
+      filePath,
+    };
   } catch {
     return null;
   }
@@ -41,41 +57,40 @@ export function getMdxFilesInDirectory(directory: string) {
     return fs
       .readdirSync(directory)
       .map((file) => path.join(directory, file))
-      .filter(
-        (file) =>
-          fs.statSync(file).isFile() &&
-          (path.extname(file) === ".mdx" || path.extname(file) === ".md"),
-      )
+      .filter((file) => {
+        const ext = path.extname(file).toLowerCase();
+        return fs.statSync(file).isFile() && (ext === ".mdx" || ext === ".md");
+      })
       .map((file) => path.basename(file));
   } catch {
     return [];
   }
 }
 
-function parseMdx<T extends DefaultMetadata>(rawContent: string) {
-  const frontmatterReges = /---\s*([\s\S]*?)\s*---/;
+// Compile MDX with pretty code highlighting and GitHub-flavored markdown.
+export async function compileMdx(source: string) {
+  const prettyCodeOptions = {
+    theme: {
+      light: "github-light",
+      dark: "github-dark",
+    },
+    keepBackground: false,
+  };
 
-  const frontmatter = frontmatterReges.exec(rawContent);
-  const frontmatterString =
-    (frontmatter?.length ?? 0) >= 1
-      ? frontmatterReges.exec(rawContent)![1]
-      : "";
-  const content = rawContent.replace(frontmatterReges, "").trim();
+  return serialize(source, {
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
+    },
+  });
+}
 
-  const metadata: Partial<T> = {};
-
-  frontmatterString
-    .trim()
-    .split("\n")
-    .forEach((line) => {
-      const [key, ...values] = line.split(": ");
-      const value = values
-        .join(": ")
-        .trim()
-        .replace(/^['"](.*)['"]$/, "$1"); // Remove quotes
-
-      metadata[key.trim() as keyof T] = value as T[keyof T];
-    });
-
-  return { metadata: metadata as T, content };
+// Convenience helper: read + compile in one step
+export async function readMdxFileCompiled<T extends DefaultMetadata>(
+  filePath: string,
+): Promise<MdxCompiled<T> | null> {
+  const file = readMdxFile<T>(filePath);
+  if (!file) return null;
+  const code = await compileMdx(file.content);
+  return { ...file, code };
 }
