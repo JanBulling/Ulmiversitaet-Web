@@ -8,11 +8,18 @@ import {
 import GuideLayout from "@/layouts/guide-layout";
 import { CustomMDX } from "@/mdx-components";
 import Link from "next/link";
-import { ChevronRight, FolderOpenIcon } from "lucide-react";
+import {
+  ChevronRight,
+  FolderOpenIcon,
+  Clock4,
+  CircleUserRound,
+  ArrowLeft,
+} from "lucide-react";
 import BaseLayout from "@/layouts/base-layout";
 import { notFound } from "next/navigation";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import { Button } from "@/ui/button";
 
 interface GuidePageProps {
   params: Promise<{ slug: string[] }>;
@@ -24,6 +31,24 @@ export async function generateStaticParams() {
   const slugs = allGuides.map((guide) => ({
     slug: guide.filePath.split(/[/\\]+/),
   }));
+
+  // Also generate params for folder pages
+  const folderSlugs = new Set<string>();
+  allGuides.forEach((guide) => {
+    const pathParts = guide.filePath.split(/[/\\]+/);
+    // Generate slugs for all parent folders
+    for (let i = 1; i < pathParts.length; i++) {
+      const folderPath = pathParts.slice(0, i).join("/");
+      folderSlugs.add(folderPath);
+    }
+  });
+
+  // Add folder slugs to the result
+  folderSlugs.forEach((folderPath) => {
+    slugs.push({
+      slug: folderPath.split(/[/\\]+/),
+    });
+  });
 
   return slugs;
 }
@@ -48,7 +73,9 @@ export async function generateMetadata({
         url: `${siteConfig.url}/guides/${guideFilePath}`,
         images: [
           {
-            url: `/og?title=${guide.metadata.title ?? guideFilePath}&description=${guide.metadata.summary ?? undefined}`,
+            url: `/og?title=${
+              guide.metadata.title ?? guideFilePath
+            }&description=${guide.metadata.summary ?? undefined}`,
           },
         ],
       },
@@ -58,7 +85,9 @@ export async function generateMetadata({
         description: guide.metadata.summary ?? undefined,
         images: [
           {
-            url: `/og?title=${guide.metadata.title ?? guideFilePath}&description=${guide.metadata.summary ?? undefined}`,
+            url: `/og?title=${
+              guide.metadata.title ?? guideFilePath
+            }&description=${guide.metadata.summary ?? undefined}`,
           },
         ],
         creator: "@ulmiversitaet",
@@ -77,8 +106,49 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const guide = getGuide(guideFilePath);
 
   if (guide) {
+    // Compute published date (de-DE) and reading time
+    const date = new Date(guide.metadata.publishedAt);
+    const published = date.toLocaleDateString("de-DE", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const words = guide.content.trim().split(/\s+/).length || 0;
+    const readingTimeMin = Math.max(1, Math.ceil(words / 220));
+
     return (
       <GuideLayout>
+        <div className="mb-4 flex items-center justify-between gap-4 flex-wrap">
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/guides">
+              <ArrowLeft className="mr-2 size-4" aria-hidden />
+              Zurück zu Anleitungen
+            </Link>
+          </Button>
+        </div>
+
+        <div className="mb-4 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded bg-muted px-2 py-1 font-mono text-xs text-muted-foreground">
+          <span>{published}</span>
+          <span
+            className="hidden h-1 w-1 rounded-full bg-muted-foreground/50 sm:inline"
+            aria-hidden
+          />
+          {guide.metadata.author ? (
+            <span className="inline-flex items-center gap-1.5">
+              <CircleUserRound className="size-4" aria-hidden />
+              {guide.metadata.author}
+            </span>
+          ) : null}
+          <span
+            className="hidden h-1 w-1 rounded-full bg-muted-foreground/50 sm:inline"
+            aria-hidden
+          />
+          <span className="inline-flex items-center gap-1.5">
+            <Clock4 className="size-4" aria-hidden />
+            {readingTimeMin} Min
+          </span>
+        </div>
+
         <CustomMDX source={guide.content} />
       </GuideLayout>
     );
@@ -93,6 +163,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
   return (
     <BaseLayout>
+
+
       <div className="px-4">
         <h1 className="text-2xl font-bold">Anleitungen {guideFilePath}</h1>
       </div>

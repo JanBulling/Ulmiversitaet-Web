@@ -8,18 +8,18 @@ import { Metadata } from "next";
 export const dynamic = "force-static";
 
 export const metadata: Metadata = {
-  title: "Eduroam",
-  description: "Anleitungen für die Einrichtung von Eduroam.",
+  title: "eduroam®",
+  description: "Anleitungen für die Einrichtung von eduroam®.",
 };
 
-export default function EduroamGuidePage() {
+export default function GuidePage() {
   const guides = getAllGuidesInFolder("eduroam");
 
   return (
     <BaseLayout className="px-4">
-      <h1 className="text-2xl font-bold">Eduroam® Anleitung</h1>
+      <h1 className="text-2xl font-bold">eduroam® Anleitung</h1>
       <p className="text-muted-foreground text-sm">
-        Anleitungen zur Einrichtung von Eduroam® an verschiedenen Geräten.
+        Anleitungen zur Einrichtung von eduroam® an verschiedenen Geräten.
       </p>
 
       <div className="flex gap-2">
