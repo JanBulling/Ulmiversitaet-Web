@@ -22,7 +22,7 @@ export function QuickLinkIcon({ quickLink }: QuickLinkProps) {
               alt={quickLink.label}
               width={48}
               height={48}
-              className="size-10 sm:size-12"
+              className="size-10 sm:size-12 dark:invert"
             />
           ) : (
             <LinkIcon className="size-10 sm:size-12" />
