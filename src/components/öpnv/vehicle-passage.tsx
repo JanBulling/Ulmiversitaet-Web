@@ -4,7 +4,6 @@ import * as React from "react";
 
 import {
   countdownFormatter,
-  delayFormatter,
 } from "@/lib/public-transport/pub-tra-time-formatter";
 import { Passage } from "@/lib/public-transport/public-transport.type";
 import { getVehiclePassage } from "@/lib/public-transport/swu-api";

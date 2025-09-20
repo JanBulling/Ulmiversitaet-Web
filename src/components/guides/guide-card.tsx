@@ -8,16 +8,18 @@ interface GuideCardProps {
 }
 
 export default function GuideCard({ guide }: GuideCardProps) {
-  const date = new Date(guide.metadata.publishedAt);
+  // const date = new Date(guide.metadata.publishedAt); // <-- Remove this line
 
   const published = useMemo(() => {
+    // Move new Date() inside this useMemo
+    const date = new Date(guide.metadata.publishedAt);
     const opts: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "long",
       day: "numeric",
     };
     return date.toLocaleDateString("de-DE", opts);
-  }, [date]);
+  }, [guide.metadata.publishedAt]); // <-- Update dependency to guide.metadata.publishedAt
 
   const readingTime = useMemo(() => {
     const words = guide.content.trim().split(/\s+/).length || 0;

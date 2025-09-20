@@ -16,12 +16,10 @@ export type DefaultMetadata = {
   title: string;
   publishedAt?: string;
   summary?: string;
-  // you can extend in callers with author, tags, etc.
 };
 
 export type MdxCompiled<T extends DefaultMetadata> = MdxFile<T> & {
-  // MDXRemoteSerializeResult type is generic; keep it loose to avoid coupling
-  code: any;
+  code: Awaited<ReturnType<typeof serialize>>; 
 };
 
 export function getMdxFolders(basePath: string) {
@@ -67,7 +65,7 @@ export function getMdxFilesInDirectory(directory: string) {
   }
 }
 
-// Compile MDX with pretty code highlighting and GitHub-flavored markdown.
+// Compile MDX with pretty code highlighting
 export async function compileMdx(source: string) {
   const prettyCodeOptions = {
     theme: {

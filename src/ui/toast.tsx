@@ -42,10 +42,7 @@ export function showToast(message: string, opts?: { duration?: number }) {
 
   root.appendChild(toast);
 
-  // Force a reflow so the browser registers the initial state
-  // Then promote to the "enter" state in the next frame
-  // This guarantees the slide-in animation runs.
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+  // Force a reflow so the browser registers the initial stat
   toast.getBoundingClientRect();
 
   requestAnimationFrame(() => {
