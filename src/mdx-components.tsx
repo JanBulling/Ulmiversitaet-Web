@@ -7,6 +7,7 @@ import Link from "next/link";
 import { cn } from "./lib/utils";
 import { Button } from "./ui/button";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
+import { CopyButton } from "./ui/copy-button";
 
 const components: React.ComponentProps<typeof MDXProvider>["components"] = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
@@ -150,13 +151,23 @@ const components: React.ComponentProps<typeof MDXProvider>["components"] = {
     return (
       <pre
         className={cn(
-          "no-scrollbar min-w-0 overflow-x-auto px-4 py-3.5 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0",
+          "bg-muted text-muted-foreground no-scrollbar relative my-2 min-w-0 overflow-x-auto rounded border px-4 py-2 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 [&>button]:flex",
           className,
         )}
         {...props}
       >
         {children}
       </pre>
+    );
+  },
+  code: ({ className, children, ...props }: React.ComponentProps<"code">) => {
+    return (
+      <>
+        <CopyButton className="hidden" value={children?.toString() ?? ""} />
+        <code className={cn(className)} {...props}>
+          {children}
+        </code>
+      </>
     );
   },
   Image: ({

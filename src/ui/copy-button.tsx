@@ -1,35 +1,41 @@
-// ui/copy-button.tsx
 "use client";
 
-import { useState } from "react";
-import { Button } from "@/ui/button";
-import { Check, Copy } from "lucide-react";
-import { showToast } from "@/ui/toast";
+import * as React from "react";
+import { CheckIcon, ClipboardIcon } from "lucide-react";
 
-export function CopyButton({ getText }: { getText: () => string }) {
-  const [copied, setCopied] = useState(false);
+import { cn } from "@/lib/utils";
+import { Button } from "./button";
 
-  async function onCopy() {
-    await navigator.clipboard.writeText(getText());
-    setCopied(true);
-    showToast("Kopiert!");
-    setTimeout(() => setCopied(false), 900);
-  }
+export function CopyButton({
+  value,
+  className,
+  variant = "outline",
+  ...props
+}: React.ComponentProps<typeof Button> & {
+  value: string;
+}) {
+  const [hasCopied, setHasCopied] = React.useState(false);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setHasCopied(false);
+    }, 2000);
+  }, []);
 
   return (
     <Button
-      onClick={onCopy}
-      variant="ghost"
+      data-slot="copy-button"
       size="icon"
-      className="
-        h-7 w-7 p-0 rounded-full
-        text-muted-foreground hover:text-foreground
-        focus-visible:ring-1 bg-transparent
-      "
-      aria-label="Code kopieren"
-      title="Code kopieren"
+      variant={variant}
+      className={cn("absolute top-0.5 right-1", className)}
+      onClick={() => {
+        navigator.clipboard.writeText(value);
+        setHasCopied(true);
+      }}
+      {...props}
     >
-      {copied ? <Check className="size-4" /> : <Copy className="size-4" />}
+      <span className="sr-only">Copy</span>
+      {hasCopied ? <CheckIcon /> : <ClipboardIcon />}
     </Button>
   );
 }

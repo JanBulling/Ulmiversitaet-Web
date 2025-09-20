@@ -2,9 +2,7 @@
 
 import * as React from "react";
 
-import {
-  countdownFormatter,
-} from "@/lib/public-transport/pub-tra-time-formatter";
+import { countdownFormatter } from "@/lib/public-transport/pub-tra-time-formatter";
 import { Passage } from "@/lib/public-transport/public-transport.type";
 import { getVehiclePassage } from "@/lib/public-transport/swu-api";
 import { ExternalLink, Loader2, Rss } from "lucide-react";

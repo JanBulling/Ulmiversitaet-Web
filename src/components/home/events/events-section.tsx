@@ -1,15 +1,17 @@
-import { getEvents } from "@/content/events/events";
-import { Calendar } from "@/ui/calendar";
 import { CalendarClock } from "lucide-react";
 
+import { getEvents } from "@/content/events/events";
+import { Calendar } from "@/ui/calendar";
+import { cn } from "@/lib/utils";
+
 export default function EventSection({
-  className, // className is now used
+  className,
 }: React.ComponentProps<"section">) {
   const events = getEvents();
 
   return (
     <section
-      className={`bg-card w-full border-y px-4 py-4 md:border ${className}`}
+      className={cn("bg-card w-full border-y px-4 py-4 md:border", className)}
     >
       <div className="flex items-center gap-4">
         <CalendarClock className="text-primary size-8" />

@@ -1,10 +1,7 @@
-// mdx-utils.ts
 import path from "path";
 import fs from "fs";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import rehypePrettyCode from "rehype-pretty-code";
-import remarkGfm from "remark-gfm";
 
 export type MdxFile<T extends DefaultMetadata> = {
   metadata: T;
@@ -19,7 +16,7 @@ export type DefaultMetadata = {
 };
 
 export type MdxCompiled<T extends DefaultMetadata> = MdxFile<T> & {
-  code: Awaited<ReturnType<typeof serialize>>; 
+  code: Awaited<ReturnType<typeof serialize>>;
 };
 
 export function getMdxFolders(basePath: string) {
@@ -40,6 +37,7 @@ export function readMdxFile<T extends DefaultMetadata>(
   try {
     const rawContent = fs.readFileSync(filePath, "utf-8");
     const { data, content } = matter(rawContent);
+
     return {
       metadata: data as T,
       content: content.trim(),
@@ -63,32 +61,4 @@ export function getMdxFilesInDirectory(directory: string) {
   } catch {
     return [];
   }
-}
-
-// Compile MDX with pretty code highlighting
-export async function compileMdx(source: string) {
-  const prettyCodeOptions = {
-    theme: {
-      light: "github-light",
-      dark: "github-dark",
-    },
-    keepBackground: false,
-  };
-
-  return serialize(source, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [[rehypePrettyCode, prettyCodeOptions]],
-    },
-  });
-}
-
-// Convenience helper: read + compile in one step
-export async function readMdxFileCompiled<T extends DefaultMetadata>(
-  filePath: string,
-): Promise<MdxCompiled<T> | null> {
-  const file = readMdxFile<T>(filePath);
-  if (!file) return null;
-  const code = await compileMdx(file.content);
-  return { ...file, code };
 }

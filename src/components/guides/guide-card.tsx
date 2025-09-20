@@ -1,30 +1,22 @@
-import { Guide } from "@/content/guides/guides";
-import { ChevronRight, Clock4, CircleUserRound } from "lucide-react";
 import Link from "next/link";
-import { useMemo } from "react";
+import { ChevronRight, Clock4, CircleUserRound } from "lucide-react";
+
+import { Guide } from "@/content/guides/guides";
 
 interface GuideCardProps {
   guide: Guide;
 }
 
 export default function GuideCard({ guide }: GuideCardProps) {
-  // const date = new Date(guide.metadata.publishedAt); // <-- Remove this line
+  const date = new Date(guide.metadata.publishedAt);
+  const published = date.toLocaleDateString("de-DE", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
-  const published = useMemo(() => {
-    // Move new Date() inside this useMemo
-    const date = new Date(guide.metadata.publishedAt);
-    const opts: Intl.DateTimeFormatOptions = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    return date.toLocaleDateString("de-DE", opts);
-  }, [guide.metadata.publishedAt]); // <-- Update dependency to guide.metadata.publishedAt
-
-  const readingTime = useMemo(() => {
-    const words = guide.content.trim().split(/\s+/).length || 0;
-    return Math.max(1, Math.ceil(words / 220));
-  }, [guide.content]);
+  const wordCount = guide.content.trim().split(/\s+/).length || 0;
+  const readingTime = Math.max(1, Math.ceil(wordCount / 220));
 
   return (
     <Link
@@ -33,74 +25,50 @@ export default function GuideCard({ guide }: GuideCardProps) {
       aria-label={`Open guide: ${guide.metadata.title}`}
       title={guide.metadata.title}
     >
-      <article
-        className="
-          relative flex h-full items-start gap-4 rounded-xl border
-          bg-card/60 p-5 transition
-          hover:bg-accent/40 hover:shadow-md hover:border-muted-foreground/20
-          md:p-6
-          focus-visible:ring-2 focus-visible:ring-primary
-          focus-visible:ring-offset-2 focus-visible:ring-offset-background
-        "
-      >
+      <article className="bg-card/60 hover:bg-accent/40 hover:border-muted-foreground/20 focus-visible:ring-primary focus-visible:ring-offset-background relative flex h-full items-start gap-4 rounded-xl border p-5 transition hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 md:p-6">
         <div className="flex-1">
-          <h3
-            className="
-              text-lg font-semibold leading-snug tracking-tight
-              md:text-xl
-              line-clamp-2
-            "
-          >
+          <h3 className="line-clamp-2 text-lg leading-snug font-semibold tracking-tight md:text-xl">
             {guide.metadata.title}
           </h3>
 
           {guide.metadata.summary ? (
-            <p className="mt-2 text-sm text-muted-foreground line-clamp-3">
+            <p className="text-muted-foreground mt-2 line-clamp-3 text-sm">
               {guide.metadata.summary}
             </p>
           ) : null}
 
-          <div
-            className="
-              mt-3 flex flex-wrap items-center gap-x-3 gap-y-1
-              text-xs text-muted-foreground
-            "
-          >
+          <div className="text-muted-foreground mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
             <span className="inline-flex items-center gap-1.5">
               {published}
             </span>
 
             <span
-              className="hidden h-1 w-1 rounded-full bg-muted-foreground/50 sm:inline"
+              className="bg-muted-foreground/50 hidden h-1 w-1 rounded-full sm:inline"
               aria-hidden
             />
 
             <span className="inline-flex items-center gap-1.5">
               <CircleUserRound
-                className="size-4 text-muted-foreground"
+                className="text-muted-foreground size-4"
                 aria-hidden
               />
               {guide.metadata.author}
             </span>
 
             <span
-              className="hidden h-1 w-1 rounded-full bg-muted-foreground/50 sm:inline"
+              className="bg-muted-foreground/50 hidden h-1 w-1 rounded-full sm:inline"
               aria-hidden
             />
 
             <span className="inline-flex items-center gap-1.5">
-              <Clock4 className="size-4 text-muted-foreground" aria-hidden />
+              <Clock4 className="text-muted-foreground size-4" aria-hidden />
               {readingTime} Min
             </span>
           </div>
         </div>
 
         <ChevronRight
-          className="
-            mt-1 size-5 shrink-0 self-center text-muted-foreground
-            transition-transform duration-200
-            group-hover:translate-x-0.5
-          "
+          className="text-muted-foreground mt-1 size-5 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-0.5"
           aria-hidden
         />
       </article>
