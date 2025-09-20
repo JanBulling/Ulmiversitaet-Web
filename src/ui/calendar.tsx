@@ -5,7 +5,7 @@ import { getDay, getDaysInMonth, isSameDay } from "date-fns";
 import { Button } from "./button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CalendarEvent } from "@/content/events/events";
+import { CalendarEvent } from "@/lib/google-apis/calendar";
 
 type CalendarState = {
   month: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
@@ -92,7 +92,7 @@ export function Calendar({
     const result: { [day: number]: CalendarEvent[] | undefined } = {};
     for (let day = 1; day <= daysInMonth; day++) {
       result[day] = events?.filter((event) => {
-        return isSameDay(new Date(event.date), new Date(year, month, day));
+        return isSameDay(new Date(event.start), new Date(year, month, day));
       });
     }
     return result;
@@ -235,16 +235,15 @@ function Day({
             key={idx}
             className="flex items-center gap-1 rounded-sm px-1"
             style={{
-              color: event.color ?? "#fb2c36",
-              backgroundColor:
-                event.color === undefined ? "#fb2c3611" : `${event.color}11`,
+              color: "#fb2c36",
+              backgroundColor: "#fb2c3611",
             }}
           >
             <div
               className="h-1.5 w-1.5 shrink-0 rounded-full"
-              style={{ backgroundColor: event.color ?? "#fb2c36" }}
+              style={{ backgroundColor: "#fb2c36" }}
             />
-            <p className="line-clamp-1">{event.title}</p>
+            <p className="line-clamp-1">{event.summary}</p>
           </div>
         ))}
       </div>

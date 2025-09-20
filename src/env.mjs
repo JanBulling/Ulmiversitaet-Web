@@ -7,6 +7,8 @@ import { z } from "zod";
  */
 const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+
+  NEON_DATABASE_URL: z.string(),
 });
 
 /**
@@ -23,6 +25,8 @@ const client = z.object({});
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
+
+  NEON_DATABASE_URL: process.env.NEON_DATABASE_URL,
 };
 
 const merged = server.merge(client);

@@ -1,13 +1,27 @@
 import { CalendarClock } from "lucide-react";
 
-import { getEvents } from "@/content/events/events";
 import { Calendar } from "@/ui/calendar";
 import { cn } from "@/lib/utils";
+import { unstable_cache as cache } from "next/cache";
+import { db } from "@/lib/db/db";
+import { eventsTable } from "@/lib/db/schema";
+import { ne } from "drizzle-orm";
 
-export default function EventSection({
+const getEvents = cache(
+  async () => {
+    return await db
+      .select()
+      .from(eventsTable)
+      .where(ne(eventsTable.status, "CANCELLED"));
+  },
+  [],
+  { tags: ["events"] },
+);
+
+export default async function EventSection({
   className,
 }: React.ComponentProps<"section">) {
-  const events = getEvents();
+  const events = await getEvents();
 
   return (
     <section
