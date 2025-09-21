@@ -2,7 +2,7 @@ import { env } from "@/env.mjs";
 import { db } from "@/lib/db/db";
 import { eventsTable, syncTokenTable } from "@/lib/db/schema";
 import { performSync } from "@/lib/google-apis/calendar";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function GET(request: Request) {
   try {
@@ -30,6 +30,7 @@ export async function GET(request: Request) {
 
     if (events.length >= 1) {
       revalidateTag("events");
+      revalidatePath("/");
     }
 
     if (!nextSyncToken) {

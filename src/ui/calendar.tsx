@@ -25,12 +25,18 @@ export function Calendar({
   className,
   events,
 }: CalendarProps) {
+  const currentMonth = new Date().getMonth();
+  const currentYear = new Date().getFullYear();
+
   const [month, setMonth] = React.useState<CalendarState["month"]>(
     new Date().getMonth() as CalendarState["month"],
   );
   const [year, setYear] = React.useState<number>(new Date().getFullYear());
 
   const handlePrevMonth = React.useCallback(() => {
+    // does not allow to go back in time
+    if (year === currentYear && month === currentMonth) return;
+
     if (month === 0) {
       setMonth(11);
       setYear(year - 1);
@@ -49,6 +55,10 @@ export function Calendar({
   }, [month, year]);
 
   // ============ Do days calculation ===============
+  const isPreviousMonthAvailable = React.useMemo(
+    () => !(currentMonth === month && currentYear === year),
+    [year, month],
+  );
   // Memoize expensive date calculations
   const currentMonthDate = React.useMemo(
     () => new Date(year, month, 1),
@@ -137,7 +147,12 @@ export function Calendar({
   return (
     <div className={cn("max-w-2xl", className)}>
       <div className="flex items-center justify-center gap-4">
-        <Button onClick={handlePrevMonth} size="icon" variant="outline">
+        <Button
+          onClick={handlePrevMonth}
+          size="icon"
+          variant="outline"
+          disabled={!isPreviousMonthAvailable}
+        >
           <ChevronLeftIcon size={16} />
         </Button>
         <p className="text-normal font-semibold">
@@ -229,6 +244,7 @@ function Day({
       )}
     >
       {day}
+      {isToday && <p>(heute)</p>}
       <div className="mt-1 space-y-0.5 text-xs">
         {events?.slice(0, 2).map((event, idx) => (
           <div
