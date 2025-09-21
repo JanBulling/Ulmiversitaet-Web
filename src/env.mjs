@@ -9,6 +9,13 @@ const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
 
   NEON_DATABASE_URL: z.string(),
+  CRON_SECRET: z.string(),
+
+  GOOGLE_CLIENT_SECRET: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_REFRESH_TOKEN: z.string(),
+
+  CALENDAR_ID: z.string(),
 });
 
 /**
@@ -27,6 +34,13 @@ const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
 
   NEON_DATABASE_URL: process.env.NEON_DATABASE_URL,
+  CRON_SECRET: process.env.CRON_SECRET,
+
+  GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+  GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  GOOGLE_REFRESH_TOKEN: process.env.GOOGLE_REFRESH_TOKEN,
+
+  CALENDAR_ID: process.env.CALENDAR_ID,
 };
 
 const merged = server.merge(client);

@@ -18,8 +18,8 @@ export const eventsTable = pgTable("events", {
   htmlLink: text("html_link"),
   color: text("color"),
 
-  start: timestamp("start", { withTimezone: true }).notNull(),
-  end: timestamp("end", { withTimezone: true }).notNull(),
+  start: timestamp("start", { withTimezone: true, mode: "date" }).notNull(),
+  end: timestamp("end", { withTimezone: true, mode: "date" }).notNull(),
 
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),

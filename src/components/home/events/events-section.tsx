@@ -5,14 +5,16 @@ import { cn } from "@/lib/utils";
 import { unstable_cache as cache } from "next/cache";
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
-import { ne } from "drizzle-orm";
+import { asc, ne } from "drizzle-orm";
+import EventItem from "./event-item";
 
 const getEvents = cache(
   async () => {
     return await db
       .select()
       .from(eventsTable)
-      .where(ne(eventsTable.status, "CANCELLED"));
+      .where(ne(eventsTable.status, "CANCELLED"))
+      .orderBy(asc(eventsTable.start));
   },
   [],
   { tags: ["events"] },
@@ -23,6 +25,9 @@ export default async function EventSection({
 }: React.ComponentProps<"section">) {
   const events = await getEvents();
 
+  const today = new Date();
+  const futureEvents = events.filter((event) => event.end > today);
+
   return (
     <section
       className={cn("bg-card w-full border-y px-4 py-4 md:border", className)}
@@ -32,7 +37,20 @@ export default async function EventSection({
         <h2 className="flex-1 text-2xl font-bold">Events</h2>
       </div>
 
-      <Calendar events={events} />
+      <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <Calendar events={events} className="hidden md:block" />
+
+        <div>
+          <h3 className="hidden text-xl font-bold md:block">
+            Zukünftige Events
+          </h3>
+          <ol className="mt-2 space-y-2">
+            {futureEvents.map((event) => (
+              <EventItem event={event} key={event.id} />
+            ))}
+          </ol>
+        </div>
+      </div>
     </section>
   );
 }

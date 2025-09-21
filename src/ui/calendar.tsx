@@ -235,13 +235,13 @@ function Day({
             key={idx}
             className="flex items-center gap-1 rounded-sm px-1"
             style={{
-              color: "#fb2c36",
-              backgroundColor: "#fb2c3611",
+              color: event.color!,
+              backgroundColor: `${event.color}55`,
             }}
           >
             <div
               className="h-1.5 w-1.5 shrink-0 rounded-full"
-              style={{ backgroundColor: "#fb2c36" }}
+              style={{ backgroundColor: event.color! }}
             />
             <p className="line-clamp-1">{event.summary}</p>
           </div>
