@@ -112,11 +112,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         published={published}
         author={guide.metadata.author}
       >
-        <div className="bg-card rounded-xl border shadow-sm">
-          <div className="prose prose-sm dark:prose-invert sm:prose-base max-w-none p-4 sm:p-6 md:p-8">
-            <CustomMDX source={guide.content} />
-          </div>
-        </div>
+        <CustomMDX source={guide.content} />
       </GuideLayout>
     );
   }

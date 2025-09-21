@@ -149,15 +149,17 @@ const components: React.ComponentProps<typeof MDXProvider>["components"] = {
   ),
   pre: ({ className, children, ...props }: React.ComponentProps<"pre">) => {
     return (
-      <pre
-        className={cn(
-          "bg-muted text-muted-foreground no-scrollbar relative my-2 min-w-0 overflow-x-auto rounded border px-4 py-2 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 [&>button]:flex",
-          className,
-        )}
-        {...props}
-      >
-        {children}
-      </pre>
+      <div className="relative">
+        <pre
+          className={cn(
+            "bg-muted text-muted-foreground no-scrollbar my-2 min-w-0 overflow-x-auto rounded border px-4 py-2 pr-12 outline-none has-[[data-highlighted-line]]:px-0 has-[[data-line-numbers]]:px-0 has-[[data-slot=tabs]]:p-0 [&>button]:flex",
+            className,
+          )}
+          {...props}
+        >
+          {children}
+        </pre>
+      </div>
     );
   },
   code: ({ className, children, ...props }: React.ComponentProps<"code">) => {

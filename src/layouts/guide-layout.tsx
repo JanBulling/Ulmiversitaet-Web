@@ -17,15 +17,17 @@ export default function GuideLayout({
   author,
 }: GuideLayoutProps) {
   return (
-    <BaseLayout className="max-w-screen-lg px-4">
-      <Link href="/guides">
-        <Button variant="outline" size="sm">
-          <ArrowLeft />
-          Zurück zu allen Anleitungen
-        </Button>
-      </Link>
+    <BaseLayout className="max-w-screen-lg">
+      <div className="px-4">
+        <Link href="/guides">
+          <Button variant="outline" size="sm">
+            <ArrowLeft />
+            Zurück zu allen Anleitungen
+          </Button>
+        </Link>
+      </div>
 
-      <div className="my-2 flex items-center justify-start">
+      <div className="my-2 flex items-center justify-start px-4">
         <div className="bg-muted text-muted-foreground flex flex-wrap items-center gap-x-3 gap-y-1 rounded px-2 py-1 font-mono text-xs">
           <span>{published}</span>
           <span
@@ -49,7 +51,9 @@ export default function GuideLayout({
         </div>
       </div>
 
-      {children}
+      <div className="bg-card border p-4 shadow sm:p-6 md:mx-4 md:rounded-xl md:p-8">
+        {children}
+      </div>
     </BaseLayout>
   );
 }
