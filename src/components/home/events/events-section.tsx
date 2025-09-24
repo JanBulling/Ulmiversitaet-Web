@@ -2,7 +2,7 @@ import { CalendarClock } from "lucide-react";
 
 import { Calendar } from "@/ui/calendar";
 import { cn } from "@/lib/utils";
-import { unstable_cache as cache, revalidatePath } from "next/cache";
+import { unstable_cache as cache} from "next/cache";
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
 import { asc, ne } from "drizzle-orm";
