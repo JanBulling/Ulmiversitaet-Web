@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ShineBorder } from "@/ui/effects/shine-border";
+import { Icons } from "@/ui/icons";
 
 export default function GuruButton({
   className,
@@ -9,25 +10,24 @@ export default function GuruButton({
     <button
       className={cn(
         "relative max-w-sm cursor-pointer overflow-hidden rounded-full px-7 py-2.5",
-        "bg-white text-base dark:bg-zinc-900",
-        "shadow-sm transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.99]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-background",
+        "text-base text-white",
+        "bg-gradient-to-r from-cyan-400 via-sky-500 to-fuchsia-600",
+        "shadow-[0_10px_30px_-10px_rgba(56,189,248,0.6)] transition-transform duration-150 ease-out hover:scale-[1.02] active:scale-[0.99]",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-background",
         className,
       )}
       aria-label="Frage den Guru"
       {...props}
     >
-      <ShineBorder
-        shineColor={["#22d3ee", "#06b6d4", "#8b5cf6"]}
+  {/*   <ShineBorder
+        shineColor={["#22d3ee", "#60a5fa", "#ec4899"]}
         borderWidth={2}
         duration={10}
         className="pointer-events-none"
-      />
-      <span className="relative z-10 flex items-center gap-2 font-semibold">
-        <span className="text-lg" aria-hidden>✨</span>
-        <span className="bg-gradient-to-r from-cyan-400 via-teal-400 to-fuchsia-500 bg-clip-text text-transparent">
-          Frage den Guru
-        </span>
+      /> */}
+      <span className="relative z-10 flex items-center gap-2 font-semibold tracking-wide">
+        <Icons.sparkles className="size-5" aria-hidden />
+        <span>Frage den Guru</span>
       </span>
     </button>
   );
