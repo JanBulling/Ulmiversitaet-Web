@@ -6,6 +6,7 @@ import {
   getGuide,
 } from "@/content/guides/guides";
 import GuideLayout from "@/layouts/guide-layout";
+import { ArticleHeader } from "@/components/article-header";
 import { CustomMDX } from "@/mdx-components";
 import BaseLayout from "@/layouts/base-layout";
 import { notFound } from "next/navigation";
@@ -112,6 +113,14 @@ export default async function GuidePage({ params }: GuidePageProps) {
         published={published}
         author={guide.metadata.author}
       >
+        <ArticleHeader
+          title={guide.metadata.titleWeb ?? guide.metadata.title}
+          description={guide.metadata.description ?? guide.metadata.summary}
+          author={guide.metadata.author}
+          published={published}
+          readingTimeMin={readingTimeMin}
+        />
+
         <CustomMDX source={guide.content} />
       </GuideLayout>
     );

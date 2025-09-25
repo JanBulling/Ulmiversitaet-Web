@@ -11,6 +11,9 @@ export type GuidesMetadata = {
   summary: string;
   author: string;
   tags?: string[];
+  // Optional extended fields used for article header rendering, can be empty (used to get a title for the web page that is different from the title of the guides page)
+  titleWeb?: string;
+  description?: string;
 };
 
 export type Guide = {
