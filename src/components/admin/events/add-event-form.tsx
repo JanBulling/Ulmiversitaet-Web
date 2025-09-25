@@ -184,11 +184,14 @@ export default function AddEventForm({ className }: AddEventFormProps) {
         <DateInput
           id="start-date"
           aria-label="start-date"
-          onChange={(date) =>
-            date
-              ? setValue("startDate", date)
-              : setError("startDate", { message: "Start date is required" })
-          }
+          onChange={(date) => {
+            if (!date) {
+              return setError("startDate", {
+                message: "Start date is required",
+              });
+            }
+            setValue("startDate", date);
+          }}
         />
         {errors.startDate && (
           <p className="text-destructive text-xs">{errors.startDate.message}</p>

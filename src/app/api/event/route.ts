@@ -1,5 +1,6 @@
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
+import { revalidatePath, revalidateTag } from "next/cache";
 import z from "zod";
 
 const schema = z.object({
@@ -45,6 +46,9 @@ export async function POST(req: Request) {
       startTime: event.startTime,
       endTime: event.endTime,
     });
+
+    revalidateTag("events");
+    revalidatePath("/");
 
     return new Response("success");
   } catch (err) {

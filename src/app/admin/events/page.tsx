@@ -3,6 +3,8 @@ import EventsTable from "@/components/admin/events/events-table";
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminEventsPage() {
   const events = await db.select().from(eventsTable);
 
