@@ -40,8 +40,14 @@ export function DateInput({ value, onChange, ...props }: DateInputProps) {
           selected={value}
           captionLayout="dropdown"
           onSelect={(date) => {
-            setDate(date);
-            onChange?.(date);
+            if (date) {
+              const adjustedDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+              setDate(adjustedDate);
+              onChange?.(adjustedDate);
+            } else {
+              setDate(undefined);
+              onChange?.(undefined);
+            }
             setOpen(false);
           }}
         />

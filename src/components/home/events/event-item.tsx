@@ -12,10 +12,37 @@ const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "numeric",
 });
 
+const dayFormatter = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric",
+});
+
+const monthDayFormatter = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric",
+  month: "short",
+});
+
+const formatTime = (timeString: string | null | undefined) => {
+  if (!timeString) return "";
+  const [hours, minutes] = [timeString.slice(0, 2), timeString.slice(2, 4)];
+  return `${parseInt(hours)}:${minutes} Uhr`;
+};
+
 export default function EventItem({ event }: EventItemProps) {
   const color = event.color ?? DEFAULT_COLOR;
-  const date = dateFormatter.format(event.startDate);
+  const startDateFormatted = dateFormatter.format(event.startDate);
   const textSecondary = "text-gray-600 dark:text-gray-400";
+
+  let dateRange = startDateFormatted;
+
+  if (event.startDate.toDateString() !== event.endDate.toDateString()) {
+    if (event.startDate.getMonth() === event.endDate.getMonth()) {
+      // Same month, different days: 7-9. Okt.
+      dateRange = `${dayFormatter.format(event.startDate)}-${dateFormatter.format(event.endDate)}`;
+    } else {
+      // Different months: 27. Okt - 3. Sept.
+      dateRange = `${monthDayFormatter.format(event.startDate)} - ${monthDayFormatter.format(event.endDate)}`;
+    }
+  }
 
   return (
     <li
@@ -32,7 +59,13 @@ export default function EventItem({ event }: EventItemProps) {
             style={{ backgroundColor: color }}
           />
           <span className={`text-xs font-medium capitalize ${textSecondary}`}>
-            {date}
+            {dateRange}
+            {event.startTime && ` ${formatTime(event.startTime)}`}
+            {event.endTime && (
+              <>
+                {` - ${formatTime(event.endTime)}`}
+              </>
+            )}
           </span>
         </div>
 
@@ -55,9 +88,7 @@ export default function EventItem({ event }: EventItemProps) {
         )}
       </div>
 
-      <div className="flex flex-col items-end gap-1 font-mono text-xs text-gray-700 dark:text-gray-300">
-        TIME
-      </div>
+      
     </li>
   );
 }

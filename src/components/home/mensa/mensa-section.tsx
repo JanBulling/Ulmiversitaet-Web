@@ -31,7 +31,7 @@ export async function MensaSection({
   const dateFormatter = Intl.DateTimeFormat("de-DE", {
     month: "short",
     day: "numeric",
-    weekday: "long",
+    weekday: "short",
   });
 
   const singleCategoriesMensaPlan = mensaPlan?.filter(
@@ -46,9 +46,17 @@ export async function MensaSection({
     <section className={cn("bg-card border-y py-4 md:border", className)}>
       <div className="flex items-center gap-4 px-4 md:justify-between">
         <h2 className="text-2xl font-bold">Mensa</h2>
-        <p className="text-muted-foreground text-sm">
-          Heute, {dateFormatter.format(date)}
-        </p>
+        <div className="flex items-center gap-4">
+          <p className="text-muted-foreground text-sm">
+            Heute, {dateFormatter.format(date)}
+          </p>
+          <Link href="https://stwulm.my-mensa.de/mensatogo.php?mensa=2" target="_blank" rel="noopener noreferrer">
+            <Button variant="default" size="sm" className="cursor-pointer">
+              Bestellung West
+              <ExternalLink className="size-3" />
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {singleCategoriesMensaPlan?.length === 0 &&
