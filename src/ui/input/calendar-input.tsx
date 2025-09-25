@@ -30,9 +30,8 @@ function Calendar({
   return (
     <DayPicker
       locale={de}
+      timeZone="UTC"
       showOutsideDays={showOutsideDays}
-      fromYear={currentYear - 5}
-      toYear={currentYear + 5}
       className={cn(
         "bg-background group/calendar p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
@@ -40,6 +39,8 @@ function Calendar({
         className,
       )}
       captionLayout={captionLayout}
+      startMonth={new Date(currentYear, 1)}
+      endMonth={new Date(currentYear + 1, 12)}
       formatters={{
         formatMonthDropdown: (date) =>
           date.toLocaleString("de-DE", { month: "short" }),
