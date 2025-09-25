@@ -10,9 +10,9 @@ interface SmokeEffectProps {
 }
 
 export default function SmokeEffect({
-  particleCount = 35,
-  particleSize = 30,
-  color = ["#525252", "#727272", "#B2B2B2"],
+  particleCount = 40,
+  particleSize = 28,
+  color = ["#22d3ee", "#60a5fa", "#a78bfa", "#ec4899"],
   className,
 }: SmokeEffectProps) {
   const particles = Array.from({ length: particleCount });
@@ -22,14 +22,14 @@ export default function SmokeEffect({
       {particles.map((_, i) => (
         <div
           key={i}
-          className="animate-smoke absolute rounded-full"
+          className="animate-smoke absolute rounded-full blur-sm"
           style={{
             opacity: 0,
-            backgroundColor: color[i % color.length],
-            width: `${Math.random() * particleSize + 5}%`,
-            height: `${Math.random() * particleSize + 5}%`,
-            left: `${Math.random() * 90 + 5}%`,
-            bottom: `${Math.random() * 40}%`,
+            backgroundImage: `radial-gradient(circle at 30% 30%, ${color[i % color.length]}99, transparent 60%)`,
+            width: `${Math.random() * particleSize + 8}%`,
+            height: `${Math.random() * particleSize + 8}%`,
+            left: `${Math.random() * 90 + 2}%`,
+            bottom: `${Math.random() * 45}%`,
             animationDelay: `${i * 0.1 - 0.05 * particleCount}s`,
           }}
         />
