@@ -8,7 +8,6 @@ import z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/ui/input/input";
-import { Label } from "@/ui/input/label";
 import { Loader2 } from "lucide-react";
 import { ColorInput } from "@/ui/input/color-picker/color-input";
 import { cn } from "@/lib/utils";
@@ -22,20 +21,28 @@ import {
 } from "@/ui/input/input-otp";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { Checkbox } from "@/ui/input/check-box";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/ui/form";
 
 const schema = z.object({
-  summary: z.string().min(1),
+  summary: z.string({ message: "Der Event-Titel wird benötigt" }).min(1, {
+    message: "Der Event-Titel wird benötigt",
+  }),
   description: z.string().optional(),
   location: z.string().optional(),
   isWholeDay: z.boolean().optional(),
-  startDate: z.date(),
+  startDate: z.date({ message: "Ein Start-Datum wird benötigt" }),
   startTime: z.string().optional(),
-  endDate: z.date(),
+  endDate: z.date({ message: "Ein End-Datum wird benötigt" }),
   endTime: z.string().optional(),
   color: z.string().optional(),
 });
-
-type FormData = z.infer<typeof schema>;
 
 interface AddEventFormProps {
   className: string;
@@ -45,29 +52,26 @@ export default function AddEventForm({ className }: AddEventFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    reset,
-    setValue,
-    setError,
-    formState: { errors },
-  } = useForm<FormData>({
+  const form = useForm<z.infer<typeof schema>>({
     resolver: zodResolver(schema),
   });
 
-  async function addEvent(data: FormData) {
-    if (!data.isWholeDay) {
-      if (!data.startTime || data.startTime.length !== 4) {
-        return setError("startTime", { message: "Start time required" });
+  async function onSubmit(values: z.infer<typeof schema>) {
+    if (!values.isWholeDay) {
+      if (!values.startTime || values.startTime.length !== 4) {
+        return form.setError("startTime", {
+          message: "Start-Zeit wird benötigt",
+        });
       }
-      if (!data.endTime || data.endTime.length !== 4) {
-        return setError("endTime", { message: "End time required" });
+      if (!values.endTime || values.endTime.length !== 4) {
+        return form.setError("endTime", { message: "End-Zeit wird benötigt" });
       }
     }
 
-    if (data.startDate > data.endDate) {
-      return setError("endDate", { message: "End should be after start" });
+    if (values.startDate > values.endDate) {
+      return form.setError("endDate", {
+        message: "End-Datum muss nach dem Start-Datum liegen",
+      });
     }
 
     setIsLoading(true);
@@ -75,203 +79,203 @@ export default function AddEventForm({ className }: AddEventFormProps) {
     try {
       const request = await fetch("/api/event", {
         method: "POST",
-        body: JSON.stringify(data),
+        body: JSON.stringify(values),
         headers: { "content-type": "application/json" },
       });
 
       if (!request.ok) {
         const errorMessage = await request.text();
 
-        console.error("Etwas ist schief gelaufen", errorMessage);
+        form.setError("root", {
+          message: "Ein unerwarteter Fehler ist Aufgetreten: " + errorMessage,
+        });
       } else {
-        reset();
         router.refresh();
       }
       setIsLoading(false);
     } catch (error) {
-      console.error("Ein unerwarter Fehler ist aufgetreten", error);
+      console.error(error);
+      form.setError("root", {
+        message: "Ein unerwarteter Fehler ist Aufgetreten",
+      });
     }
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(addEvent)}
-      className={cn(
-        "bg-card grid grid-cols-5 gap-4 rounded-md p-4 shadow",
-        className,
-      )}
-    >
-      <h2 className="col-span-full text-xl font-semibold">
-        Neues Event anlegen
-      </h2>
-      <div className="col-span-4">
-        <Label htmlFor="summary">Event Name</Label>
-        <Input
-          id="summary"
-          aria-label="Summary"
-          disabled={isLoading}
-          type="text"
-          {...register("summary")}
-        />
-        {errors.summary && (
-          <p className="text-destructive text-xs">{errors.summary.message}</p>
+    <Form {...form}>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className={cn(
+          "bg-card grid grid-cols-1 gap-4 rounded-md border p-4 shadow md:grid-cols-3",
+          className,
         )}
-      </div>
-
-      <div className="col-span-full">
-        <Label htmlFor="description">Beschreibung</Label>
-        <Textarea
-          id="description"
-          aria-label="Description"
-          disabled={isLoading}
-          {...register("description")}
+      >
+        <FormField
+          control={form.control}
+          name="summary"
+          render={({ field }) => (
+            <FormItem className="col-span-2">
+              <FormLabel>Event Titel</FormLabel>
+              <FormControl>
+                <Input placeholder="Titel des Events" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.description && (
-          <p className="text-destructive text-xs">
-            {errors.description.message}
-          </p>
-        )}
-      </div>
 
-      <div className="col-span-3">
-        <Label htmlFor="location">Ort / Location</Label>
-        <Input
-          id="location"
-          aria-label="Location"
-          disabled={isLoading}
-          type="text"
-          {...register("location")}
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem className="col-span-full">
+              <FormLabel>Event Beschreibung</FormLabel>
+              <FormControl>
+                <Textarea placeholder="Beschreibung des Events" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.location && (
-          <p className="text-destructive text-xs">{errors.location.message}</p>
-        )}
-      </div>
 
-      <div className="col-span-2">
-        <Label htmlFor="color">Event Farbe</Label>
-        <ColorInput
-          id="color"
-          aria-label="color"
-          disabled={isLoading}
-          onChange={(color) => setValue("color", color)}
+        <FormField
+          control={form.control}
+          name="location"
+          render={({ field }) => (
+            <FormItem className="col-span-2">
+              <FormLabel>Ort / Location</FormLabel>
+              <FormControl>
+                <Input placeholder="Ort des Events" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        {errors.color && (
-          <p className="text-destructive text-xs">{errors.color.message}</p>
-        )}
-      </div>
 
-      <div>
-        <div className="flex gap-2">
-          <Checkbox
-            id="whole-day"
-            aria-label="whole day"
-            disabled={isLoading}
-            onCheckedChange={(checked) =>
-              setValue("isWholeDay", checked === true)
-            }
-          />
-          <Label htmlFor="whole-day">Ganzer Tag?</Label>
+        <FormField
+          control={form.control}
+          name="color"
+          render={({ field }) => (
+            <FormItem className="col-span-1">
+              <FormLabel>Farbe</FormLabel>
+              <FormControl>
+                <ColorInput initial="#164ff7" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="isWholeDay"
+          render={({ field }) => (
+            <FormItem className="col-span-1 mt-8 flex flex-row items-center gap-2">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <FormLabel>Ganzer Tag?</FormLabel>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="startDate"
+          render={({ field }) => (
+            <FormItem className="col-span-1 col-start-1">
+              <FormLabel>Start-Datum</FormLabel>
+              <FormControl>
+                <DateInput
+                  value={field.value}
+                  onChange={(date) => {
+                    field.onChange(date);
+                    form.setValue("endDate", date ?? new Date());
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="startTime"
+          render={({ field }) => (
+            <FormItem className="col-span-1">
+              <FormLabel>Start-Uhrzeit</FormLabel>
+              <FormControl>
+                <InputOTP maxLength={4} pattern={REGEXP_ONLY_DIGITS} {...field}>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                  </InputOTPGroup>
+                  <InputOTPSeparator />
+                  <InputOTPGroup>
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                  </InputOTPGroup>
+                </InputOTP>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="endDate"
+          render={({ field }) => (
+            <FormItem className="col-span-1 col-start-1">
+              <FormLabel>End-Datum</FormLabel>
+              <FormControl>
+                <DateInput value={field.value} onChange={field.onChange} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="endTime"
+          render={({ field }) => (
+            <FormItem className="col-span-1">
+              <FormLabel>End-Uhrzeit</FormLabel>
+              <FormControl>
+                <InputOTP maxLength={4} pattern={REGEXP_ONLY_DIGITS} {...field}>
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                  </InputOTPGroup>
+                  <InputOTPSeparator />
+                  <InputOTPGroup>
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                  </InputOTPGroup>
+                </InputOTP>
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <p className="text-destructive col-span-full col-start-1 line-clamp-1 text-sm">
+          {form.formState?.errors?.root?.message}
+        </p>
+
+        <div className="col-span-full">
+          <Button type="submit" disabled={isLoading}>
+            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            Hinzufügen
+          </Button>
         </div>
-        {errors.isWholeDay && (
-          <p className="text-destructive text-xs">
-            {errors.isWholeDay.message}
-          </p>
-        )}
-      </div>
-
-      <div className="col-start-1">
-        <Label htmlFor="start-date">Start</Label>
-        <DateInput
-          id="start-date"
-          aria-label="start-date"
-          onChange={(date) => {
-            if (!date) {
-              return setError("startDate", {
-                message: "Start date is required",
-              });
-            }
-            setValue("startDate", date);
-          }}
-        />
-        {errors.startDate && (
-          <p className="text-destructive text-xs">{errors.startDate.message}</p>
-        )}
-      </div>
-      <div>
-        <Label htmlFor="start-time">Uhrzeit</Label>
-        <InputOTP
-          maxLength={4}
-          pattern={REGEXP_ONLY_DIGITS}
-          id="start-time"
-          aria-label="start time"
-          disabled={isLoading}
-          onChange={(val) => setValue("startTime", val)}
-        >
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-        </InputOTP>
-        {errors.startTime && (
-          <p className="text-destructive text-xs">{errors.startTime.message}</p>
-        )}
-      </div>
-
-      <div className="col-start-1">
-        <Label htmlFor="end-date">Ende</Label>
-        <DateInput
-          id="end-date"
-          aria-label="end-date"
-          onChange={(date) =>
-            date
-              ? setValue("endDate", date)
-              : setError("endDate", { message: "End date is required" })
-          }
-        />
-        {errors.endDate && (
-          <p className="text-destructive text-xs">{errors.endDate.message}</p>
-        )}
-      </div>
-      <div>
-        <Label htmlFor="end-time">Uhrzeit</Label>
-        <InputOTP
-          maxLength={4}
-          pattern={REGEXP_ONLY_DIGITS}
-          id="end-time"
-          aria-label="end time"
-          disabled={isLoading}
-          onChange={(val) => setValue("endTime", val)}
-        >
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={2} />
-            <InputOTPSlot index={3} />
-          </InputOTPGroup>
-        </InputOTP>
-        {errors.endTime && (
-          <p className="text-destructive text-xs">{errors.endTime.message}</p>
-        )}
-      </div>
-
-      <p className="text-destructive col-span-full text-xs">
-        {errors.root?.message}
-      </p>
-
-      <div className="col-span-full">
-        <Button type="submit">
-          {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-          Hinzufügen
-        </Button>
-      </div>
-    </form>
+      </form>
+    </Form>
   );
 }

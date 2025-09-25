@@ -6,6 +6,7 @@ import { ArrowUpDown } from "lucide-react";
 import { DataTable } from "@/ui/table/data-table";
 import { Button } from "@/ui/button";
 import { CalendarEvent } from "@/content/events/events";
+import EventsTableAction from "./events-action";
 
 const dateFormatter = Intl.DateTimeFormat("de-DE", {
   day: "2-digit",
@@ -14,7 +15,6 @@ const dateFormatter = Intl.DateTimeFormat("de-DE", {
 });
 
 export const columns: ColumnDef<CalendarEvent>[] = [
-  { accessorKey: "summary", header: "Event" },
   {
     accessorKey: "color",
     header: "",
@@ -29,6 +29,7 @@ export const columns: ColumnDef<CalendarEvent>[] = [
       );
     },
   },
+  { accessorKey: "summary", header: "Event" },
   { accessorKey: "description", header: "Beschreibung" },
   { accessorKey: "location", header: "Ort" },
   {
@@ -44,8 +45,16 @@ export const columns: ColumnDef<CalendarEvent>[] = [
         </Button>
       );
     },
-    cell: ({ row }) =>
-      `${dateFormatter.format(row.getValue("startDate"))},  ${row.original.startTime}`,
+    cell: ({ row }) => {
+      let text = dateFormatter.format(row.getValue("startDate"));
+
+      const time = row.original.startTime;
+      if (time) {
+        text += ", " + time;
+      }
+
+      return text;
+    },
   },
   {
     accessorKey: "endDate",
@@ -60,8 +69,20 @@ export const columns: ColumnDef<CalendarEvent>[] = [
         </Button>
       );
     },
-    cell: ({ row }) =>
-      `${dateFormatter.format(row.getValue("endDate"))},  ${row.original.endTime}`,
+    cell: ({ row }) => {
+      let text = dateFormatter.format(row.getValue("endDate"));
+
+      const time = row.original.endTime;
+      if (time) {
+        text += ", " + time;
+      }
+
+      return text;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <EventsTableAction event={row.original} />,
   },
 ];
 

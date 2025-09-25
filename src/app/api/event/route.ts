@@ -1,5 +1,7 @@
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
+import { getServerSession } from "@/lib/session";
+import { eq } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
 import z from "zod";
 
@@ -20,6 +22,11 @@ const schema = z.object({
 // ================================================================================================
 export async function POST(req: Request) {
   try {
+    const session = await getServerSession();
+    if (!session || session.role !== "ADMIN") {
+      return new Response("Not authenticated", { status: 401 });
+    }
+
     const json = await req.json();
     const body = schema.safeParse(json);
     if (!body.success) {
@@ -50,11 +57,62 @@ export async function POST(req: Request) {
     revalidateTag("events");
     revalidatePath("/");
 
-    return new Response("success");
+    return new Response("Success");
   } catch (err) {
     console.error("[/events - POST]", "Internal server error", err);
     return new Response("Internal server error", { status: 500 });
   }
 }
 
-export function PATCH(_req: Request) {}
+export async function PATCH(req: Request) {
+  try {
+    const session = await getServerSession();
+    if (!session || session.role !== "ADMIN") {
+      return new Response("Not authenticated", { status: 401 });
+    }
+
+    const json = await req.json();
+    const body = schema.safeParse(json);
+    if (!body.success) {
+      console.error(body.error);
+      return new Response("Wrongly formatted data", { status: 400 });
+    }
+
+    return new Response("Success");
+  } catch (err) {
+    console.error("[/events - DELETE]", "Internal server error", err);
+    return new Response("Internal server error", { status: 500 });
+  }
+}
+
+const deleteSchema = z.object({
+  id: z.string().min(1),
+});
+
+export async function DELETE(req: Request) {
+  try {
+    const session = await getServerSession();
+    if (!session || session.role !== "ADMIN") {
+      return new Response("Not authenticated", { status: 401 });
+    }
+
+    const json = await req.json();
+    const body = deleteSchema.safeParse(json);
+    if (!body.success) {
+      console.error(body.error);
+      return new Response("Wrongly formatted data", { status: 400 });
+    }
+
+    const data = body.data;
+
+    await db.delete(eventsTable).where(eq(eventsTable.id, data.id));
+
+    revalidateTag("events");
+    revalidatePath("/");
+
+    return new Response("Success");
+  } catch (err) {
+    console.error("[/events - DELETE]", "Internal server error", err);
+    return new Response("Internal server error", { status: 500 });
+  }
+}

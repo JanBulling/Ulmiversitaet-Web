@@ -1,4 +1,6 @@
 export type CalendarEvent = {
+  id?: string | null;
+
   summary: string;
   description?: string | null;
   location?: string | null;

@@ -26,3 +26,9 @@ export const eventsTable = pgTable("events", {
 
   createdAt: timestamp("created_at").defaultNow(),
 });
+
+export const sessionsTable = pgTable("sessions", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  role: text("role").notNull(),
+  expires_in: timestamp("expires_in").notNull(),
+});

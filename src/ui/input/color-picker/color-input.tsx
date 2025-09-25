@@ -7,7 +7,8 @@ import { ColorPicker } from "./color-picker";
 import { Input } from "../input";
 
 type Props = {
-  onChange?: (hex: string) => void;
+  onChange?: (value: string) => void;
+  value?: string;
   initial?: string;
 };
 
@@ -18,7 +19,7 @@ const ColorInput = React.forwardRef<
     "icon" | "right" | "value" | "onChange"
   > &
     Props
->(({ initial, onChange, ...props }, ref) => {
+>(({ initial, value, onChange, ...props }, ref) => {
   const [open, setOpen] = React.useState<boolean>();
   const [color, setColor] = React.useState<HsvColor>(
     hexToHsv(initial ?? "#ffffff") ?? { h: 0, s: 0, v: 100 },
@@ -28,9 +29,8 @@ const ColorInput = React.forwardRef<
   React.useEffect(() => {
     const newVal = hsvToHex(color);
     setColorHex(newVal);
-  }, [color]);
-
-  React.useEffect(() => onChange?.(colorHex), [colorHex, onChange]);
+    onChange?.(colorHex);
+  }, [color, value]);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

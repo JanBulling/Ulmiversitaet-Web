@@ -36,7 +36,9 @@ export default async function EventSection({
   );
 
   const today = new Date();
-  const futureEvents = eventsFormatted.filter((e) => e.startDate > today);
+  today.setHours(0, 0, 0, 0);
+
+  const futureEvents = eventsFormatted.filter((e) => e.startDate >= today);
 
   return (
     <section

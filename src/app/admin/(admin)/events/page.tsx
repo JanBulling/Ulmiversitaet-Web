@@ -17,8 +17,10 @@ export default async function AdminEventsPage() {
 
       <AddEventForm className="mt-8" />
 
-      <h2 className="mt-8 text-xl font-semibold">Aktuelle Events</h2>
-      <EventsTable events={events} />
+      <div className="bg-card my-8 rounded-md border p-4 shadow">
+        <h2 className="text-xl font-semibold">Aktuelle Events</h2>
+        <EventsTable events={events} />
+      </div>
     </div>
   );
 }

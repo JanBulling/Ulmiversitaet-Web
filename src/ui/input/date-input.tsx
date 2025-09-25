@@ -1,5 +1,7 @@
 "use client";
+
 import * as React from "react";
+
 import { Popover, PopoverContent, PopoverTrigger } from "../popover";
 import { Button } from "../button";
 import { ChevronDownIcon } from "lucide-react";
@@ -28,7 +30,7 @@ export function DateInput({ value, onChange, ...props }: DateInputProps) {
           className="w-48 justify-between font-normal"
           {...props}
         >
-          {date ? date.toLocaleDateString() : "Select date"}
+          {date ? date.toLocaleDateString() : "Datum auswählen"}
           <ChevronDownIcon />
         </Button>
       </PopoverTrigger>
