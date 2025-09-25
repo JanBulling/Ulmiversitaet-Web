@@ -32,7 +32,7 @@ export const ColorSlider = React.forwardRef<HTMLDivElement, ColorSliderProps>(
 
     React.useEffect(() => {
       setPosition(value / maxValue);
-    }, [value]);
+    }, [value, maxValue]);
 
     const layers = overlays.map((overlay, index) => (
       <div

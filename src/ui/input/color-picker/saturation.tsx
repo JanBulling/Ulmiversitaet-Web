@@ -38,7 +38,7 @@ export function Saturation({ value, onChange }: Props) {
       className="relative z-100 h-36 w-full rounded-md border"
       ref={ref}
       role="slider"
-      onMouseDown={() => console.log("KFNW")}
+      aria-valuenow={0}
     >
       <div
         className="absolute -inset-2 rounded-md"

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { unstable_cache as cache } from "next/cache";
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
-import { asc, ne } from "drizzle-orm";
+import { asc } from "drizzle-orm";
 import EventItem from "./event-item";
 
 const getEvents = cache(
@@ -13,8 +13,7 @@ const getEvents = cache(
     return await db
       .select()
       .from(eventsTable)
-      .where(ne(eventsTable.status, "CANCELLED"))
-      .orderBy(asc(eventsTable.start));
+      .orderBy(asc(eventsTable.startDate));
   },
   ["events"],
   { tags: ["events"], revalidate: 43200 },
@@ -27,19 +26,17 @@ export default async function EventSection({
 
   // apparently unstable_cache converts dates to strings (???) -> convert back if necessary
   const eventsFormatted = events.map((e) =>
-    typeof e.start === "string"
+    typeof e.startDate === "string"
       ? {
           ...e,
-          start: new Date(e.start),
-          end: new Date(e.end),
-          createdAt: new Date(e.createdAt),
-          updatedAt: new Date(e.updatedAt),
+          startDate: new Date(e.startDate),
+          endDate: new Date(e.endDate),
         }
       : e,
   );
 
   const today = new Date();
-  const futureEvents = eventsFormatted.filter((e) => e.end > today);
+  const futureEvents = eventsFormatted.filter((e) => e.startDate > today);
 
   return (
     <section

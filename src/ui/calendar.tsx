@@ -5,7 +5,7 @@ import { getDay, getDaysInMonth, isSameDay } from "date-fns";
 import { Button } from "./button";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { CalendarEvent } from "@/lib/google-apis/calendar";
+import { CalendarEvent } from "@/content/events/events";
 
 type CalendarState = {
   month: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11;
@@ -102,7 +102,7 @@ export function Calendar({
     const result: { [day: number]: CalendarEvent[] | undefined } = {};
     for (let day = 1; day <= daysInMonth; day++) {
       result[day] = events?.filter((event) => {
-        return isSameDay(new Date(event.start), new Date(year, month, day));
+        return isSameDay(new Date(event.startDate), new Date(year, month, day));
       });
     }
     return result;

@@ -3,7 +3,6 @@
 import * as React from "react";
 import GuruButton from "./guru-btn";
 import SmokeEffect from "./smoke-effect";
-import { ShineBorder } from "@/ui/effects/shine-border";
 import { Loader2 } from "lucide-react";
 
 type GuruState = "INITIAL" | "LOADING" | "ERROR" | "SUCCESS";
