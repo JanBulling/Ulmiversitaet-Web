@@ -38,8 +38,16 @@ export async function POST(req: Request) {
 
     const startDate = Date.parse(event.startDate);
     const endDate = Date.parse(event.endDate);
+
     if (isNaN(startDate) || isNaN(endDate))
       return new Response("Wrongly formatted data", { status: 400 });
+
+    const startTime = event.startTime
+      ? event.startTime?.slice(0, 2) + ":" + event.startTime?.slice(2, 4)
+      : undefined;
+    const endTime = event.endTime
+      ? event.endTime?.slice(0, 2) + ":" + event.endTime?.slice(2, 4)
+      : undefined;
 
     await db.insert(eventsTable).values({
       summary: event.summary,
@@ -50,8 +58,8 @@ export async function POST(req: Request) {
       wholeDay: event.isWholeDay ?? false,
       startDate: new Date(startDate),
       endDate: new Date(endDate),
-      startTime: event.startTime,
-      endTime: event.endTime,
+      startTime: startTime,
+      endTime: endTime,
     });
 
     revalidateTag("events");
