@@ -101,8 +101,21 @@ export function Calendar({
   const eventsByDay = React.useMemo(() => {
     const result: { [day: number]: CalendarEvent[] | undefined } = {};
     for (let day = 1; day <= daysInMonth; day++) {
+      const currentDate = new Date(year, month, day);
       result[day] = events?.filter((event) => {
-        return isSameDay(new Date(event.startDate), new Date(year, month, day));
+        const eventStart = new Date(event.startDate);
+        const eventEnd = new Date(event.endDate);
+        const startDateOnly = new Date(
+          eventStart.getFullYear(),
+          eventStart.getMonth(),
+          eventStart.getDate(),
+        );
+        const endDateOnly = new Date(
+          eventEnd.getFullYear(),
+          eventEnd.getMonth(),
+          eventEnd.getDate(),
+        );
+        return currentDate >= startDateOnly && currentDate <= endDateOnly;
       });
     }
     return result;
@@ -145,7 +158,7 @@ export function Calendar({
   }
 
   return (
-    <div className={cn("max-w-2xl", className)}>
+    <div className={cn("max-w-xl", className)}>
       <div className="flex items-center justify-center gap-4">
         <Button
           onClick={handlePrevMonth}
@@ -176,7 +189,7 @@ export function Calendar({
         {days.map((day, idx) => (
           <div
             key={idx}
-            className="flex aspect-square w-full items-center justify-center border"
+            className="border p-0 min-h-20 md:min-h-19"
           >
             {day}
           </div>
@@ -221,7 +234,7 @@ function CalendarHeader({
 
 function OutOfBoundsDay({ day }: { day: number }) {
   return (
-    <div className="bg-muted text-muted-foreground relative h-full w-full p-1 text-xs">
+    <div className="bg-muted text-muted-foreground relative h-full w-full p-2 text-xs text-left">
       {day}
     </div>
   );
@@ -239,12 +252,11 @@ function Day({
   return (
     <div
       className={cn(
-        "bg-card text-foreground relative h-full w-full p-1 text-sm",
+        "bg-card text-foreground relative h-full w-full p-2 text-sm text-left",
         isToday && "bg-primary/40 font-semibold",
       )}
     >
       {day}
-      {isToday && <p>(heute)</p>}
       <div className="mt-1 space-y-0.5 text-xs">
         {events?.slice(0, 2).map((event, idx) => (
           <div

@@ -22,7 +22,7 @@ export default function SmokeEffect({
       {particles.map((_, i) => (
         <div
           key={i}
-          className="animate-smoke absolute rounded-full blur-sm"
+          className="animate-smoke absolute rounded-full blur-sm [animation-fill-mode:both]"
           style={{
             opacity: 0,
             backgroundImage: `radial-gradient(circle at 30% 30%, ${color[i % color.length]}99, transparent 60%)`,
@@ -30,7 +30,7 @@ export default function SmokeEffect({
             height: `${Math.random() * particleSize + 8}%`,
             left: `${Math.random() * 90 + 2}%`,
             bottom: `${Math.random() * 45}%`,
-            animationDelay: `${i * 0.1 - 0.05 * particleCount}s`,
+            animationDelay: `${i * 0.1 - 0.03 * particleCount}s`,
           }}
         />
       ))}
