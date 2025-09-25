@@ -6,7 +6,7 @@ export type CalendarResponse = {
   events: CalendarEvent[];
 };
 
-type EventStatus = "CANCELLED" | "CONFIRMED" | "TENTATIVE";
+export type EventStatus = "CANCELLED" | "CONFIRMED" | "TENTATIVE";
 
 export type CalendarEvent = {
   id: string;

@@ -8,5 +8,5 @@ export default {
     url: process.env.NEON_DATABASE_URL_ADMIN ?? "",
   },
 
-  tablesFilter: "ulmiversitaet_*",
+  tablesFilter: ["ulmiversitaet_*", "!meal*"],
 } satisfies Config;

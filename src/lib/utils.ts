@@ -16,3 +16,7 @@ export function generateSlug(title: string): string {
     .replace(/^-|-$/g, "")
     .slice(0, 50); // Limit to 50 characters
 }
+
+export function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
