@@ -21,12 +21,6 @@ const monthDayFormatter = new Intl.DateTimeFormat("de-DE", {
   month: "short",
 });
 
-const formatTime = (timeString: string | null | undefined) => {
-  if (!timeString) return "";
-  const [hours, minutes] = [timeString.slice(0, 2), timeString.slice(2, 4)];
-  return `${parseInt(hours)}:${minutes} Uhr`;
-};
-
 export default function EventItem({ event }: EventItemProps) {
   const color = event.color ?? DEFAULT_COLOR;
   const startDateFormatted = dateFormatter.format(event.startDate);
@@ -36,10 +30,10 @@ export default function EventItem({ event }: EventItemProps) {
 
   if (event.startDate.toDateString() !== event.endDate.toDateString()) {
     if (event.startDate.getMonth() === event.endDate.getMonth()) {
-      // Same month, different days: 7-9. Okt.
+      // Same month, different days
       dateRange = `${dayFormatter.format(event.startDate)}-${dateFormatter.format(event.endDate)}`;
     } else {
-      // Different months: 27. Okt - 3. Sept.
+      // Different months
       dateRange = `${monthDayFormatter.format(event.startDate)} - ${monthDayFormatter.format(event.endDate)}`;
     }
   }
@@ -60,16 +54,12 @@ export default function EventItem({ event }: EventItemProps) {
           />
           <span className={`text-xs font-medium capitalize ${textSecondary}`}>
             {dateRange}
-            {event.startTime && ` ${formatTime(event.startTime)}`}
-            {event.endTime && (
-              <>
-                {` - ${formatTime(event.endTime)}`}
-              </>
-            )}
+            {event.startTime && ` ${event.startTime}`}
+            {event.endTime && ` - ${event.endTime}`}
           </span>
         </div>
 
-        <h3 className="line-clamp-1 pr-2 text-sm font-semibold text-gray-900 dark:text-white">
+        <h3 className="line-clamp-1 pr-2 text-sm font-semibold">
           {event.summary}
         </h3>
 
@@ -87,8 +77,6 @@ export default function EventItem({ event }: EventItemProps) {
           </div>
         )}
       </div>
-
-      
     </li>
   );
 }

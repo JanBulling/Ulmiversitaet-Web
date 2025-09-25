@@ -42,12 +42,8 @@ export async function POST(req: Request) {
     if (isNaN(startDate) || isNaN(endDate))
       return new Response("Wrongly formatted data", { status: 400 });
 
-    const startTime = event.startTime
-      ? event.startTime?.slice(0, 2) + ":" + event.startTime?.slice(2, 4)
-      : undefined;
-    const endTime = event.endTime
-      ? event.endTime?.slice(0, 2) + ":" + event.endTime?.slice(2, 4)
-      : undefined;
+    const startTime = formatTime(event.startTime);
+    const endTime = formatTime(event.endTime);
 
     await db.insert(eventsTable).values({
       summary: event.summary,
@@ -70,6 +66,12 @@ export async function POST(req: Request) {
     console.error("[/events - POST]", "Internal server error", err);
     return new Response("Internal server error", { status: 500 });
   }
+}
+
+function formatTime(time?: string | null) {
+  if (!time) return "";
+  const [hours, minutes] = [time.slice(0, 2), time.slice(2, 4)];
+  return `${hours}:${minutes} Uhr`;
 }
 
 // ================================================================================================

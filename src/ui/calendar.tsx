@@ -103,17 +103,15 @@ export function Calendar({
     for (let day = 1; day <= daysInMonth; day++) {
       const currentDate = new Date(year, month, day);
       result[day] = events?.filter((event) => {
-        const eventStart = new Date(event.startDate);
-        const eventEnd = new Date(event.endDate);
         const startDateOnly = new Date(
-          eventStart.getFullYear(),
-          eventStart.getMonth(),
-          eventStart.getDate(),
+          event.startDate.getFullYear(),
+          event.startDate.getMonth(),
+          event.startDate.getDate(),
         );
         const endDateOnly = new Date(
-          eventEnd.getFullYear(),
-          eventEnd.getMonth(),
-          eventEnd.getDate(),
+          event.endDate.getFullYear(),
+          event.endDate.getMonth(),
+          event.endDate.getDate(),
         );
         return currentDate >= startDateOnly && currentDate <= endDateOnly;
       });
@@ -187,10 +185,7 @@ export function Calendar({
 
       <div className="grid flex-grow grid-cols-7">
         {days.map((day, idx) => (
-          <div
-            key={idx}
-            className="border p-0 min-h-20 md:min-h-19"
-          >
+          <div key={idx} className="min-h-20 border p-0 md:min-h-19">
             {day}
           </div>
         ))}
@@ -234,7 +229,7 @@ function CalendarHeader({
 
 function OutOfBoundsDay({ day }: { day: number }) {
   return (
-    <div className="bg-muted text-muted-foreground relative h-full w-full p-2 text-xs text-left">
+    <div className="bg-muted text-muted-foreground relative h-full w-full p-2 text-left text-xs">
       {day}
     </div>
   );
@@ -252,7 +247,7 @@ function Day({
   return (
     <div
       className={cn(
-        "bg-card text-foreground relative h-full w-full p-2 text-sm text-left",
+        "bg-card text-foreground relative h-full w-full p-2 text-left text-sm",
         isToday && "bg-primary/40 font-semibold",
       )}
     >
