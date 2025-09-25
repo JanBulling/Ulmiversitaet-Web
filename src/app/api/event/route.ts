@@ -5,6 +5,9 @@ import { eq } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
 import z from "zod";
 
+// ================================================================================================
+// ======                               POST-ROUTES                                          ======
+// ================================================================================================
 const schema = z.object({
   summary: z.string().min(1),
   description: z.string().optional(),
@@ -17,9 +20,6 @@ const schema = z.object({
   color: z.string().optional(),
 });
 
-// ================================================================================================
-// ======                               POST-ROUTES                                          ======
-// ================================================================================================
 export async function POST(req: Request) {
   try {
     const session = await getServerSession();
@@ -72,27 +72,16 @@ export async function POST(req: Request) {
   }
 }
 
-export async function PATCH(req: Request) {
-  try {
-    const session = await getServerSession();
-    if (!session || session.role !== "ADMIN") {
-      return new Response("Not authenticated", { status: 401 });
-    }
-
-    const json = await req.json();
-    const body = schema.safeParse(json);
-    if (!body.success) {
-      console.error(body.error);
-      return new Response("Wrongly formatted data", { status: 400 });
-    }
-
-    return new Response("Success");
-  } catch (err) {
-    console.error("[/events - DELETE]", "Internal server error", err);
-    return new Response("Internal server error", { status: 500 });
-  }
+// ================================================================================================
+// ======                               PATCH-ROUTES                                         ======
+// ================================================================================================
+export async function PATCH() {
+  return new Response("Not implemented", { status: 501 });
 }
 
+// ================================================================================================
+// ======                               DELETE-ROUTES                                        ======
+// ================================================================================================
 const deleteSchema = z.object({
   id: z.string().min(1),
 });

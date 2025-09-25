@@ -2,11 +2,15 @@ import AddEventForm from "@/components/admin/events/add-event-form";
 import EventsTable from "@/components/admin/events/events-table";
 import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
+import { asc } from "drizzle-orm";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminEventsPage() {
-  const events = await db.select().from(eventsTable);
+  const events = await db
+    .select()
+    .from(eventsTable)
+    .orderBy(asc(eventsTable.startDate));
 
   return (
     <div>
