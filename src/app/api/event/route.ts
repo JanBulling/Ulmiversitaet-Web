@@ -5,6 +5,9 @@ import { eq } from "drizzle-orm";
 import { revalidatePath, revalidateTag } from "next/cache";
 import z from "zod";
 
+// ================================================================================================
+// ======                               POST-ROUTES                                          ======
+// ================================================================================================
 const schema = z.object({
   summary: z.string().min(1),
   description: z.string().optional(),
@@ -17,9 +20,6 @@ const schema = z.object({
   color: z.string().optional(),
 });
 
-// ================================================================================================
-// ======                               POST-ROUTES                                          ======
-// ================================================================================================
 export async function POST(req: Request) {
   try {
     const session = await getServerSession();
@@ -38,8 +38,12 @@ export async function POST(req: Request) {
 
     const startDate = Date.parse(event.startDate);
     const endDate = Date.parse(event.endDate);
+
     if (isNaN(startDate) || isNaN(endDate))
       return new Response("Wrongly formatted data", { status: 400 });
+
+    const startTime = formatTime(event.startTime);
+    const endTime = formatTime(event.endTime);
 
     await db.insert(eventsTable).values({
       summary: event.summary,
@@ -50,8 +54,8 @@ export async function POST(req: Request) {
       wholeDay: event.isWholeDay ?? false,
       startDate: new Date(startDate),
       endDate: new Date(endDate),
-      startTime: event.startTime,
-      endTime: event.endTime,
+      startTime: startTime,
+      endTime: endTime,
     });
 
     revalidateTag("events");
@@ -64,27 +68,22 @@ export async function POST(req: Request) {
   }
 }
 
-export async function PATCH(req: Request) {
-  try {
-    const session = await getServerSession();
-    if (!session || session.role !== "ADMIN") {
-      return new Response("Not authenticated", { status: 401 });
-    }
-
-    const json = await req.json();
-    const body = schema.safeParse(json);
-    if (!body.success) {
-      console.error(body.error);
-      return new Response("Wrongly formatted data", { status: 400 });
-    }
-
-    return new Response("Success");
-  } catch (err) {
-    console.error("[/events - DELETE]", "Internal server error", err);
-    return new Response("Internal server error", { status: 500 });
-  }
+function formatTime(time?: string | null) {
+  if (!time) return "";
+  const [hours, minutes] = [time.slice(0, 2), time.slice(2, 4)];
+  return `${hours}:${minutes} Uhr`;
 }
 
+// ================================================================================================
+// ======                               PATCH-ROUTES                                         ======
+// ================================================================================================
+export async function PATCH() {
+  return new Response("Not implemented", { status: 501 });
+}
+
+// ================================================================================================
+// ======                               DELETE-ROUTES                                        ======
+// ================================================================================================
 const deleteSchema = z.object({
   id: z.string().min(1),
 });

@@ -265,8 +265,11 @@ header.scrolled {
   @keyframes smoke {
     0% {
       transform: translateY(0) scale(1);
-      opacity: 0.9;
+      opacity: 0;
       filter: blur(20px);
+    }
+    15% {
+      opacity: 0.9;
     }
     30% {
       opacity: 0.8;

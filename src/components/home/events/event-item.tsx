@@ -12,10 +12,31 @@ const dateFormatter = new Intl.DateTimeFormat("de-DE", {
   day: "numeric",
 });
 
+const dayFormatter = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric",
+});
+
+const monthDayFormatter = new Intl.DateTimeFormat("de-DE", {
+  day: "numeric",
+  month: "short",
+});
+
 export default function EventItem({ event }: EventItemProps) {
   const color = event.color ?? DEFAULT_COLOR;
-  const date = dateFormatter.format(event.startDate);
+  const startDateFormatted = dateFormatter.format(event.startDate);
   const textSecondary = "text-gray-600 dark:text-gray-400";
+
+  let dateRange = startDateFormatted;
+
+  if (event.startDate.toDateString() !== event.endDate.toDateString()) {
+    if (event.startDate.getMonth() === event.endDate.getMonth()) {
+      // Same month, different days
+      dateRange = `${dayFormatter.format(event.startDate)}-${dateFormatter.format(event.endDate)}`;
+    } else {
+      // Different months
+      dateRange = `${monthDayFormatter.format(event.startDate)} - ${monthDayFormatter.format(event.endDate)}`;
+    }
+  }
 
   return (
     <li
@@ -32,11 +53,13 @@ export default function EventItem({ event }: EventItemProps) {
             style={{ backgroundColor: color }}
           />
           <span className={`text-xs font-medium capitalize ${textSecondary}`}>
-            {date}
+            {dateRange}
+            {event.startTime && ` ${event.startTime}`}
+            {event.endTime && ` - ${event.endTime}`}
           </span>
         </div>
 
-        <h3 className="line-clamp-1 pr-2 text-sm font-semibold text-gray-900 dark:text-white">
+        <h3 className="line-clamp-1 pr-2 text-sm font-semibold">
           {event.summary}
         </h3>
 
@@ -53,10 +76,6 @@ export default function EventItem({ event }: EventItemProps) {
             )}
           </div>
         )}
-      </div>
-
-      <div className="flex flex-col items-end gap-1 font-mono text-xs text-gray-700 dark:text-gray-300">
-        TIME
       </div>
     </li>
   );

@@ -42,7 +42,6 @@ export function DateInput({ value, onChange, ...props }: DateInputProps) {
           onSelect={(date) => {
             setDate(date);
             onChange?.(date);
-            setOpen(false);
           }}
         />
       </PopoverContent>
