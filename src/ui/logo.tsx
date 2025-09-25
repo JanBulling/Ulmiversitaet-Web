@@ -26,7 +26,7 @@ export default function Logo({
         src="/logo.png"
         alt="Ulmiversität Logo"
         className={cn(
-          ">dark:invert aspect-square",
+          "dark:invert aspect-square",
           sizeMap[size].logo,
           className,
         )}
