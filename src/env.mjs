@@ -7,6 +7,15 @@ import { z } from "zod";
  */
 const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
+
+  NEON_DATABASE_URL: z.string(),
+
+  CRON_SECRET: z.string(),
+
+  ADMIN_USERNAME: z.string(),
+  ADMIN_PASSWORD: z.string(),
+
+  SESSION_SECRET: z.string(),
 });
 
 /**
@@ -23,6 +32,15 @@ const client = z.object({});
  */
 const processEnv = {
   NODE_ENV: process.env.NODE_ENV,
+
+  NEON_DATABASE_URL: process.env.NEON_DATABASE_URL,
+
+  CRON_SECRET: process.env.CRON_SECRET,
+
+  ADMIN_USERNAME: process.env.ADMIN_USERNAME,
+  ADMIN_PASSWORD: process.env.ADMIN_PASSWORD,
+
+  SESSION_SECRET: process.env.SESSION_SECRET,
 };
 
 const merged = server.merge(client);

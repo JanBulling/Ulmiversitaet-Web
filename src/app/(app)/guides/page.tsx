@@ -5,8 +5,7 @@ import {
 } from "@/content/guides/guides";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
-import Link from "next/link";
-import { ChevronRight, FolderOpenIcon } from "lucide-react";
+import FolderCard from "@/components/guides/folder-card";
 
 export const dynamic = "force-static";
 
@@ -34,54 +33,9 @@ export default function GuidesPage() {
       </div>
 
       <div className="my-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {allFolders.map((folder) => {
-          const displayName = folder.split("/").pop() ?? folder;
-
-          return (
-            <Link
-              href={`/guides/${folder}`}
-              key={folder}
-              className="group block focus:outline-none"
-              aria-label={`Ordner öffnen: ${displayName}`}
-              title={displayName}
-            >
-              <div
-                className="
-                  flex items-center justify-between gap-3 rounded-xl border bg-card/60
-                  p-4 transition-colors hover:bg-accent/40
-                  focus-visible:ring-2 focus-visible:ring-primary
-                  focus-visible:ring-offset-2 focus-visible:ring-offset-background
-                "
-              >
-                <div className="flex min-w-0 items-center gap-3">
-                  <div
-                    className="
-                      flex size-12 items-center justify-center rounded-lg
-                      bg-muted text-muted-foreground transition-colors
-                      group-hover:bg-muted/80
-                    "
-                  >
-                    <FolderOpenIcon className="size-6" aria-hidden />
-                  </div>
-
-                  <div className="min-w-0">
-                    <p className="truncate text-xl font-semibold leading-5">
-                      {displayName}
-                    </p>
-                  </div>
-                </div>
-
-                <ChevronRight
-                  className="
-                    size-5 shrink-0 text-muted-foreground
-                    transition-transform duration-200 group-hover:translate-x-0.5
-                  "
-                  aria-hidden
-                />
-              </div>
-            </Link>
-          );
-        })}
+        {allFolders.map((folder) => (
+          <FolderCard folder={folder} key={folder} />
+        ))}
       </div>
 
       <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:px-4 md:grid-cols-3">

@@ -7,12 +7,11 @@ import {
 } from "@/content/guides/guides";
 import GuideLayout from "@/layouts/guide-layout";
 import { CustomMDX } from "@/mdx-components";
-import Link from "next/link";
-import { ChevronRight, FolderOpenIcon } from "lucide-react";
 import BaseLayout from "@/layouts/base-layout";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
+import FolderCard from "@/components/guides/folder-card";
 
 interface GuidePageProps {
   params: Promise<{ slug: string[] }>;
@@ -113,11 +112,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
         published={published}
         author={guide.metadata.author}
       >
-        <div className="bg-card rounded-xl border shadow-sm">
-          <div className="prose prose-sm dark:prose-invert sm:prose-base max-w-none p-4 sm:p-6 md:p-8">
-            <CustomMDX source={guide.content} />
-          </div>
-        </div>
+        <CustomMDX source={guide.content} />
       </GuideLayout>
     );
   }
@@ -131,44 +126,17 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
   return (
     <BaseLayout>
-      <h1 className="text-2xl font-bold">Anleitungen {guideFilePath}</h1>
-
-      <div className="my-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {allFolders.map((folder) => {
-          const displayName = folder.split("/").pop() ?? folder;
-          return (
-            <Link
-              href={`/guides/${folder}`}
-              key={folder}
-              className="group block focus:outline-none"
-              aria-label={`Ordner öffnen: ${displayName}`}
-              title={displayName}
-            >
-              <div className="bg-card/60 hover:bg-accent/40 focus-visible:ring-primary focus-visible:ring-offset-background flex items-center justify-between gap-3 rounded-xl border p-4 transition-colors focus-visible:ring-2 focus-visible:ring-offset-2">
-                <div className="flex min-w-0 items-center gap-3">
-                  <div className="bg-muted text-muted-foreground group-hover:bg-muted/80 flex size-12 items-center justify-center rounded-lg transition-colors">
-                    <FolderOpenIcon className="size-6" aria-hidden />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="truncate text-sm leading-5 font-semibold">
-                      {displayName}
-                    </p>
-                    <p className="text-muted-foreground mt-0.5 text-xs">
-                      Ordner öffnen
-                    </p>
-                  </div>
-                </div>
-                <ChevronRight
-                  className="text-muted-foreground size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
-                  aria-hidden
-                />
-              </div>
-            </Link>
-          );
-        })}
+      <div className="px-4">
+        <h1 className="text-2xl font-bold">Anleitungen {guideFilePath}</h1>
       </div>
 
-      <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <div className="my-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {allFolders.map((folder) => (
+          <FolderCard folder={folder} key={folder} />
+        ))}
+      </div>
+
+      <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-4 lg:grid-cols-3">
         {allGuides.map((guide) => (
           <GuideCard key={guide.filePath} guide={guide} />
         ))}

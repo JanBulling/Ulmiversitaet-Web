@@ -22,10 +22,10 @@ export default function GuideCard({ guide }: GuideCardProps) {
     <Link
       href={`/guides/${guide.filePath}`}
       className="group block focus:outline-none"
-      aria-label={`Open guide: ${guide.metadata.title}`}
+      aria-label={`Anleitung öffnen: ${guide.metadata.title}`}
       title={guide.metadata.title}
     >
-      <article className="bg-card/60 hover:bg-accent/40 hover:border-muted-foreground/20 focus-visible:ring-primary focus-visible:ring-offset-background relative flex h-full items-start gap-4 rounded-xl border p-5 transition hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 md:p-6">
+      <article className="bg-card hover:bg-accent/40 flex h-full items-start gap-4 border p-5 md:rounded-xl md:p-6">
         <div className="flex-1">
           <h3 className="line-clamp-2 text-lg leading-snug font-semibold tracking-tight md:text-xl">
             {guide.metadata.title}

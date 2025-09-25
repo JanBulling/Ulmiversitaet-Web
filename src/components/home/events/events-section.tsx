@@ -1,13 +1,44 @@
 import { CalendarClock } from "lucide-react";
 
-import { getEvents } from "@/content/events/events";
 import { Calendar } from "@/ui/calendar";
 import { cn } from "@/lib/utils";
+import { unstable_cache as cache } from "next/cache";
+import { db } from "@/lib/db/db";
+import { eventsTable } from "@/lib/db/schema";
+import { asc } from "drizzle-orm";
+import EventItem from "./event-item";
 
-export default function EventSection({
+const getEvents = cache(
+  async () => {
+    return await db
+      .select()
+      .from(eventsTable)
+      .orderBy(asc(eventsTable.startDate));
+  },
+  ["events"],
+  { tags: ["events"], revalidate: 43200 },
+);
+
+export default async function EventSection({
   className,
 }: React.ComponentProps<"section">) {
-  const events = getEvents();
+  const events = await getEvents();
+
+  // apparently unstable_cache converts dates to strings (???) -> convert back if necessary
+  const eventsFormatted = events.map((e) =>
+    typeof e.startDate === "string"
+      ? {
+          ...e,
+          startDate: new Date(e.startDate),
+          endDate: new Date(e.endDate),
+        }
+      : e,
+  );
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const futureEvents = eventsFormatted.filter((e) => e.startDate >= today);
 
   return (
     <section
@@ -18,7 +49,20 @@ export default function EventSection({
         <h2 className="flex-1 text-2xl font-bold">Events</h2>
       </div>
 
-      <Calendar events={events} />
+      <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
+        <Calendar events={eventsFormatted} className="hidden md:block" />
+
+        <div>
+          <h3 className="hidden text-xl font-bold md:block">
+            Zukünftige Events
+          </h3>
+          <ol className="mt-2 space-y-2">
+            {futureEvents.map((event) => (
+              <EventItem event={event} key={event.id} />
+            ))}
+          </ol>
+        </div>
+      </div>
     </section>
   );
 }

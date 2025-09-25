@@ -16,3 +16,11 @@ export function generateSlug(title: string): string {
     .replace(/^-|-$/g, "")
     .slice(0, 50); // Limit to 50 characters
 }
+
+export function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+export function capitalize(val: string): string {
+  return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+}

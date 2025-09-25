@@ -97,4 +97,16 @@ export const Icons = {
       <line x1="12" y1="17" x2="12.01" y2="17" />
     </svg>
   ),
+  sparkles: (props: IconProps) => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      width="24"
+      height="24"
+      {...props}
+    >
+      <path d="M12 2l1.8 4.2L18 8l-4.2 1.8L12 14l-1.8-4.2L6 8l4.2-1.8L12 2zM6 14l1.2 2.8L10 18l-2.8 1.2L6 22l-1.2-2.8L2 18l2.8-1.2L6 14zm12-2l1 2.4L22 16l-3 1.2L18 20l-1.2-2.8L14 16l2.8-1.2L18 12z" />
+    </svg>
+  ),
 };
