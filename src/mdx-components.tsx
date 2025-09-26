@@ -8,6 +8,7 @@ import { cn } from "./lib/utils";
 import { Button } from "./ui/button";
 import { Alert, AlertDescription, AlertTitle } from "./ui/alert";
 import { CopyButton } from "./ui/copy-button";
+import { ThemeImage, StepWithImage } from "./components/theme-image";
 
 const components: React.ComponentProps<typeof MDXProvider>["components"] = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
@@ -199,6 +200,8 @@ const components: React.ComponentProps<typeof MDXProvider>["components"] = {
   Alert,
   AlertTitle,
   AlertDescription,
+  ThemeImage,
+  StepWithImage,
 };
 
 export function CustomMDX(props: MDXRemoteProps) {

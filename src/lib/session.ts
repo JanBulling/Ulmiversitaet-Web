@@ -63,7 +63,7 @@ async function getSessionFromToken(
 
         break;
     }
-  } catch (err) {
+  } catch {
     return undefined;
   }
 

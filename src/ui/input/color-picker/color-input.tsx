@@ -30,6 +30,7 @@ const ColorInput = React.forwardRef<
     const newVal = hsvToHex(color);
     setColorHex(newVal);
     onChange?.(colorHex);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [color, value]);
 
   return (

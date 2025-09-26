@@ -6,6 +6,7 @@ import {
   getGuide,
 } from "@/content/guides/guides";
 import GuideLayout from "@/layouts/guide-layout";
+import { ArticleHeader } from "@/components/guides/article-header";
 import { CustomMDX } from "@/mdx-components";
 import BaseLayout from "@/layouts/base-layout";
 import { notFound } from "next/navigation";
@@ -21,7 +22,7 @@ export async function generateStaticParams() {
   const allGuides = getAllGuides();
 
   const slugs = allGuides.map((guide) => ({
-    slug: guide.filePath.split(/[/\\]+/),
+    slug: guide.filePath.split(/[/\\]+/).map((s) => encodeURI(s)),
   }));
 
   // Also generate params for folder pages
@@ -36,7 +37,7 @@ export async function generateStaticParams() {
 
   folderSlugs.forEach((folderPath) => {
     slugs.push({
-      slug: folderPath.split(/[/\\]+/),
+      slug: folderPath.split(/[/\\]+/).map((s) => encodeURI(s)),
     });
   });
 
@@ -48,7 +49,7 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: GuidePageProps): Promise<Metadata> {
-  const guideFilePath = (await params).slug.join("/");
+  const guideFilePath = decodeURI((await params).slug.join("/"));
 
   const guide = getGuide(guideFilePath);
 
@@ -91,7 +92,7 @@ export async function generateMetadata({
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
-  const guideFilePath = (await params).slug.join("/");
+  const guideFilePath = (await params).slug.map((s) => decodeURI(s)).join("/");
 
   const guide = getGuide(guideFilePath);
 
@@ -112,6 +113,14 @@ export default async function GuidePage({ params }: GuidePageProps) {
         published={published}
         author={guide.metadata.author}
       >
+        <ArticleHeader
+          title={guide.metadata.titleWeb ?? guide.metadata.title}
+          description={guide.metadata.description ?? guide.metadata.summary}
+          author={guide.metadata.author}
+          published={published}
+          readingTimeMin={readingTimeMin}
+        />
+
         <CustomMDX source={guide.content} />
       </GuideLayout>
     );
@@ -124,10 +133,14 @@ export default async function GuidePage({ params }: GuidePageProps) {
     return notFound();
   }
 
+  const folderName = guideFilePath.split("_").join(" ");
+
   return (
     <BaseLayout>
       <div className="px-4">
-        <h1 className="text-2xl font-bold">Anleitungen {guideFilePath}</h1>
+        <h1 className="text-2xl font-bold">
+          Anleitungen <span className="text-primary">{folderName}</span>
+        </h1>
       </div>
 
       <div className="my-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">

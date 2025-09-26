@@ -7,6 +7,7 @@ import { db } from "@/lib/db/db";
 import { eventsTable } from "@/lib/db/schema";
 import { asc } from "drizzle-orm";
 import EventItem from "./event-item";
+import { ScrollArea } from "@/ui/scroll-area";
 
 const getEvents = cache(
   async () => {
@@ -38,7 +39,12 @@ export default async function EventSection({
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const futureEvents = eventsFormatted.filter((e) => e.startDate >= today);
+  const twoMonthFromNow = new Date();
+  twoMonthFromNow.setMonth(twoMonthFromNow.getMonth() + 2);
+
+  const futureEvents = eventsFormatted.filter(
+    (e) => e.startDate >= today && e.startDate <= twoMonthFromNow,
+  );
 
   return (
     <section
@@ -52,15 +58,18 @@ export default async function EventSection({
       <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
         <Calendar events={eventsFormatted} className="hidden md:block" />
 
-        <div>
+        <div className="max-h-[550px]">
           <h3 className="hidden text-xl font-bold md:block">
             Zukünftige Events
           </h3>
-          <ol className="mt-2 space-y-2">
-            {futureEvents.map((event) => (
-              <EventItem event={event} key={event.id} />
-            ))}
-          </ol>
+
+          <ScrollArea className="h-full md:mt-2 md:h-[calc(100%-28px-8px)]">
+            <ol className="space-y-2 pb-4 md:px-2">
+              {futureEvents.map((event) => (
+                <EventItem event={event} key={event.id} />
+              ))}
+            </ol>
+          </ScrollArea>
         </div>
       </div>
     </section>

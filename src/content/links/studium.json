@@ -1,6 +1,6 @@
 {
-  "title": "Studium",
-  "description": "Allgemeine Links der Universität Ulm",
+  "title": "Vorlesungsverwaltung",
+  "description": "Links ",
   "content": [
     {
       "type": "LINK",
@@ -14,7 +14,7 @@
         },
         {
           "type": "LINK",
-          "label": "Veranstaltungsarchiev",
+          "label": "Veranstaltungsarchiv",
           "href": "https://campusonline.uni-ulm.de/qislsf/rds?state=change&type=1&moduleParameter=VVZArchivMenue&nextdir=change&next=menu.vm&subdir=applications&xml=menu&purge=y&database=n&navigationPosition=lectures%2CVVZArchiv&topitem=lectures&subitem=VVZArchiv"
         }
       ]
@@ -27,7 +27,7 @@
     },
     {
       "type": "LINK",
-      "label": "Höhrsaalfinder",
+      "label": "Hörsaalfinder",
       "href": "https://www.uni-ulm.de/einrichtungen/kiz/weiteres/campus-navigation/hoersaalfinder/"
     }
   ]

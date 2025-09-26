@@ -1,0 +1,46 @@
+{
+    "title": "International Office",
+    "description": "Links zum Auslandssemester / ERAMSUS+ Programm.",
+    "content": [
+        {
+            "type": "LINK",
+            "label": "International Office",
+            "description": "Alle Informationen zum Auslandssemester Programm.",
+            "href": "https://www.uni-ulm.de/io/",
+            "related": [
+                {
+                    "type": "LINK",
+                    "label": "Ereichbar unter study-abroad(at)uni-ulm.de",
+                    "href": "mailto:study-abroad@uni-ulm.de"
+                }
+            ]
+        },
+        {
+            "type": "LINK",
+            "label": "Mobility-Online",
+            "href": "https://www.service4mobility.com/europe/LoginServlet"
+        },
+        {
+            "type": "LINK",
+            "label": "ERASMUS+ Programm",
+            "href": "https://www.uni-ulm.de/io/mob-out/ausland-semester-jahr/erasmus-sms/bewerbung-intern/",
+            "related": [
+                {
+                    "type": "LINK",
+                    "label": "Suchportal für Partneruniversitäten",
+                    "href": "https://www.service4mobility.com/europe/PortalServlet?identifier=ULM01&showAll=0&showPartner=0&preselectTab=ver_nav_button&sprache=de"
+                },
+                {
+                    "type": "LINK",
+                    "label": "Sprachtests",
+                    "href": "https://www.uni-ulm.de/einrichtungen/zsp/test/daad/"
+                },
+                {
+                    "type": "LINK",
+                    "label": "Erfahrungsberichte",
+                    "href": "https://www.service4mobility.com/europe/PortalServlet?identifier=ULM01&showAll=0&showPartner=0&preselectTab=ver_nav_button&sprache=de"
+                }
+            ]
+        }
+    ]
+}
