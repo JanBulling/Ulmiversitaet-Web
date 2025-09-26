@@ -21,10 +21,8 @@ export default function DatenschutzPage() {
   if (!fileContent) return notFound();
 
   return (
-    <SiteLayout className="prose prose-neutral dark:prose-invert prose-h2:underline prose-headings:text-primary">
+    <SiteLayout className="px-4">
       <CustomMDX source={fileContent.content} />
     </SiteLayout>
   );
 }
-
-

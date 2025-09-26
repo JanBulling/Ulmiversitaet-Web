@@ -29,7 +29,7 @@ export default function LinkCard({ link }: LinkCardProps) {
               </p>
             )}
           </div>
-          <ExternalLink className="size-4 text-muted-foreground mt-1 shrink-0" />
+          <ExternalLink className="text-muted-foreground mt-1 size-4 shrink-0" />
         </NextLink>
 
         {link.related && link.related.length > 0 && (
@@ -67,9 +67,15 @@ export default function LinkCard({ link }: LinkCardProps) {
   if (type === "GUIDE") {
     return (
       <li className="py-3">
-        <NextLink href={link.href} className="group flex items-center justify-between" aria-label={`${link.label} Anleitung`}>
-          <span className="font-medium underline-offset-4 group-hover:underline">{link.label}</span>
-          <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+        <NextLink
+          href={link.href}
+          className="group flex items-center justify-between"
+          aria-label={`${link.label} Anleitung`}
+        >
+          <span className="font-medium underline-offset-4 group-hover:underline">
+            {link.label}
+          </span>
+          <ChevronRight className="text-muted-foreground size-4 transition-transform group-hover:translate-x-0.5" />
         </NextLink>
       </li>
     );
@@ -78,9 +84,15 @@ export default function LinkCard({ link }: LinkCardProps) {
   if (type === "INTERNAL") {
     return (
       <li className="py-3">
-        <NextLink href={link.href} className="group flex items-center justify-between" aria-label={link.label}>
-          <span className="font-medium underline-offset-4 group-hover:underline">{link.label}</span>
-          <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+        <NextLink
+          href={link.href}
+          className="group flex items-center justify-between"
+          aria-label={link.label}
+        >
+          <span className="font-medium underline-offset-4 group-hover:underline">
+            {link.label}
+          </span>
+          <ChevronRight className="text-muted-foreground size-4 transition-transform group-hover:translate-x-0.5" />
         </NextLink>
       </li>
     );

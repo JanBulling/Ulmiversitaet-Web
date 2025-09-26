@@ -36,7 +36,7 @@ export function ThemeImage({
       alt={alt}
       className={cn(
         "rounded-md border",
-        inline ? "inline-block ml-4 mb-2" : "mt-6",
+        inline ? "mb-2 ml-4 inline-block" : "mt-6",
         className,
       )}
       width={width}
@@ -71,7 +71,12 @@ export function StepWithImage({
   };
 
   return (
-    <div className={cn("grid grid-cols-1 gap-4 items-start mt-6 md:grid-cols-2", className)}>
+    <div
+      className={cn(
+        "mt-6 grid grid-cols-1 items-start gap-4 md:grid-cols-2",
+        className,
+      )}
+    >
       <div className="prose prose-sm max-w-none">{children}</div>
       <div className="flex justify-center md:justify-end">
         <Image
@@ -85,5 +90,3 @@ export function StepWithImage({
     </div>
   );
 }
-
-

@@ -6,7 +6,7 @@ import {
   getGuide,
 } from "@/content/guides/guides";
 import GuideLayout from "@/layouts/guide-layout";
-import { ArticleHeader } from "@/components/article-header";
+import { ArticleHeader } from "@/components/guides/article-header";
 import { CustomMDX } from "@/mdx-components";
 import BaseLayout from "@/layouts/base-layout";
 import { notFound } from "next/navigation";
