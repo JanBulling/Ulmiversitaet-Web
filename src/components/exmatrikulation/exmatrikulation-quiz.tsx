@@ -60,7 +60,7 @@ export default function ExmatrikulationQuiz() {
             {!started && !showResult && (
                 <div className="flex flex-col items-center justify-center text-center py-16 h-24 gap-4">
                     <p className="text-normal">Exmatrikulations-Quiz starten?</p>
-                    <Button onClick={() => setStarted(true)} className="w-full sm:w-auto">Los geht's</Button>
+                    <Button onClick={() => setStarted(true)} className="w-full sm:w-auto">Los geht&apos;s</Button>
                 </div>
             )}
 
