@@ -87,7 +87,7 @@ export function useMove<T extends HTMLElement>(
       const startScrubbing = () => {
         if (!isSliding.current && mounted.current) {
           isSliding.current = true;
-          typeof handlers?.onScrubStart === "function" &&
+          if (typeof handlers?.onScrubStart === "function")
             handlers.onScrubStart();
           setActive(true);
           bindEvents();
@@ -100,7 +100,8 @@ export function useMove<T extends HTMLElement>(
           setActive(false);
           unbindEvents();
           setTimeout(() => {
-            typeof handlers?.onScrubEnd === "function" && handlers.onScrubEnd();
+            if (typeof handlers?.onScrubEnd === "function")
+              handlers.onScrubEnd();
           }, 0);
         }
       };
@@ -143,6 +144,7 @@ export function useMove<T extends HTMLElement>(
         node.removeEventListener("touchstart", onTouchStart);
       };
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [dir, onChange],
   );
 

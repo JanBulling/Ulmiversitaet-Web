@@ -20,10 +20,6 @@ const singleDateFormatter = new Intl.DateTimeFormat("de-DE", {
 
 export default function EventItem({ event }: EventItemProps) {
   const color = event.color ?? DEFAULT_COLOR;
-  const startDateFormatted = dateFormatter.format(event.startDate);
-  const textSecondary = "text-gray-600 dark:text-gray-400";
-
-  let dateRange = startDateFormatted;
 
   const isMultiDay =
     event.startDate.toDateString() !== event.endDate.toDateString();

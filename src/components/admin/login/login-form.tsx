@@ -24,7 +24,7 @@ type FormData = z.infer<typeof schema>;
 export function LoginForm({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLFormElement>) {
   const router = useRouter();
 
   const { register, handleSubmit } = useForm<FormData>({
@@ -47,7 +47,11 @@ export function LoginForm({
   }
 
   return (
-    <form className={cn("space-y-5", className)} onSubmit={handleSubmit(login)}>
+    <form
+      className={cn("space-y-5", className)}
+      onSubmit={handleSubmit(login)}
+      {...props}
+    >
       <div>
         <Label htmlFor="username">Benutzername</Label>
         <Input

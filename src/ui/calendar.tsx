@@ -43,6 +43,7 @@ export function Calendar({
     } else {
       setMonth((month - 1) as CalendarState["month"]);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [month, year]);
 
   const handleNextMonth = React.useCallback(() => {
@@ -57,6 +58,7 @@ export function Calendar({
   // ============ Do days calculation ===============
   const isPreviousMonthAvailable = React.useMemo(
     () => !(currentMonth === month && currentYear === year),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [year, month],
   );
   // Memoize expensive date calculations
