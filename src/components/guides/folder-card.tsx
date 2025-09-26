@@ -6,18 +6,24 @@ interface FolderCardProps {
 }
 
 export default function FolderCard({ folder }: FolderCardProps) {
-  const displayName = folder.split("/").pop() ?? folder;
+  const folderLink = folder
+    .split("/")
+    .map((s) => encodeURI(s))
+    .join("/");
+  const folderName = folder.split("/").pop() ?? folder;
+
+  const displayName = folderName.split("_").join(" ");
 
   return (
     <Link
-      href={`/guides/${folder}`}
+      href={`/guides/${folderLink}`}
       className="group block focus:outline-none"
       aria-label={`Ordner öffnen: ${displayName}`}
       title={displayName}
     >
       <div className="bg-card hover:bg-accent/40 flex items-center justify-between gap-4 rounded-xl border p-5">
         <div className="flex min-w-0 items-center gap-3">
-          <div className="bg-muted text-muted-foreground flex size-12 items-center justify-center rounded-lg">
+          <div className="bg-muted text-muted-foreground flex size-12 shrink-0 items-center justify-center rounded-lg">
             <FolderOpenIcon className="size-6" aria-hidden />
           </div>
 

@@ -32,7 +32,7 @@ export default function GuidesPage() {
         </p>
       </div>
 
-      <div className="my-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+      <div className="my-8 grid grid-cols-1 gap-4 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
         {allFolders.map((folder) => (
           <FolderCard folder={folder} key={folder} />
         ))}
