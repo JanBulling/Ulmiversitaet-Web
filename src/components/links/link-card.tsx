@@ -1,6 +1,5 @@
 import { Link } from "@/content/links/links";
-import { Button } from "@/ui/button";
-import { ExternalLink } from "lucide-react";
+import { ChevronRight, ExternalLink } from "lucide-react";
 import NextLink from "next/link";
 
 interface LinkCardProps {
@@ -12,33 +11,44 @@ export default function LinkCard({ link }: LinkCardProps) {
 
   if (type === "LINK") {
     return (
-      <div className="bg-card border p-4">
-        <NextLink href={link.href} target="_blank" rel="noopener noreferrer">
-          <Button variant="default">
-            {link.label}
-            <ExternalLink />
-          </Button>
+      <li className="py-3">
+        <NextLink
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group flex items-start justify-between gap-3"
+          aria-label={`${link.label} (extern)`}
+        >
+          <div>
+            <span className="font-medium underline-offset-4 group-hover:underline">
+              {link.label}
+            </span>
+            {link.description && (
+              <p className="text-muted-foreground mt-1 text-sm">
+                {link.description}
+              </p>
+            )}
+          </div>
+          <ExternalLink className="size-4 text-muted-foreground mt-1 shrink-0" />
         </NextLink>
-        <p className="text-muted-foreground mt-1 text-sm">{link.description}</p>
 
         {link.related && link.related.length > 0 && (
-          <div className="mt-2">
-            <h4 className="text-sm font-semibold">Dazu nützlich:</h4>
-            <ul>
+          <div className="mt-2 ml-6">
+            <ul className="mt-1 list-disc pl-5">
               {link.related.map((relatedLink, idx) => {
                 if (typeof relatedLink === "string") {
                   return (
-                    <li key={idx} className="mt-1">
+                    <li key={idx} className="mt-1 text-sm">
                       {relatedLink}
                     </li>
                   );
                 }
 
                 return (
-                  <li key={idx} className="mt-1 ml-5 list-disc">
+                  <li key={idx} className="mt-1 text-sm">
                     <NextLink
                       href={relatedLink.href}
-                      className="text-sm underline"
+                      className="underline"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -50,27 +60,29 @@ export default function LinkCard({ link }: LinkCardProps) {
             </ul>
           </div>
         )}
-      </div>
+      </li>
     );
   }
 
   if (type === "GUIDE") {
     return (
-      <div>
-        <NextLink href={link.href}>
-          <Button variant="secondary">{link.label}</Button>
+      <li className="py-3">
+        <NextLink href={link.href} className="group flex items-center justify-between" aria-label={`${link.label} Anleitung`}>
+          <span className="font-medium underline-offset-4 group-hover:underline">{link.label}</span>
+          <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
         </NextLink>
-      </div>
+      </li>
     );
   }
 
   if (type === "INTERNAL") {
     return (
-      <div>
-        <NextLink href={link.href}>
-          <Button variant="secondary">{link.label}</Button>
+      <li className="py-3">
+        <NextLink href={link.href} className="group flex items-center justify-between" aria-label={link.label}>
+          <span className="font-medium underline-offset-4 group-hover:underline">{link.label}</span>
+          <ChevronRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
         </NextLink>
-      </div>
+      </li>
     );
   }
 }

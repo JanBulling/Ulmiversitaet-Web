@@ -1,6 +1,6 @@
 {
   "title": "Account-Management",
-  "description": "Diverse accounts an der Uni Ulm, wie z.B. ",
+  "description": "Diverse accounts an der Uni Ulm, wie z.B. Chipkarte, PC-Pools, Mailinglisten, Sona, etc.",
   "content": [
     {
       "type": "LINK",
@@ -21,6 +21,12 @@
     },
     {
       "type": "LINK",
+      "label": "kiz Web-Services",
+      "href": "https://portal.uni-ulm.de/PortalWI/index.html",
+      "description": "Eine Zusammenfassung aller Web-Services des kiz."
+    },
+    {
+      "type": "LINK",
       "label": "SGI-Account",
       "href": "https://www.uni-ulm.de/in/sgi/services/account-system/account-erstellen/",
       "description": "Zugang zu PC-Pools der Informatik",
@@ -28,17 +34,12 @@
         {
           "label": "Passwort zurücksetzen",
           "href": "https://psi.informatik.uni-ulm.de:1244/sgi/password-reset"
-        },
-        {
-          "type": "GUIDE",
-          "label": "PC-Pools",
-          "href": "/guides/pc-pools"
         }
       ]
     },
     {
       "type": "LINK",
-      "label": "Mailing Listen",
+      "label": "Mailing-Listen",
       "href": "https://imap.uni-ulm.de/lists",
       "description": "Ein- / Austragen aus Mailinglisten."
     },

@@ -37,15 +37,19 @@ export default async function LinkPage({ params }: LinkPageProps) {
 
   return (
     <SiteLayout>
-      <h1 className="text-2xl font-bold">{linkCategory.title}</h1>
-      <p className="text-muted-foreground text-sm">
-        {linkCategory.description}
-      </p>
+      <div className="px-4">
+        <h1 className="text-2xl font-bold">{linkCategory.title}</h1>
+        <p className="text-muted-foreground text-sm">
+          {linkCategory.description}
+        </p>
+      </div>
 
-      <div className="my-8 grid items-start gap-4 md:grid-cols-2">
-        {linkCategory.content.map((link) => (
-          <LinkCard key={link.href} link={link} />
-        ))}
+      <div className="my-6 border bg-card shadow px-4 md:rounded-xl">
+        <ul className="divide-y">
+          {linkCategory.content.map((link) => (
+            <LinkCard key={link.href} link={link} />
+          ))}
+        </ul>
       </div>
     </SiteLayout>
   );
