@@ -4,6 +4,8 @@ import MensaSectionLoading from "@/components/home/mensa/mensa-section-loading";
 import PublicTransportLoading from "@/components/home/public-transport/pub-tra-loading";
 import { PublicTransportSection } from "@/components/home/public-transport/pub-tra-section";
 import { QuickLinksSection } from "@/components/home/quick-links/quick-links-section";
+import { FeaturedLinksSection } from "@/components/home/featured-sections/featured-links-section";
+import { FeaturedGuidesSection } from "@/components/home/featured-sections/featured-guides-section";
 import BaseLayout from "@/layouts/base-layout";
 import { Suspense } from "react";
 
@@ -28,6 +30,11 @@ export default function Home() {
       </div>
 
       <EventSection />
+
+      <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2">
+        <FeaturedLinksSection />
+        <FeaturedGuidesSection />
+      </div>
     </BaseLayout>
   );
 }

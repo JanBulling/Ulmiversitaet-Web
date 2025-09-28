@@ -11,6 +11,7 @@ export function QuickLinkIcon({ quickLink }: QuickLinkProps) {
   return (
     <Link
       href={quickLink.href}
+      aria-label={`Link öffnen: ${quickLink.label}`}
       target={quickLink.internalLink ? undefined : "_blank"}
       rel={quickLink.internalLink ? undefined : "noopener noreferrer"}
     >

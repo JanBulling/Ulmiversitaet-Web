@@ -31,7 +31,8 @@
     ".next/types/**/*.ts",
     "**/*.cjs",
     "**/*.mjs",
-    "next.config.ts"
+    "next.config.ts",
+    "src/content/guides/email-einrichten.mdx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,23 +1,22 @@
 ---
-title: Multi-Faktor-Authentifizierung (MFA) des kiz
+title: Multi-Faktor-Authentifizierung (MFA)
 summary: Anleitung zur Einrichtung der Multi-Faktor-Authentifizierung
 publishedAt: 2025-09-05
 author: Stefan Rau
 keywords: MFA, kiz
 description: Die Multi-Faktor-Authentifizierung (MFA) ist eine wichtige Sicherheitsmaßnahme des kiz (Kommunikations- und Informationszentrums). Sie schützt den Zugang zu sensiblen Diensten wie dem VPN oder dem Identitätsmanagement durch einen zusätzlichen Sicherheitsfaktor.
 ---
+
 ## ❓ Was ist MFA?
 
 Neben Benutzername und Passwort wird ein **zweiter Faktor** verlangt – in der Regel ein **zeitbasierter Einmalcode (TOTP)**, der über eine App generiert wird. MFA stellt sicher, dass selbst bei Bekanntwerden deines Passworts **kein unautorisierter Zugriff** erfolgen kann. Nur mit dem zweiten Faktor – also dem TOTP-Code auf deinem Smartphone – ist der Zugang möglich.
 
 Beispiele für unterstützte Authentifizierungs-Apps:
 
-
-- Google Authenticator  
-- 1Password  
-- Apple Schlüsselbund / Passwort-App  
+- Google Authenticator
+- 1Password
+- Apple Schlüsselbund / Passwort-App
 - Microsoft Authenticator
-
 
 ---
 
@@ -28,14 +27,14 @@ Ein MFA-Token der Universität Ulm sieht z. B. so aus:
 > uulmTOTP205455H2
 
 Dieser Token wird einmalig in deiner Authentifizierungs-App hinterlegt.  
-⚠️ **Wichtig:** Es kann nur **ein** aktives Token zur selben Zeit existieren. 
+⚠️ **Wichtig:** Es kann nur **ein** aktives Token zur selben Zeit existieren.
 
 ---
 
 ## ⏱️ Time-Based One-Time Password (TOTP)
 
-- Alle **30 Sekunden** wird automatisch ein neuer **6-stelliger Code** generiert.  
-- Der Code ist nur für einen kurzen Zeitraum gültig und wird dann automatisch erneuert.  
+- Alle **30 Sekunden** wird automatisch ein neuer **6-stelliger Code** generiert.
+- Der Code ist nur für einen kurzen Zeitraum gültig und wird dann automatisch erneuert.
 - Voraussetzung für korrekte Codes: Die Uhrzeit deines Geräts muss exakt eingestellt sein (idealerweise automatisch per Netzwerk).
 
 ---
@@ -47,9 +46,9 @@ Die Einrichtung erfolgt über das **Identitätsmanagement (IDM)** der Uni Ulm:
 
 ### Schritte zur Einrichtung:
 
-1. Im IDM auf den Reiter **„MFA-Verwaltung“** gehen  
-2. Dort ein neues **Software-Token** generieren  
-3. Den **QR-Code** mit deiner App scannen  
+1. Im IDM auf den Reiter **„MFA-Verwaltung“** gehen
+2. Dort ein neues **Software-Token** generieren
+3. Den **QR-Code** mit deiner App scannen
 4. Den generierten **6-stelligen Code in der Weboberfläche eingeben**, um den Token zu aktivieren
 5. Erst nach erfolgreicher Bestätigung ist dein Token einsatzbereit.
 
@@ -57,11 +56,12 @@ Die Einrichtung erfolgt über das **Identitätsmanagement (IDM)** der Uni Ulm:
 
 ## 📍 Wofür wird der MFA-Code benötigt?
 
-- ✅ **VPN-Zugang** der Universität [(Hier geht's zur Anleitung)](https://www.ulmiversitaet.de/guides/vpn)  
-- ✅ **Login ins Identitätsmanagement (IDM)**  
+- ✅ **VPN-Zugang** der Universität [(Hier geht's zur Anleitung)](https://www.ulmiversitaet.de/guides/vpn)
+- ✅ **Login ins Identitätsmanagement (IDM)**
 - ✅ Weitere zentrale kiz-Dienste (z. B. Self-Service-Portale)
 
 ---
+
 ## 🔄 Gerätewechsel: Was tun bei neuem Smartphone?
 
 Wenn du dein Smartphone oder ein anderes Gerät, auf dem dein MFA-Token eingerichtet ist, austauschst, hast du zwei Möglichkeiten:
@@ -70,18 +70,19 @@ Wenn du dein Smartphone oder ein anderes Gerät, auf dem dein MFA-Token eingeric
    Viele Authenticator-Apps (z. B. 1Password, Microsoft Authenticator) oder Betriebssysteme bieten eine **Backup- und Übertragungsfunktion**, mit der du deinen bestehenden Token auf das neue Gerät migrieren kannst. Prüfe dafür die Einstellungen deiner App.
 
 2. **Neuen Token erstellen:**  
-   Falls keine Übertragung möglich ist, kannst du im **IDM-Portal** einen **neuen Token generieren**:  
-   - Melde dich mit dem **alten Gerät** und dem vorhandenen Token am IDM an  
-   - Erstelle unter *MFA-Verwaltung* einen **neuen Software-Token**  
+   Falls keine Übertragung möglich ist, kannst du im **IDM-Portal** einen **neuen Token generieren**:
+   - Melde dich mit dem **alten Gerät** und dem vorhandenen Token am IDM an
+   - Erstelle unter _MFA-Verwaltung_ einen **neuen Software-Token**
    - Scanne den neuen QR-Code auf deinem **neuen Gerät**
 
    ⚠️ **Wichtig:** Sobald der neue Token aktiviert wurde, ist der alte **nicht mehr gültig**. Achte darauf, den alten Eintrag in deiner App zu löschen, um Verwirrung zu vermeiden.
----   
+
+---
 
 ## ℹ️ Hinweise & Support
 
-- Nur **ein aktiver Token** ist gleichzeitig gültig – bei Problemen einfach ein neues Token erstellen  
-- Stelle sicher, dass dein Smartphone die **Uhrzeit automatisch synchronisiert**  
+- Nur **ein aktiver Token** ist gleichzeitig gültig – bei Problemen einfach ein neues Token erstellen
+- Stelle sicher, dass dein Smartphone die **Uhrzeit automatisch synchronisiert**
 - Der Token selbst sollte sicher aufbewahrt werden – idealerweise in einer App mit Backup-Funktion
 
 Bei Problemen oder Fragen hilft dir der kiz-Support:

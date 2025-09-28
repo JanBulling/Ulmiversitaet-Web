@@ -94,3 +94,15 @@ export function getAllGuides(): Guide[] {
   readGuidesRecursively(GUIDES_BASE_PATH);
   return guides;
 }
+
+export const featuredGuidesSlug = [
+  "email-einrichten",
+  "eduroam\\ios",
+  "Uni_VPN\\windows",
+];
+
+export async function getFeaturedGuides() {
+  const guides = getAllGuides();
+
+  return guides.filter((g) => featuredGuidesSlug.includes(g.filePath));
+}
