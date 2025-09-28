@@ -66,7 +66,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="de" suppressContentEditableWarning>
+    <html
+      lang="de"
+      suppressContentEditableWarning
+      data-scroll-behavior="smooth"
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
