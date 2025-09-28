@@ -53,9 +53,7 @@ async function loadAssets(): Promise<{
   };
 }
 
-export const alt = "Ulmiversität";
-export const contentType = "image/png";
-export const size = {
+const size = {
   width: 1200,
   height: 630,
 };
