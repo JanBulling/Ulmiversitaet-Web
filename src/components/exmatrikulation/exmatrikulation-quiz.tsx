@@ -19,10 +19,10 @@ const questions = [
 ];
 
 export default function ExmatrikulationQuiz() {
-  const [started, setStarted] = React.useState(false);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = React.useState(0);
-  const [showResult, setShowResult] = React.useState(false);
-  const [hasCopied, setHasCopied] = React.useState(false);
+  const [currentQuestionIndex, setCurrentQuestionIndex] =
+    React.useState<number>(-1);
+  const [showResult, setShowResult] = React.useState<boolean>(false);
+  const [hasCopied, setHasCopied] = React.useState<string>();
 
   const isLastQuestion = currentQuestionIndex >= questions.length - 1;
 
@@ -40,33 +40,51 @@ export default function ExmatrikulationQuiz() {
 
   function handleRestart() {
     setShowResult(false);
-    setCurrentQuestionIndex(0);
-    setStarted(false);
-    setHasCopied(false);
+    setCurrentQuestionIndex(-1);
+    setHasCopied(undefined);
   }
 
   async function handleShare() {
-    if (typeof window === "undefined" || !navigator.clipboard) return;
+    if (typeof window === "undefined") return;
+
+    const currentURL = window.location.href;
+
+    const shareData = {
+      title: "Soll ich mich exmatrikulieren?",
+      text: "Quiz der Ulmiversität, ob eine Exmatrikulation für dich das Richtige wäre.",
+      url: currentURL,
+    };
+
     try {
-      setHasCopied(true);
-      navigator.clipboard.writeText(window.location.href);
+      if (navigator.canShare(shareData)) {
+        await navigator.share(shareData);
+        setHasCopied("Seite geteilt");
+      } else if (navigator.clipboard) {
+        await navigator.clipboard.writeText(currentURL);
+        setHasCopied("Link kopiert!");
+      } else {
+        setHasCopied("Teilen nicht möglich");
+      }
     } catch {
-      // noop
+      setHasCopied("Teilen nicht möglich");
     }
   }
 
   return (
     <div className="space-y-8">
-      {!started && !showResult && (
+      {currentQuestionIndex === -1 && !showResult && (
         <div className="flex h-24 flex-col items-center justify-center gap-4 py-16 text-center">
           <p className="text-normal">Exmatrikulations-Quiz starten?</p>
-          <Button onClick={() => setStarted(true)} className="w-full sm:w-auto">
+          <Button
+            onClick={() => setCurrentQuestionIndex(0)}
+            className="w-full sm:w-auto"
+          >
             Los geht&apos;s
           </Button>
         </div>
       )}
 
-      {started && !showResult && (
+      {currentQuestionIndex >= 0 && !showResult && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
             <p className="text-muted-foreground text-sm">
@@ -116,10 +134,10 @@ export default function ExmatrikulationQuiz() {
             <Button
               variant="outline"
               onClick={handleShare}
-              disabled={hasCopied}
+              disabled={!!hasCopied}
             >
               {hasCopied ? <CheckIcon /> : <Share2 />}
-              {hasCopied ? "Link kopiert!" : "Share"}
+              {hasCopied ?? "Teilen"}
             </Button>
           </div>
         </div>

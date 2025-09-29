@@ -92,7 +92,7 @@ export async function MensaSection({
 
       <div className="flex items-center justify-center">
         <Link
-          href="https://mensa.ulmiversitaet.de"
+          href="https://mensa.ulmiversitaet.de?utm=ulmiversitaet"
           // target="_blank"
           // rel="noopener noreferrer"
         >

@@ -167,7 +167,13 @@ const components: React.ComponentProps<typeof MDXProvider>["components"] = {
     return (
       <>
         <CopyButton className="hidden" value={children?.toString() ?? ""} />
-        <code className={cn(className)} {...props}>
+        <code
+          className={cn(
+            "bg-muted text-muted-foreground rounded px-1 py-0.5",
+            className,
+          )}
+          {...props}
+        >
           {children}
         </code>
       </>

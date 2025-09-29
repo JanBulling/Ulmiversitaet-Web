@@ -1,8 +1,23 @@
 import { ImageResponse } from "next/og";
+import { join } from "node:path";
+import { readFile } from "node:fs/promises";
 
-async function loadAssets(): Promise<
-  { name: string; data: Buffer; weight: 400 | 600; style: "normal" }[]
-> {
+type FontAsset = {
+  name: string;
+  data: Buffer;
+  weight: 400 | 600;
+  style: "normal";
+};
+type ImageAsset = string;
+
+async function loadAssets(): Promise<{
+  fontAsset: FontAsset[];
+  imageAsset: ImageAsset[];
+}> {
+  const [base64Logo] = await Promise.all([
+    readFile(join(process.cwd(), "public", "logo.png"), "base64"),
+  ]);
+
   const [
     { base64Font: normal },
     { base64Font: mono },
@@ -13,27 +28,35 @@ async function loadAssets(): Promise<
     import("./geist-semibold-otf.json").then((mod) => mod.default || mod),
   ]);
 
-  return [
-    {
-      name: "Geist",
-      data: Buffer.from(normal, "base64"),
-      weight: 400 as const,
-      style: "normal" as const,
-    },
-    {
-      name: "Geist Mono",
-      data: Buffer.from(mono, "base64"),
-      weight: 400 as const,
-      style: "normal" as const,
-    },
-    {
-      name: "Geist",
-      data: Buffer.from(semibold, "base64"),
-      weight: 600 as const,
-      style: "normal" as const,
-    },
-  ];
+  return {
+    imageAsset: [`data:image/png;base64,${base64Logo}`],
+    fontAsset: [
+      {
+        name: "Geist",
+        data: Buffer.from(normal, "base64"),
+        weight: 400 as const,
+        style: "normal" as const,
+      },
+      {
+        name: "Geist Mono",
+        data: Buffer.from(mono, "base64"),
+        weight: 400 as const,
+        style: "normal" as const,
+      },
+      {
+        name: "Geist",
+        data: Buffer.from(semibold, "base64"),
+        weight: 600 as const,
+        style: "normal" as const,
+      },
+    ],
+  };
 }
+
+const size = {
+  width: 1200,
+  height: 630,
+};
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -42,49 +65,125 @@ export async function GET(request: Request) {
     searchParams.get("description") ||
     "Inoffizielle Management-Seite der Universität Ulm";
 
-  const [fonts] = await Promise.all([loadAssets()]);
+  const { fontAsset, imageAsset } = await loadAssets();
+  const [logo] = imageAsset;
+
+  // 🎨 Design colors
+  // const colors = {
+  //   background: "#f9fafb",
+  //   foreground: "#111827",
+  //   muted: "#f3f4f6",
+  //   mutedForeground: "#6b7280",
+  //   primary: "#8199a9",
+  //   secondary: "#b2c0cb",
+  //   white: "#ffffff",
+  // };
+  const darkColors = {
+    background: "#17171c",
+    foreground: "#fafafa",
+    muted: "#262626",
+    mutedForeground: "#a1a1a1",
+    primary: "#8199a9",
+    secondary: "#b2c0cb",
+    white: "#ffffff",
+  };
 
   return new ImageResponse(
     (
       <div
-        tw="flex h-full w-full bg-background text-foreground"
-        style={{ fontFamily: "Geist Sans" }}
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "64px",
+          background: `linear-gradient(135deg, ${darkColors.secondary} 0%, ${darkColors.primary} 100%)`,
+          color: darkColors.foreground,
+        }}
       >
-        <div tw="flex border absolute border-primary border-dashed inset-y-0 left-16 w-[1px]" />
-        <div tw="flex border absolute border-primary border-dashed inset-y-0 right-16 w-[1px]" />
-        <div tw="flex border absolute border-primary inset-x-0 h-[1px] top-16" />
-        <div tw="flex border absolute border-primary inset-x-0 h-[1px] bottom-16" />
-        <div tw="flex absolute flex-row bottom-24 right-24 text-white">
-          <p>LOGO</p>
-        </div>
-        <div tw="flex flex-col absolute w-[896px] justify-center inset-32">
-          <div
-            tw="tracking-tight flex-grow-1 flex flex-col justify-center leading-[1.1]"
+        {/* Header / Branding */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 20,
+            marginBottom: 48,
+          }}
+        >
+          <img src={logo} height={90} style={{ filter: "invert(1)" }} />
+          <p
             style={{
-              textWrap: "balance",
-              fontWeight: 600,
-              fontSize: title && title.length > 20 ? 64 : 80,
-              letterSpacing: "-0.04em",
+              fontSize: 64,
+              fontWeight: 700,
+              margin: 0,
+              letterSpacing: "-1px",
             }}
           >
-            {title}
-          </div>
+            <span style={{ color: darkColors.primary }}>Ulm</span>iversität
+          </p>
+        </div>
+
+        {/* Main Card */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
+            borderRadius: 32,
+            background: `${darkColors.muted}44`,
+            backdropFilter: "blur(24px)",
+            border: `1px solid ${darkColors.muted}`,
+            padding: "56px",
+          }}
+        >
           <div
-            tw="text-[40px] leading-[1.5] flex-grow-1 text-muted-foreground"
             style={{
-              fontWeight: 500,
-              textWrap: "balance",
+              position: "relative",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
+            <h1
+              style={{
+                fontSize: 72,
+                fontWeight: 700,
+                margin: 0,
+                marginBottom: 24,
+                lineHeight: 1.1,
+              }}
+            >
+              {title}
+            </h1>
+            <div
+              style={{
+                height: 6,
+                width: "800px",
+                backgroundColor: darkColors.primary,
+                borderRadius: 4,
+                margin: "-20px auto 0",
+              }}
+            />
+          </div>
+          <p
+            style={{
+              fontSize: 40,
+              fontWeight: 400,
+              margin: "24px 0 0",
+              maxWidth: "80%",
+              lineHeight: 1.4,
             }}
           >
             {description}
-          </div>
+          </p>
         </div>
       </div>
     ),
     {
-      width: 1200,
-      height: 628,
-      fonts,
+      ...size,
+      fonts: fontAsset,
     },
   );
 }

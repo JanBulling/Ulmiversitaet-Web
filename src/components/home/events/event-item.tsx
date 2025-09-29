@@ -27,7 +27,11 @@ export default function EventItem({ event }: EventItemProps) {
   return (
     <li
       className="flex w-full max-w-xl flex-col space-y-2 rounded-xl border-2 p-4 shadow-md"
-      style={{ borderLeft: `6px solid ${color}`, borderColor: color }}
+      style={{
+        borderLeft: `6px solid ${color}`,
+        borderColor: color,
+        backgroundColor: `${color}22`,
+      }}
     >
       <div className="flex items-center gap-2">
         <div
