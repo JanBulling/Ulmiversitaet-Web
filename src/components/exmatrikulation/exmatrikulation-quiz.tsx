@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/ui/button";
-import { CheckIcon, Share2, WineOff } from "lucide-react";
+import { CheckIcon, Share2 } from "lucide-react";
 
 const pdfURL =
   "https://www.uni-ulm.de/fileadmin/website_uni_ulm/studium/Studienorganisation/Beurlaubung__Rueckmeldung_und_Exmatrikulation/Exmatrikulation/antrag_exmatrikulation_WEB.pdf";
