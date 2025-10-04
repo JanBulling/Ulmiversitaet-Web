@@ -96,9 +96,9 @@ export function getAllGuides(): Guide[] {
 }
 
 export const featuredGuidesSlug = [
-  "email-einrichten",
-  "eduroam\\ios",
-  "Uni_VPN\\windows",
+  path.join("email-einrichten"),
+  path.join("eduroam", "ios"),
+  path.join("Uni_VPN", "windows"),
 ];
 
 export async function getFeaturedGuides() {

@@ -58,7 +58,7 @@ export default async function EventSection({
       <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
         <Calendar events={eventsFormatted} className="hidden md:block" />
 
-        <div className="max-h-[550px]">
+        <div className="md:max-h-[550px]">
           <h3 className="hidden text-xl font-bold md:block">
             Zukünftige Events
           </h3>

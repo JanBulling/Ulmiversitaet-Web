@@ -19,7 +19,7 @@ export async function FeaturedGuidesSection() {
         Es gibt diverse Anleitungen für den Uni-Alltag von der Ulmiversität
       </p>
 
-      <ul className="mt-2 grid grid-cols-2 gap-2">
+      <ul className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {guides.map((guide) => (
           <Link
             key={guide.filePath}
@@ -38,7 +38,7 @@ export async function FeaturedGuidesSection() {
             </li>
           </Link>
         ))}
-        <Link href="/guides" className="group col-span-2 block rounded-xl">
+        <Link href="/guides" className="group block rounded-xl sm:col-span-2">
           <li className="border-primary hover:border-primary/50 hover:text-primary/50 text-primary flex items-center gap-4 rounded-lg border-2 border-dashed px-4 py-4">
             <BookTextIcon className="size-6" />
             <h3 className="flex-1 font-semibold">Weitere Anleitungen</h3>
