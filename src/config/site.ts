@@ -31,4 +31,8 @@ export const navItems = [
     href: "/guides",
     label: "Anleitungen",
   },
+  {
+    href: "/campus-map",
+    label: "Karte",
+  },
 ];
