@@ -1,0 +1,113 @@
+---
+title: ASQ Anmeldung
+titleWeb: Additive Schlüsselqualifikationen (ASQ)
+summary: Anleitung zur Anmeldung für Additive Schlüsselqualifikationen (ASQ)
+publishedAt: 2025-10-05
+author: Stefan Rau
+keywords: ASQ, Ulm, Campus, Universität Ulm, Geisteswissenschaften, Fremdsprachen
+description: Schritt-für-Schritt-Anleitung zur Anmeldung für Additive Schlüsselqualifikationen (ASQ) über das CoronaNG-System der Universität Ulm.
+---
+
+## ℹ️ 1. Was ist ASQ?
+
+**ASQ** steht für **Additive Schlüsselqualifikationen**.  
+Dabei handelt es sich um Zusatzveranstaltungen, die Studierenden der Universität Ulm offenstehen. Sie vermitteln fachübergreifende Kompetenzen wie **Fremdsprachen**, **Kommunikation**, **Interkulturelle Kompetenz** oder **wissenschaftliches Arbeiten**.
+
+Diese Veranstaltungen werden vor allem vom **Department für Geisteswissenschaften (Philosophie, Sprachen, ASQ)** angeboten und können je nach Studiengang verpflichtend oder freiwillig gewählt werden.
+
+---
+
+## 🧭 2. Anmeldung im CoronaNG-Portal
+
+Die Anmledung für ASQ läuft über das **First-Come-First-Serve** Prinzip. Je flinker du also bist, desto höher die Chancen zur Teilnahme!
+Wir erklären dir hier, wie du bei der Anmmledung vorgehst.
+
+Rufe zunächst das Campus-System (CoronaNG) der Universität Ulm auf:
+
+👉 [CoronaNG – Anmeldung zu ASQ](https://campusonline.uni-ulm.de/CoronaNG/index.html)
+
+- Melde dich mit deinem **kiz-Account** an – diese Zugangsdaten sind identisch mit deinem **Moodle-Login**.
+
+---
+
+## 📂 3. Veranstaltungsübersicht öffnen
+
+1. Nach dem Login klicke im linken Seitenmenü auf **„Veranstaltungen“**.  
+2. Es erscheint der Hinweis:  
+   _„Der Baum befindet sich im Aufbau (0%)“_  
+   🔁 **Aktualisiere die Seite alle paar Sekunden**, bis der Veranstaltungsbaum vollständig geladen ist.
+
+---
+
+## 📚 4. ASQ-Veranstaltungen finden
+
+1. Klicke im geladenen Baum auf **„Veranstaltungsverzeichnis“**.  
+2. Wähle **„Department für Geisteswissenschaften (Philosophie, Sprachen, ASQ)“**.  
+3. Klicke weiter auf **„Additive Schlüsselqualifikation (ASQ)“**.  
+4. Öffne anschließend **„Fremdsprachen und Interkulturelle Kompetenz“**, um alle angebotenen ASQs zu sehen.
+
+📖 **Tipp:** Öffne den kompletten Baum, um die vollständige Liste aller Kurse einzusehen.
+
+---
+
+## 👀 5. ASQs beobachten
+
+Wenn dir eine Veranstaltung gefällt:
+
+1. Klicke auf den **Namen der ASQ**, bis sich die Detailseite öffnet.  
+2. Hier findest du Informationen zu:
+   - Anzahl der Teilnehmenden  
+   - Termin und Zeitraum  
+   - Dozentin/Dozent  
+   - Raum oder Online-Link  
+
+3. Scrolle nach unten zum Abschnitt **„Aktion“** und klicke auf  
+   **„Diese Veranstaltung beobachten“**.
+
+Du kannst beliebig viele Veranstaltungen gleichzeitig beobachten.
+
+---
+
+## 📝 6. Teilnahme beantragen
+
+1. Öffne im linken Menü den Punkt **„Mein CoronaNG → Beobachtungen & Teilnahmen“**.  
+2. Oben werden nun alle von dir beobachteten Veranstaltungen angezeigt.  
+3. Wähle die gewünschten Kurse mit den **Checkboxen** auf der linken Seite aus.  
+4. Klicke oben auf **„An markierten teilnehmen“**.  
+5. Drücke anschließend den Button **„Ausführen“**.
+
+🕓 Der Button ist **erst am Tag Anmeldung** freigeschaltet (Meist der erste Tag des Semesters um 16:00 Uhr)
+
+💡 **Hinweis:** Du kannst dich auf diese Weise **mehrere ASQs gleichzeitig** vormerken.  
+Bitte melde dich nach der Zuteilung wieder **von den Kursen ab**, die du **nicht** besuchen möchtest.
+
+---
+
+## ⚡ 7. Technische Hinweise
+
+- Der Zugriff funktioniert am zuverlässigsten **im Uni-Netz** (eduroam® oder VPN).  
+- Bei langsamer Verbindung kann das Laden des Veranstaltungsbaums länger dauern.  
+- Wenn du Hilfe benötigst oder Fehler auftreten, findest du Anleitungen und Supportseiten auf der Webseite der Uni Ulm.
+
+---
+
+## 👩‍💻 8. Automatisierte Anmeldung 
+Für die Computernerds gibt es auf dem Blog von [Valentin Kolb](https://valentin-kolb.blog/blog/2024-11-20) ein Skript, das die Anmledung automatisiert:
+
+```bash
+#!/usr/bin/env bash
+watch -n 1 curl 'https://campusonline.uni-ulm.de/CoronaNG/user/mycorona.html' \
+--compressed \
+-X POST \
+-H 'Cookie: JSESSIONID={SESSION_ID}; {...}' \
+--data-raw 'check_{ASQ_1_ID}=on&action=5' > out.html
+```
+
+---
+
+## 📎 Kontakt & Hilfe
+
+Bei Problemen oder technischen Fragen:
+
+✉️ [support@kiz.uni-ulm.de](mailto:support@kiz.uni-ulm.de)  
+🌐 [kiz – Campus-Online-Dienste](https://www.uni-ulm.de/einrichtungen/kiz/)

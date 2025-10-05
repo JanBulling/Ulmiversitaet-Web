@@ -1,4 +1,4 @@
-import { BookOpenIcon, LinkIcon, LucideProps } from "lucide-react";
+import { BookOpenIcon, LinkIcon, LucideProps, MapIcon } from "lucide-react";
 import { ForwardRefExoticComponent, RefAttributes } from "react";
 
 export type FeaturedLink = {
@@ -20,6 +20,14 @@ export const featuredLinks: FeaturedLink[] = [
     href: "/exmatrikulation",
     internalLink: true,
     icon: LinkIcon,
+  },
+
+  {
+    label: "Campus-Karte",
+    description: "Finde dich auf dem Kampus zurecht",
+    href: "/campus-map",
+    icon: MapIcon,
+    internalLink: true,
   },
   {
     label: "Bibliothekskatalog",

@@ -15,12 +15,13 @@ const defaultQuickLinksLabel: QuickLinkLabelType[] = [
   "Sogo",
   "Print@Uni",
   "CloudStore",
+  "Karte",
 ];
 
 export const quickLinks = [
   {
     label: "Bib Kathalog",
-    href: "",
+    href: "https://ulm.ibs-bw.de/aDISWeb/app?service=direct/0/Home/$DirectLink&sp=SOPAC00",
   },
   {
     label: "Campus4",
@@ -28,7 +29,7 @@ export const quickLinks = [
     icon: "/icons/quick-links/campus4.png",
   },
   {
-    label: "Campus Map",
+    label: "Karte",
     href: "/campus-map",
     icon: "/icons/quick-links/map.png",
     internalLink: true,
@@ -54,7 +55,7 @@ export const quickLinks = [
   },
   {
     label: "Mensa-West Bestellung",
-    href: "",
+    href: "https://stwulm.my-mensa.de/mensatogo.php?mensa=2",
   },
   {
     label: "Mobility Online",
@@ -103,7 +104,7 @@ export const defaultQuickLinks = (): QuickLink[] =>
         defaultQuickLinksLabel.indexOf(a.label) -
         defaultQuickLinksLabel.indexOf(b.label),
     )
-    .slice(0, 6);
+    .slice(0, 7);
 
 // TypeSafe option (enforce a subset relationship)
 // export const defaultQuickLinks: QuickLink[] = quickLinks.filter(
