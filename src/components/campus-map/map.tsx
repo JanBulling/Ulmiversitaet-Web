@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/ui/select";
 import BuildingsMapLayer from "./layers/buildings-layer";
+import { Label } from "@/ui/input/label";
 
 export interface CampusMapProps {
   lectureHalls: any;
@@ -26,18 +27,25 @@ export interface CampusMapProps {
 
 // from https://leaflet-extras.github.io/leaflet-providers/preview/
 const urls: Record<string, string> = {
-  oms: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+  osm: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   osmde: "https://{s}.tile.openstreetmap.de/{z}/{x}/{y}.png",
-  grayscale_custom:
-    "https://tile.jawg.io/1e8ee540-17ad-442c-8691-4adca97f27ad/{z}/{x}/{y}{r}.png?access-token=ieEEvH1lbKlND31leRzq0wNSN0BLvPQEXb9MzYBTzouHY5Hdhk6NCviRLDtDPr72",
+  topology: "https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",
+  opnv: "https://tileserver.memomaps.de/tilegen/{z}/{x}/{y}.png",
   grayscale:
-    "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
+    "https://api.maptiler.com/maps/dataviz/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
   grayscaleDark:
-    "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
+    "https://api.maptiler.com/maps/dataviz-dark/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
+  // grayscale:
+  //   "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
+  // grayscaleDark:
+  //   "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
   satellite:
-    "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+    "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
+  // satellite:
+  // "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
   watercolor:
     "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
+  test: "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=aiupYKVO4aLhrM0FpgZb",
 };
 
 const layers = ["Gebäude", "Hörsaal", "Wichtige Orte"];
@@ -48,9 +56,10 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
   const { resolvedTheme } = useTheme();
 
   return (
-    <div className="">
+    <div className="mt-2">
+      <Label htmlFor="select-layer">Auswählen, was angezeigt wird</Label>
       <Select value={selectedLayer} onValueChange={setSelectedLayer}>
-        <SelectTrigger className="w-[280px]">
+        <SelectTrigger id="select-layer" className="mt-1 w-[280px]">
           <SelectValue />
         </SelectTrigger>
         <SelectContent className="z-1000">
@@ -62,22 +71,22 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
         </SelectContent>
       </Select>
 
-      <form
-        className="my-2 flex max-w-md gap-2"
-        onSubmit={(e) => {
-          e.preventDefault();
-          setSearch(e.currentTarget.search.value);
-          e.currentTarget.search.blur();
-          e.currentTarget.search.value = "";
-        }}
-      >
-        <Input id="search" placeholder={`Suche ${selectedLayer}`} />
-        <Button type="submit">
-          <SearchIcon />
-          Suchen
-        </Button>
-      </form>
-      <div className="mt-4 h-[50vh] w-full md:h-[600px]">
+      <div className="relative mt-4 h-[50vh] w-full md:h-[600px]">
+        <form
+          className="absolute inset-x-0 top-0 z-1000 mx-auto my-2 flex max-w-md gap-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSearch(e.currentTarget.search.value);
+            e.currentTarget.search.blur();
+            e.currentTarget.search.value = "";
+          }}
+        >
+          <Input id="search" placeholder={`Suche ${selectedLayer}`} />
+          <Button type="submit">
+            <SearchIcon />
+            Suchen
+          </Button>
+        </form>
         <MapContainer
           center={[48.423027872722514, 9.951618595381513]}
           zoom={16}
@@ -95,7 +104,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
               name="Graustufen"
             >
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                 url={urls.grayscale}
                 maxNativeZoom={18}
                 maxZoom={21}
@@ -107,7 +116,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
               name="Graustufen Dunkel"
             >
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                 url={urls.grayscaleDark}
                 maxNativeZoom={18}
                 maxZoom={21}
@@ -116,18 +125,9 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name="Satellit">
               <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                 url={urls.satellite}
                 maxNativeZoom={18}
-                maxZoom={19}
-                minZoom={14}
-              />
-            </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="Wasserfarbe">
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url={urls.watercolor}
-                maxNativeZoom={17}
                 maxZoom={19}
                 minZoom={14}
               />
