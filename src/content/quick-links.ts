@@ -15,6 +15,7 @@ const defaultQuickLinksLabel: QuickLinkLabelType[] = [
   "Sogo",
   "Print@Uni",
   "CloudStore",
+  "Campus Map",
 ];
 
 export const quickLinks = [
@@ -103,7 +104,7 @@ export const defaultQuickLinks = (): QuickLink[] =>
         defaultQuickLinksLabel.indexOf(a.label) -
         defaultQuickLinksLabel.indexOf(b.label),
     )
-    .slice(0, 6);
+    .slice(0, 7);
 
 // TypeSafe option (enforce a subset relationship)
 // export const defaultQuickLinks: QuickLink[] = quickLinks.filter(
