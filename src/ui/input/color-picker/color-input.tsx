@@ -2,7 +2,6 @@
 
 import React from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
-import { HsvColor, hexToHsv, hsvToHex } from "./converters";
 import { ColorPicker } from "./color-picker";
 import { Input } from "../input";
 import { useUncontrolled } from "@/hooks/use-uncontrolled";

@@ -11,6 +11,7 @@ export interface UseUncontrolledOptions<T> {
   finalValue?: T;
 
   /** Controlled state onChange handler */
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   onChange?: (value: T, ...payload: any[]) => void;
 }
 
@@ -19,6 +20,7 @@ export type UseUncontrolledReturnValue<T> = [
   T,
 
   /** Handler to update the state, passes `value` and `payload` to `onChange` */
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   (value: T, ...payload: any[]) => void,
 
   /** True if the state is controlled, false if uncontrolled */
@@ -35,6 +37,7 @@ export function useUncontrolled<T>({
     defaultValue !== undefined ? defaultValue : finalValue,
   );
 
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const handleUncontrolledChange = (val: T, ...payload: any[]) => {
     setUncontrolledValue(val);
     onChange?.(val, ...payload);
