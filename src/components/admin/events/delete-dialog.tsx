@@ -30,10 +30,6 @@ export default function DeleteEventDialog({
   const [error, setError] = React.useState<string>();
   const router = useRouter();
 
-  React.useEffect(() => {
-    console.log("OPEN", open);
-  }, [open]);
-
   async function deleteEvent() {
     setIsLoading(true);
 

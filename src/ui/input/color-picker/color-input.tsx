@@ -5,11 +5,13 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { HsvColor, hexToHsv, hsvToHex } from "./converters";
 import { ColorPicker } from "./color-picker";
 import { Input } from "../input";
+import { useUncontrolled } from "@/hooks/use-uncontrolled";
 
 type Props = {
-  onChange?: (value: string) => void;
+  onChange: (value: string) => void;
   value?: string;
   initial?: string;
+  swatches?: string[];
 };
 
 const ColorInput = React.forwardRef<
@@ -19,19 +21,15 @@ const ColorInput = React.forwardRef<
     "icon" | "right" | "value" | "onChange"
   > &
     Props
->(({ initial, value, onChange, ...props }, ref) => {
+>(({ initial, swatches, onChange, value, ...props }, ref) => {
   const [open, setOpen] = React.useState<boolean>();
-  const [color, setColor] = React.useState<HsvColor>(
-    hexToHsv(initial ?? "#ffffff") ?? { h: 0, s: 0, v: 100 },
-  );
-  const [colorHex, setColorHex] = React.useState<string>(initial ?? "#ffffff");
 
-  React.useEffect(() => {
-    const newVal = hsvToHex(color);
-    setColorHex(newVal);
-    onChange?.(colorHex);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [color, value]);
+  const [_value, setValue] = useUncontrolled({
+    value,
+    defaultValue: initial ?? "#000000",
+    finalValue: "",
+    onChange,
+  });
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -46,23 +44,18 @@ const ColorInput = React.forwardRef<
             <div
               className="h-5 w-5 shrink-0 rounded-full border"
               style={{
-                backgroundColor: `${
-                  colorHex.length === 7 ? colorHex : "#ffffff"
-                }`,
+                backgroundColor: `${_value.length === 7 ? _value : "#ffffff"}`,
               }}
             />
             <Input
               className="max-w-xs"
               ref={ref}
-              value={colorHex}
+              value={_value}
               onClick={() => setOpen(true)}
               onFocus={() => setOpen(true)}
-              onChange={(e) => {
-                const hexValue = e.target.value;
-                setColorHex(hexValue);
-
-                const hsvColor = hexToHsv(hexValue);
-                if (hsvColor) setColor(hsvColor);
+              onChange={(event) => {
+                const inputValue = event.currentTarget.value;
+                setValue(inputValue);
               }}
               {...props}
             />
@@ -70,7 +63,12 @@ const ColorInput = React.forwardRef<
         </div>
       </PopoverTrigger>
       <PopoverContent side="top" align="start">
-        <ColorPicker onChange={setColor} value={color} />
+        <ColorPicker
+          onChange={setValue}
+          value={_value}
+          swatches={swatches}
+          defaultValue={initial}
+        />
       </PopoverContent>
     </Popover>
   );
