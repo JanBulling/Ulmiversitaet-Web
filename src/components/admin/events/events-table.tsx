@@ -30,8 +30,24 @@ export const columns: ColumnDef<CalendarEvent>[] = [
     },
   },
   { accessorKey: "summary", header: "Event" },
-  { accessorKey: "description", header: "Beschreibung" },
-  { accessorKey: "location", header: "Ort" },
+  {
+    accessorKey: "description",
+    header: "Beschreibung",
+    cell: ({ row }) => (
+      <p className="line-clamp-1 max-w-xs truncate">
+        {row.getValue("description")}
+      </p>
+    ),
+  },
+  {
+    accessorKey: "location",
+    header: "Ort",
+    cell: ({ row }) => (
+      <p className="line-clamp-1 max-w-xs truncate">
+        {row.getValue("location")}
+      </p>
+    ),
+  },
   {
     accessorKey: "startDate",
     header: ({ column }) => {

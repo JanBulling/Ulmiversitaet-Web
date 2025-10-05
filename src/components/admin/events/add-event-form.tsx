@@ -114,7 +114,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="summary"
           render={({ field }) => (
-            <FormItem className="col-span-2">
+            <FormItem className="md:col-span-2">
               <FormLabel>Event Titel</FormLabel>
               <FormControl>
                 <Input placeholder="Titel des Events" {...field} />
@@ -128,7 +128,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="description"
           render={({ field }) => (
-            <FormItem className="col-span-full">
+            <FormItem className="md:col-span-full">
               <FormLabel>Event Beschreibung</FormLabel>
               <FormControl>
                 <Textarea placeholder="Beschreibung des Events" {...field} />
@@ -142,7 +142,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="location"
           render={({ field }) => (
-            <FormItem className="col-span-2">
+            <FormItem className="md:col-span-2">
               <FormLabel>Ort / Location</FormLabel>
               <FormControl>
                 <Input placeholder="Ort des Events" {...field} />
@@ -156,10 +156,29 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="color"
           render={({ field }) => (
-            <FormItem className="col-span-1">
+            <FormItem className="md:col-span-1">
               <FormLabel>Farbe</FormLabel>
               <FormControl>
-                <ColorInput initial="#164ff7" {...field} />
+                <ColorInput
+                  initial="#fa5252"
+                  {...field}
+                  swatches={[
+                    "#2e2e2e",
+                    "#868e96",
+                    "#fa5252",
+                    "#e64980",
+                    "#be4bdb",
+                    "#7950f2",
+                    "#4c6ef5",
+                    "#228be6",
+                    "#15aabf",
+                    "#12b886",
+                    "#40c057",
+                    "#82c91e",
+                    "#fab005",
+                    "#fd7e14",
+                  ]}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -170,7 +189,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="isWholeDay"
           render={({ field }) => (
-            <FormItem className="col-span-1 mt-8 flex flex-row items-center gap-2">
+            <FormItem className="mt-8 flex flex-row items-center gap-2 md:col-span-full">
               <FormControl>
                 <Checkbox
                   checked={field.value}
@@ -187,7 +206,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="startDate"
           render={({ field }) => (
-            <FormItem className="col-span-1 col-start-1">
+            <FormItem className="md:col-span-2 md:col-start-1">
               <FormLabel>Start-Datum</FormLabel>
               <FormControl>
                 <DateInput
@@ -207,7 +226,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="startTime"
           render={({ field }) => (
-            <FormItem className="col-span-1">
+            <FormItem className="md:col-span-1">
               <FormLabel>Start-Uhrzeit</FormLabel>
               <FormControl>
                 <InputOTP maxLength={4} pattern={REGEXP_ONLY_DIGITS} {...field}>
@@ -231,7 +250,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="endDate"
           render={({ field }) => (
-            <FormItem className="col-span-1 col-start-1">
+            <FormItem className="md:col-span-2 md:col-start-1">
               <FormLabel>End-Datum</FormLabel>
               <FormControl>
                 <DateInput value={field.value} onChange={field.onChange} />
@@ -245,7 +264,7 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           control={form.control}
           name="endTime"
           render={({ field }) => (
-            <FormItem className="col-span-1">
+            <FormItem className="md:col-span-1">
               <FormLabel>End-Uhrzeit</FormLabel>
               <FormControl>
                 <InputOTP maxLength={4} pattern={REGEXP_ONLY_DIGITS} {...field}>
@@ -269,8 +288,12 @@ export default function AddEventForm({ className }: AddEventFormProps) {
           {form.formState?.errors?.root?.message}
         </p>
 
-        <div className="col-span-full">
-          <Button type="submit" disabled={isLoading}>
+        <div className="md:col-span-full">
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="w-full sm:w-auto"
+          >
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             Hinzufügen
           </Button>

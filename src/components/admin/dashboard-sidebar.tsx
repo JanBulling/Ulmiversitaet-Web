@@ -5,7 +5,6 @@ import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -60,7 +59,7 @@ export function AdminDashboardSidebar({
         <NavMain items={navigationData.navMain} />
         <NavSecondary items={navigationData.navSecondary} className="mt-auto" />
       </SidebarContent>
-      <SidebarFooter>{/* <NavUser user={data.user} /> */}</SidebarFooter>
+      {/* <SidebarFooter><NavUser user={data.user} /></SidebarFooter> */}
     </Sidebar>
   );
 }

@@ -26,11 +26,10 @@ export default function EventItem({ event }: EventItemProps) {
 
   return (
     <li
-      className="flex w-full max-w-xl flex-col space-y-2 rounded-xl border-2 p-4 shadow-md"
+      className="flex w-full max-w-xl flex-col space-y-2 rounded-xl border p-4 shadow-md"
       style={{
-        borderLeft: `6px solid ${color}`,
+        backgroundColor: `${color}88`,
         borderColor: color,
-        backgroundColor: `${color}22`,
       }}
     >
       <div className="flex items-center gap-2">
@@ -85,11 +84,9 @@ export default function EventItem({ event }: EventItemProps) {
         </div>
       )}
 
-      {event.description && (
-        <p className="text-muted-foreground text-sm">{event.description}</p>
-      )}
+      {event.description && <p className="text-sm">{event.description}</p>}
       {event.location && (
-        <p className="text-muted-foreground flex items-center gap-2 text-sm">
+        <p className="flex items-center gap-2 text-sm">
           <MapPin className="size-4 shrink-0" />
           {event.location}
         </p>
