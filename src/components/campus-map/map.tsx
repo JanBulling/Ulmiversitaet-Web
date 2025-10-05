@@ -35,17 +35,8 @@ const urls: Record<string, string> = {
     "https://api.maptiler.com/maps/dataviz/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
   grayscaleDark:
     "https://api.maptiler.com/maps/dataviz-dark/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
-  // grayscale:
-  //   "https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png",
-  // grayscaleDark:
-  //   "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png",
   satellite:
     "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
-  // satellite:
-  // "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
-  watercolor:
-    "https://tiles.stadiamaps.com/tiles/stamen_watercolor/{z}/{x}/{y}.jpg",
-  test: "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}.jpg?key=aiupYKVO4aLhrM0FpgZb",
 };
 
 const layers = ["Gebäude", "Hörsaal", "Wichtige Orte"];
@@ -101,7 +92,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
           <LayersControl position="topright">
             <LayersControl.BaseLayer
               checked={resolvedTheme === "light"}
-              name="Graustufen"
+              name="Hell"
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -113,7 +104,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer
               checked={resolvedTheme === "dark"}
-              name="Graustufen Dunkel"
+              name="Dunkel"
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
