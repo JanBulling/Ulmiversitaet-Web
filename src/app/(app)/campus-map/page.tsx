@@ -15,6 +15,9 @@ export default function CampusMapPage() {
     <SiteLayout>
       <div className="px-4">
         <h1 className="text-2xl font-bold">Campus Map</h1>
+        <p className="text-muted-foreground text-sm">
+          Finde dich auf dem Campus zurecht!
+        </p>
       </div>
       <CampusMap lectureHalls={data[0]} buildings={data[1]} />
     </SiteLayout>

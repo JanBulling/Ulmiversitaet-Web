@@ -266,3 +266,25 @@ header.scrolled {
     }
   }
 }
+
+.leaflet-pane {
+  z-index: 10 !important;
+}
+
+.leaflet-tile-pane {
+  z-index: 10 !important;
+}
+
+.leaflet-overlay-pane {
+  z-index: 10 !important;
+}
+.leaflet-map-pane svg {
+  z-index: 20 !important;
+}
+
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-right,
+.leaflet-left {
+  z-index: 20 !important;
+}

@@ -48,34 +48,42 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
 
   return (
     <div className="mt-2">
-      <Label htmlFor="select-layer">Auswählen, was angezeigt wird</Label>
-      <Select value={selectedLayer} onValueChange={setSelectedLayer}>
-        <SelectTrigger id="select-layer" className="mt-1 w-[280px]">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent className="z-1000">
-          {layers.map((layer) => (
-            <SelectItem key={layer} value={layer}>
-              {layer}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
+      <div className="px-4">
+        <Label htmlFor="select-layer">Auswählen, was angezeigt wird</Label>
+        <Select value={selectedLayer} onValueChange={setSelectedLayer}>
+          <SelectTrigger id="select-layer" className="mt-1 w-[280px]">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="z-1000">
+            {layers.map((layer) => (
+              <SelectItem key={layer} value={layer}>
+                {layer}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-      <div className="relative mt-4 h-[50vh] w-full md:h-[600px]">
+      <div className="relative mt-4 h-[60vh] w-full md:h-[600px]">
         <form
-          className="absolute inset-x-0 top-0 z-1000 mx-auto my-2 flex max-w-md gap-2"
+          className="absolute inset-x-0 top-0 z-30 mx-auto my-2 flex max-w-[250px] gap-2 md:max-w-md"
           onSubmit={(e) => {
             e.preventDefault();
             setSearch(e.currentTarget.search.value);
             e.currentTarget.search.blur();
-            e.currentTarget.search.value = "";
           }}
         >
-          <Input id="search" placeholder={`Suche ${selectedLayer}`} />
-          <Button type="submit">
+          <Input
+            id="search"
+            placeholder={`Suche ${selectedLayer}`}
+            className="text-sm"
+          />
+          <Button type="submit" className="hidden md:inline-flex">
             <SearchIcon />
             Suchen
+          </Button>
+          <Button type="submit" className="md:hidden" size="icon">
+            <SearchIcon />
           </Button>
         </form>
         <MapContainer
