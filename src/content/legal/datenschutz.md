@@ -5,7 +5,7 @@ description: Informationen zur Verarbeitung personenbezogener Daten auf der Webs
 
 # Datenschutzerklärung
 
-Stand: September 2025
+Stand: Oktober 2025
 
 Diese Datenschutzerklärung informiert Sie über Art, Umfang und Zwecke der Verarbeitung personenbezogener Daten beim Besuch der Website `ulmiversitaet.de` sowie bei Nutzung der angebotenen Funktionen und Schnittstellen (APIs).
 
@@ -17,7 +17,7 @@ Siehe die Angaben im [Impressum](/impressum).
 
 ## Hosting und Infrastruktur
 
-- Bereitstellung der Website über Hosting-Infrastruktur. Im Rahmen des Betriebs fallen serverseitige Protokolle (z. B. IP-Adresse, Zeitstempel, angeforderte Ressourcen, User-Agent) an, die zur Sicherstellung von Betrieb, Sicherheit und Fehlersuche kurzfristig gespeichert werden. Die Speicherdauer ist auf das notwendige Maß begrenzt und die Daten werden nicht zur Profilbildung verwendet.
+- Bereitstellung der Website über Hosting-Infrastruktur (u. a. Vercel). Im Rahmen des Betriebs fallen serverseitige Protokolle (z. B. IP-Adresse, Zeitstempel, angeforderte Ressourcen, User-Agent) an, die zur Sicherstellung von Betrieb, Sicherheit und Fehlersuche kurzfristig gespeichert werden. Die Speicherdauer ist auf das notwendige Maß begrenzt und die Daten werden nicht zur Profilbildung verwendet.
 
 ## Eingesetzte Dienste und Datenkategorien
 
@@ -25,23 +25,27 @@ Siehe die Angaben im [Impressum](/impressum).
 
 - Vercel Analytics und Vercel Speed Insights (Anbieter: Vercel Inc.) werden zur aggregierten Nutzungs- und Performance-Messung eingesetzt. Nach unserem Kenntnisstand erfolgt dies ohne den Einsatz klassischer Tracking-Cookies. Erfasste Kategorien können u. a. Seitenaufrufe, Geräte-/Browser-Metadaten und Performance-Kennzahlen sein. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Interesse an Reichweiten- und Qualitätsmessung). Weitere Informationen beim Anbieter.
 
-### 2. Externe Inhalte/Apis
+### 2. Externe Inhalte/APIs
 
 - Mensa-API `mensa.ulmiversitaet.de`: Abruf tagesaktueller Speisepläne und Guru-Inhalte. Dabei wird Ihre IP-Adresse technisch bedingt an den API-Server übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und f DSGVO.
 - SWU Mobility API `api.swu.de`: Abruf von ÖPNV-Abfahrten/Passagen für angezeigte Haltestellen. Dabei wird Ihre IP-Adresse technisch bedingt an den API-Server übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und f DSGVO.
-- Google Calendar API (Google LLC): Serverseitige Synchronisierung von Veranstaltungsterminen. Die Kommunikation mit Google erfolgt serverseitig mittels OAuth 2.0-Zugangsdaten; lokal werden dabei keine personenbezogenen Daten der Webseitenbesuchenden an Google übertragen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Informationsangebot), ggf. i. V. m. Art. 6 Abs. 1 lit. b DSGVO.
 
 ### 3. Datenbank
 
-- Speicherung von Veranstaltungsdaten (z. B. Titel, Beschreibung, Zeit, Ort) sowie eines synchronisationsbezogenen Tokens in einer PostgreSQL-Datenbank (Neon/Drizzle ORM). Es werden dabei keine personenbezogenen Daten der Webseitenbesuchenden gespeichert.
+- Speicherung von Veranstaltungsdaten (z. B. Titel, Beschreibung, Zeit, Ort) in einer PostgreSQL-Datenbank (Neon; Zugriff über Drizzle ORM). Es werden dabei keine personenbezogenen Daten der Webseitenbesuchenden gespeichert.
+- Für den geschützten Admin-Bereich werden Sitzungsdaten gespeichert (z. B. Session-ID, Rolle, Ablaufzeitpunkt). Diese Daten dienen ausschließlich der Zugangskontrolle und werden automatisch gelöscht, wenn sie ablaufen.
 
-### 4. Lokale Speicherung (LocalStorage)
+### 4. Anmeldung und Sitzungen (Admin-Bereich)
+
+- Für die Verwaltung von Inhalten gibt es einen geschützten Admin-Bereich. Beim Login wird ein sitzungsbezogenes, HTTP-only Cookie mit dem Namen `session` gesetzt. Dieses Cookie enthält ein Session-Token, dient ausschließlich der Authentifizierung/Zugangskontrolle, ist nicht für Dritte auslesbar und wird in der Regel nach bis zu 12 Stunden automatisch ungültig. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Betrieb und Absicherung des Admin-Bereichs).
+
+### 5. Lokale Speicherung (LocalStorage)
 
 - Für Komfortfunktionen (z. B. Darstellung Hell/Dunkel/System) werden Einstellungen im `localStorage` Ihres Browsers abgelegt. Diese Daten werden nicht an den Server übertragen und dienen ausschließlich der Darstellung. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Nutzerfreundlichkeit).
 
-### 5. Cookies
+### 6. Cookies
 
-- Derzeit setzen wir keine eigenen Tracking-Cookies ein.
+- Wir setzen keine Tracking-Cookies ein. Das Authentifizierungs-Cookie `session` wird ausschließlich für den Admin-Bereich verwendet (siehe oben); es ist HTTP-only, in Produktionsumgebungen nur über HTTPS übertragbar und dient nicht der Reichweitenmessung oder Profilbildung.
 
 ## Protokolldaten (Server-Logs)
 
@@ -49,7 +53,7 @@ Beim Aufruf unserer Seiten werden technische Zugriffsdaten verarbeitet (IP-Adres
 
 ## Empfänger von Daten / Drittlandtransfer
 
-- Im Rahmen der oben genannten Dienste kann es zu einer Übermittlung von Daten an in der EU bzw. ggf. in Drittländern ansässige Anbieter kommen (z. B. Vercel, Google). Soweit erforderlich, stützen wir Übermittlungen auf geeignete Garantien gem. Art. 44 ff. DSGVO (z. B. EU-Standardvertragsklauseln) und minimieren die Daten.
+- Im Rahmen der oben genannten Dienste kann es zu einer Übermittlung von Daten an in der EU bzw. ggf. in Drittländern ansässige Anbieter kommen (z. B. Vercel als Hosting/Analytics, Neon als Datenbank). Soweit erforderlich, stützen wir Übermittlungen auf geeignete Garantien gem. Art. 44 ff. DSGVO (z. B. EU-Standardvertragsklauseln) und minimieren die Daten.
 
 ## Externe Links
 
