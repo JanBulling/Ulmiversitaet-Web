@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.97,
     },
     {
-      url: `${BASE_URL}/exmatrikulation`,
+      url: `${BASE_URL}/exmatriculation`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.7,
@@ -45,13 +45,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.2,
     },
     {
-      url: `${BASE_URL}/datenschutz`,
+      url: `${BASE_URL}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
-      url: `${BASE_URL}/impressum`,
+      url: `${BASE_URL}/imprint`,
       lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,

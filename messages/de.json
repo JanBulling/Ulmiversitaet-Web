@@ -17,7 +17,9 @@
     },
     "PublicTransport": {
       "title": "Echtzeit-ÖPNV",
-      "moreStops": "Weitere Haltestellen"
+      "moreStops": "Weitere Haltestellen",
+      "onTime": "Pünkltlich",
+      "delayed": "Verspätet"
     },
     "Mensa": {
       "title": "Mensa",

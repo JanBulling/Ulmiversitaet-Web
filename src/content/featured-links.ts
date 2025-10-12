@@ -17,7 +17,7 @@ export const featuredLinks: FeaturedLink[] = [
   {
     label: "links.exmatriculation",
     description: "links.exmatriculationDescription",
-    href: "/exmatrikulation",
+    href: "/exmatriculation",
     internalLink: true,
     icon: LinkIcon,
   },

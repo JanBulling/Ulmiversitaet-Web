@@ -17,7 +17,9 @@
     },
     "PublicTransport": {
       "title": "Real-time public transport",
-      "moreStops": "More stops"
+      "moreStops": "More stops",
+      "onTime": "On time",
+      "delayed": "Delayed"
     },
     "Mensa": {
       "title": "Mensa",
