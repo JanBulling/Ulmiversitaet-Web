@@ -12,6 +12,7 @@ import {
 } from "@/lib/public-transport/pub-tra-time-formatter";
 import { cn } from "@/lib/utils";
 import { featuredStops, defaultStop } from "@/content/public-transport/config";
+import { useTranslations } from "next-intl";
 
 interface PublicTransportDisplayProps {
   initialStopNumber: number;
@@ -22,6 +23,8 @@ export default function PublicTransportDisplay({
   initialStopNumber,
   initialDepartures,
 }: PublicTransportDisplayProps) {
+  const t = useTranslations("HomePage.PublicTransport");
+
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
     React.useState<Departure[]>(initialDepartures);
@@ -94,7 +97,7 @@ export default function PublicTransportDisplay({
                         : "text-muted-foreground",
                   )}
                 >
-                  {delayFormatter(d.scheduledTime, d.actualTime)}
+                  {delayFormatter(d.scheduledTime, d.actualTime, t("onTime"))}
                 </p>
               </div>
               <p className="text-muted-foreground mx-2 font-mono font-semibold">

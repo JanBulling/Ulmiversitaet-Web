@@ -5,6 +5,8 @@ import SiteLayout from "@/layouts/site-layout";
 import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
 import { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Echtzeit ÖPNV",
   description:

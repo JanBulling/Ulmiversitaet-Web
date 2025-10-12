@@ -10,7 +10,7 @@ import BaseLayout from "@/layouts/base-layout";
 import { Suspense } from "react";
 
 // mensa won't load
-// export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 export default function Home() {
   return (

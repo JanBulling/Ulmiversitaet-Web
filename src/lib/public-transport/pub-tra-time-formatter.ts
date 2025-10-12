@@ -16,14 +16,13 @@ export function countdownFormatter(countdown: number, actualDeparture: Date) {
 export function delayFormatter(
   scheduledDeparture: Date,
   actualDeparture: Date,
+  onTimeStr: string,
 ) {
-  const t = useTranslations("HomePage.PublicTransport");
-
   const difference = Math.round(
     (actualDeparture.getTime() - scheduledDeparture.getTime()) / 1000,
   );
 
-  if (Math.abs(difference) < 10) return t("onTime");
+  if (Math.abs(difference) < 10) return onTimeStr;
 
   const delaySign = Math.sign(difference);
   const delayText = delaySign < 0 ? "-" : "+";
