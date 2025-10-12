@@ -2,6 +2,9 @@ import SiteLayout from "@/layouts/site-layout";
 import ExmatrikulationQuiz from "@/components/exmatriculation/exmatriculation-quiz";
 import { Metadata } from "next";
 
+// Wrong since already statically generated using internationalization
+// export const dynamic = "force-static";
+
 export const metadata: Metadata = {
   title: "Exmatrikulation",
   description:

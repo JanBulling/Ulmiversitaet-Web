@@ -45,7 +45,7 @@ export async function MensaSection({
         <h2 className="text-2xl font-bold">Mensa</h2>
         <div className="flex items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            <span className="xs:inline hidden">
+            <span className="hidden sm:inline">
               {t("date", { date: date })}
             </span>
           </p>

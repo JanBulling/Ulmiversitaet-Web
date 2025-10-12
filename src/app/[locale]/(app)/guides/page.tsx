@@ -6,8 +6,10 @@ import {
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
 import FolderCard from "@/components/guides/folder-card";
+import { useTranslations } from "next-intl";
 
-export const dynamic = "force-static";
+// Wrong since already statically generated using internationalization
+// export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Anleitungen",
@@ -16,19 +18,23 @@ export const metadata: Metadata = {
 };
 
 export default function GuidesPage() {
+  const t = useTranslations("GuidesPage");
+
   const allGuides = getAllGuidesInFolder();
   const allFolders = getAllGuideFolders();
 
   return (
     <BaseLayout>
       <div className="px-4">
-        <h1 className="text-2xl font-bold">Anleitungen der Ulmiversität</h1>
+        <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-muted-foreground text-sm">
-          Die Ulmiversität hat eine Sammlung von Anleitungen, die den Uni-Alltag
-          erleichtern sollen. Eine Anleitung fehlt oder Du hast weitere Ideen?{" "}
-          <a href="mailto:info@ulmiversitaet.de" className="underline">
-            <span>Schreibe uns!</span>
-          </a>
+          {t.rich("description", {
+            a: (chunks) => (
+              <a href="mailto:info@ulmiversitaet.de" className="underline">
+                {chunks}
+              </a>
+            ),
+          })}
         </p>
       </div>
 

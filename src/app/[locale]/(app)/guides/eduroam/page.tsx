@@ -5,7 +5,8 @@ import { getAllGuidesInFolder } from "@/content/guides/guides";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
 
-export const dynamic = "force-static";
+// Wrong since already statically generated using internationalization
+// export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "eduroam®",

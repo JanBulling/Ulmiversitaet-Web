@@ -52,5 +52,13 @@
         "more": "More guides"
       }
     }
+  },
+  "LinkPage": {
+    "title": "All links",
+    "description": "A collection of useful links for students at Ulm University. A link is missing? <a>Let us know!</a>."
+  },
+  "GuidesPage": {
+    "title": "Guides",
+    "description": "A collection of useful guides for students at Ulm University. You have more ideas? <a>Let us know!</a>."
   }
 }

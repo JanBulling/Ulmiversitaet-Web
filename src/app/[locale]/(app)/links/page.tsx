@@ -2,8 +2,10 @@ import LinkCategoryCard from "@/components/links/link-category-card";
 import { getAllLinkCategories } from "@/content/links/links";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
+import { useTranslations } from "next-intl";
 
-export const dynamic = "force-static";
+// Wrong since already statically generated using internationalization
+// export const dynamic = "force-static";
 
 export const metadata: Metadata = {
   title: "Links",
@@ -12,18 +14,22 @@ export const metadata: Metadata = {
 };
 
 export default function LinksPage() {
+  const t = useTranslations("LinkPage");
+
   const allLinkCategories = getAllLinkCategories();
 
   return (
     <BaseLayout>
       <div className="px-4">
-        <h1 className="text-2xl font-bold">Alle Links</h1>
+        <h1 className="text-2xl font-bold">{t("title")}</h1>
         <p className="text-muted-foreground text-sm">
-          Die Ulmiversität hat eine Sammlung von nützlichen Links, die den
-          Uni-Alltag erleichtern sollen. Ein Link fehlt?{" "}
-          <a href="mailto:info@ulmiversitaet.de" className="underline">
-            <span>Schreibe uns!</span>
-          </a>
+          {t.rich("description", {
+            a: (chunks) => (
+              <a href="mailto:info@ulmiversitaet.de" className="underline">
+                {chunks}
+              </a>
+            ),
+          })}
         </p>
       </div>
 

@@ -3,6 +3,9 @@ import SiteLayout from "@/layouts/site-layout";
 import * as fs from "fs";
 import path from "path";
 
+// Wrong since already statically generated using internationalization
+// export const dynamic = "force-static";
+
 const files = ["lecture-halls.json", "buildings.json"];
 
 export default function CampusMapPage() {

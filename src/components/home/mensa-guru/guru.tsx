@@ -37,7 +37,7 @@ export default function MensaGuru({ locale = "de" }: { locale?: string }) {
 
     try {
       const response = await fetch(
-        `https://mensa.ulmiversitaet.de/api/v1/guru&lang=${locale}`,
+        `https://mensa.ulmiversitaet.de/api/v1/guru?lang=${locale}`,
       );
       const jsonResponse = await response.json();
 

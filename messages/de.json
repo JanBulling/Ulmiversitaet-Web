@@ -52,5 +52,13 @@
         "more": "Mehr Anleitungen"
       }
     }
+  },
+  "LinkPage": {
+    "title": "Alle Links",
+    "description": "Die Ulmiversität hat eine Sammlung von nützlichen Links, die den Uni-Alltag erleichtern sollen. Ein Link fehlt? <a>Schreibe uns!</a>."
+  },
+  "GuidesPage": {
+    "title": "Anleitungen",
+    "description": "Die Ulmiversität hat eine Sammlung von Anleitungen, die den Uni-Alltag erleichtern sollen. Eine Anleitung fehlt oder Du hast weitere Ideen? <a>Schreibe uns!</a>."
   }
 }
