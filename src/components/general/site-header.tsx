@@ -6,6 +6,7 @@ import Logo from "@/ui/logo";
 import MobileNav from "./mobile-nav";
 import HeaderSearchField from "./search-field";
 import NetworkChecker from "./network-checker";
+import LocaleSwitcher from "./locale-switcher";
 
 export function SiteHeader() {
   return (
@@ -28,6 +29,7 @@ export function SiteHeader() {
             </div>
             <HeaderSearchField />
             <ModeSwitcher className="hidden md:flex" />
+            <LocaleSwitcher className="hidden md:block" />
 
             <MobileNav items={navItems} />
           </div>

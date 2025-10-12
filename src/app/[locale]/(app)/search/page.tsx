@@ -1,5 +1,7 @@
 import SiteLayout from "@/layouts/site-layout";
 
+export const dynamic = "force-static";
+
 export default function SearchPage() {
   return (
     <SiteLayout>

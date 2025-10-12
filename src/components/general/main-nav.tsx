@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import { Button } from "@/ui/button";
+import { useTranslations } from "next-intl";
 
 export function MainNav({
   items,
@@ -14,6 +15,7 @@ export function MainNav({
 }: React.ComponentProps<"nav"> & {
   items: { href: string; label: string }[];
 }) {
+  const t = useTranslations("Nav");
   const pathname = usePathname();
 
   return (
@@ -26,7 +28,7 @@ export function MainNav({
               pathname === item.href && "text-primary font-semibold",
             )}
           >
-            {item.label}
+            {t(item.label)}
           </Link>
         </Button>
       ))}

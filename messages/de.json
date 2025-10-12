@@ -1,0 +1,54 @@
+{
+  "Nav": {
+    "home": "Home",
+    "links": "Alle Links",
+    "guides": "Anleitungen",
+    "map": "Karte",
+    "search": "Suche...",
+    "imprint": "Impressum",
+    "privacy": "Datenschutz",
+    "about": "Über uns"
+  },
+  "HomePage": {
+    "title": "Ulmiversität",
+    "QuickLinks": {
+      "more": "Weitere Links",
+      "moreShort": "Mehr Links"
+    },
+    "PublicTransport": {
+      "title": "Echtzeit-ÖPNV",
+      "moreStops": "Weitere Haltestellen"
+    },
+    "Mensa": {
+      "title": "Mensa",
+      "moreMeals": "Mehr Gerichte",
+      "askGuru": "Frage den Guru",
+      "guruThinking": "Der Guru denkt nach...",
+      "mensaClosed": "Mensa heute geschlossen",
+      "date": "Heute, {date, date, ::EEddMMM}",
+      "orderWest": "Bestellung West"
+    },
+    "Events": {
+      "title": "Events",
+      "futureEvents": "Zukünftige Events"
+    },
+    "Featured": {
+      "links": {
+        "title": "Weitere Links",
+        "description": "Die Ulmiversität besitzt eine Sammlung nützlicher Links",
+        "more": "Mehr Links",
+        "exmatriculation": "Exmatrikulation",
+        "exmatriculationDescription": "Soll ich mich exmatrikulieren?",
+        "map": "Campus-Karte",
+        "mapDescription": "Finde dich auf dem Kampus zurecht",
+        "library": "Bibliothekskatalog",
+        "libraryDescription": "Bücher ausleihen"
+      },
+      "guides": {
+        "title": "Anleitungen",
+        "description": "Es gibt diverse Anleitungen für den Uni-Alltag von der Ulmiversität",
+        "more": "Mehr Anleitungen"
+      }
+    }
+  }
+}

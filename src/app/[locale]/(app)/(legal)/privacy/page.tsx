@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Datenschutzerklärung der Ulmiversität.",
 };
 
-export default function DatenschutzPage() {
+export default function PrivacyPage() {
   const fileContent = readMdxFile(
     path.join(process.cwd(), "src", "content", "legal", "datenschutz") + ".md",
   );

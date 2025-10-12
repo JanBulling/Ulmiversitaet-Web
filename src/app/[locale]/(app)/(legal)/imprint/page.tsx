@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   description: "Impressum der Ulmiversität.",
 };
 
-export default function ImpressumPage() {
+export default function ImprintPage() {
   const fileContent = readMdxFile(
     path.join(process.cwd(), "src", "content", "legal", "impressum") + ".md",
   );

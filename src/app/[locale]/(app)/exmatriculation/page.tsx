@@ -1,5 +1,5 @@
 import SiteLayout from "@/layouts/site-layout";
-import ExmatrikulationQuiz from "@/components/exmatrikulation/exmatrikulation-quiz";
+import ExmatrikulationQuiz from "@/components/exmatriculation/exmatriculation-quiz";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     "Quiz zur Exmatrikulation, das dir helfen soll, zu entscheiden, ob du dich exmatrikulieren solltest.",
 };
 
-export default function ExmatrikulationPage() {
+export default function ExmatriculationPage() {
   return (
     <SiteLayout>
       <div className="px-4">

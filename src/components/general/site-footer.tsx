@@ -4,8 +4,12 @@ import { Icons } from "@/ui/icons";
 import Logo from "@/ui/logo";
 import Link from "next/link";
 import NetworkChecker from "./network-checker";
+import LocaleSwitcher from "./locale-switcher";
+import { useTranslations } from "next-intl";
 
 export function SiteFooter() {
+  const t = useTranslations("Nav");
+
   return (
     <footer className="bg-card border-t">
       <div className="mx-auto flex max-w-screen-xl flex-col gap-2 px-4 pt-4 pb-1 md:px-12">
@@ -14,13 +18,13 @@ export function SiteFooter() {
 
           <div className="flex flex-1 items-center justify-center text-sm">
             <Button variant="link">
-              <Link href="/impressum">Impressum</Link>
+              <Link href="/imprint">{t("imprint")}</Link>
             </Button>
             <Button variant="link">
-              <Link href="/datenschutz">Datenschutzerklärung</Link>
+              <Link href="/privacy">{t("privacy")}</Link>
             </Button>
             <Button variant="link">
-              <Link href="/about">About</Link>
+              <Link href="/about">{t("about")}</Link>
             </Button>
           </div>
 
@@ -45,8 +49,9 @@ export function SiteFooter() {
             </Button>
           </div>
         </div>
-        <div className="lg:hidden">
+        <div className="flex items-center justify-between gap-2 lg:hidden">
           <NetworkChecker />
+          <LocaleSwitcher />
         </div>
         <div className="text-muted-foreground ml-auto flex items-center gap-2 text-xs">
           <p>© {new Date().getFullYear()}</p>

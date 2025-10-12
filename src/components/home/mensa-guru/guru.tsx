@@ -4,10 +4,13 @@ import * as React from "react";
 import GuruButton from "./guru-btn";
 import SmokeEffect from "./smoke-effect";
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 type GuruState = "INITIAL" | "LOADING" | "ERROR" | "SUCCESS";
 
-export default function MensaGuru() {
+export default function MensaGuru({ locale = "de" }: { locale?: string }) {
+  const t = useTranslations("HomePage.Mensa");
+
   const [state, setState] = React.useState<GuruState>("INITIAL");
   const [content, setContent] = React.useState<string>();
   const [typedText, setTypedText] = React.useState<string>("");
@@ -34,7 +37,7 @@ export default function MensaGuru() {
 
     try {
       const response = await fetch(
-        "https://mensa.ulmiversitaet.de/api/v1/guru",
+        `https://mensa.ulmiversitaet.de/api/v1/guru&lang=${locale}`,
       );
       const jsonResponse = await response.json();
 
@@ -57,7 +60,7 @@ export default function MensaGuru() {
       {state === "LOADING" && (
         <div className="relative flex h-32 w-full items-center justify-center gap-2 overflow-x-clip">
           <SmokeEffect className="absolute h-full w-full" />
-          <span className="z-10 font-mono">Der Guru denkt nach</span>
+          <span className="z-10 font-mono">{t("guruThinking")}</span>
           <Loader2 className="z-10 animate-spin" />
         </div>
       )}

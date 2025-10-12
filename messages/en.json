@@ -1,0 +1,54 @@
+{
+  "Nav": {
+    "home": "Home",
+    "links": "All links",
+    "guides": "Guides",
+    "map": "Map",
+    "search": "Search...",
+    "imprint": "Imprint",
+    "privacy": "Privacy",
+    "about": "About"
+  },
+  "HomePage": {
+    "title": "Ulmiversität",
+    "QuickLinks": {
+      "more": "More links",
+      "moreShort": "More links"
+    },
+    "PublicTransport": {
+      "title": "Real-time public transport",
+      "moreStops": "More stops"
+    },
+    "Mensa": {
+      "title": "Mensa",
+      "moreMeals": "More meals",
+      "askGuru": "Ask the Guru",
+      "guruThinking": "The Guru is thinking...",
+      "mensaClosed": "Mensa is closed today",
+      "date": "Today, {date, date, ::EEddMMM}",
+      "orderWest": "Order west"
+    },
+    "Events": {
+      "title": "Events",
+      "futureEvents": "Future events"
+    },
+    "Featured": {
+      "links": {
+        "title": "More links",
+        "description": "The Ulmiversität has a collection of useful links",
+        "more": "More links",
+        "exmatriculation": "Exmatriculation",
+        "exmatriculationDescription": "Should I exmatriculate?",
+        "map": "Campus map",
+        "mapDescription": "Find your way around the campus",
+        "library": "Library",
+        "libraryDescription": "Search the library catalog"
+      },
+      "guides": {
+        "title": "Guides",
+        "description": "Guides to help you get started at the university",
+        "more": "More guides"
+      }
+    }
+  }
+}
