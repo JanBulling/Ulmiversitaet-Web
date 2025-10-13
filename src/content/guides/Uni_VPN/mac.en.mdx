@@ -1,0 +1,114 @@
+---
+title: VPN Access on macOS
+titleWeb: VPN Access for Ulm University (macOS)
+summary: Guide to setting up VPN access on macOS
+publishedAt: 2025-09-05
+author: Stefan Rau
+keywords: vpn, mac, macOS
+description: For secure access to the campus network, the kiz provides the Cisco Secure Client (SSL-VPN). This guide explains how to download, install, and connect to the VPN server on macOS.
+---
+
+For the **Windows** guide, click <Link href="/guides/vpn/windows">here</Link>.
+
+---
+
+## 📥 1. Downloading the Cisco Secure Client
+
+The download is available through the kiz portal (login with your kiz account required):
+
+👉 [Download Cisco Secure Client for macOS](https://portal.uni-ulm.de/SoftwarePortalWI/secure/download.html?groupname=&sid=396&filename=secure-client-macos.dmg)
+
+---
+
+## 💾 2. Installation on macOS
+
+- Open the `.dmg` file and start the installer (file ending with `.pkg`).
+- **Only install the “AnyConnect VPN” module** – deselect all other options.
+- Follow the on-screen installation instructions.
+- The software requires certain system permissions — make sure to enable them.
+
+🛑 **Note:** The Cisco Secure Client is compatible **only with macOS 11.x or newer**.
+
+---
+
+## 🔐 3. Establishing the First Connection
+
+1. Launch the **Cisco Secure Client** (via Spotlight or the Applications folder).
+2. Enter the following VPN server address:
+
+```bash
+vpn.uni-ulm.de
+```
+
+3. Click **“Connect.”**
+4. Enter your **kiz credentials**.
+5. After your password, you’ll also be asked for your **current TOTP code** (see [this guide](https://www.ulmiversitaet.de/guides/mfa) for more information).
+
+🛑 **Important:**
+If a message such as
+_“Untrusted VPN Server Blocked”_ or a **certificate warning** appears,
+**do not accept it!** → Contact the kiz helpdesk immediately.
+
+---
+
+## 🔌 4. Disconnecting
+
+- You’ll find the VPN icon in the menu bar.
+- Click the icon and select **“Disconnect”** to end the connection.
+
+---
+
+## 🔄 5. Uninstalling the Cisco Secure Client
+
+### Standard Method:
+
+- Use the provided **Uninstaller**
+  (search via Spotlight or find it in the Cisco Secure Client installation folder)
+
+### If the client was deleted manually:
+
+1. Open Terminal (`Spotlight > "Terminal"`).
+2. Run the following commands:
+
+```bash
+cd /opt/cisco
+```
+
+```bash
+sudo find . | grep -i uninstall
+```
+
+3. Depending on the result, execute one of the following:
+
+```bash
+sudo ./secureclient/bin/cisco_secure_client_uninstall.sh
+```
+
+or
+
+```bash
+sudo ./anyconnect/bin/anyconnect_uninstall.sh
+```
+
+4. Repeat the `find` command and execute any additional uninstall scripts if they appear:
+
+```bash
+sudo <output_line>
+```
+
+---
+
+### 📎 Additional Notes
+
+• The VPN client can only be used if **MFA (TOTP code)** is enabled.
+➤ Learn more about MFA: [Ulmiversity Guide](https://www.ulmiversitaet.de/guides/mfa)
+• The app is also available for **iOS/iPadOS** and **Android** — directly from the respective app stores.
+
+If you encounter any problems or have questions, contact kiz support:
+
+📧 [helpdesk@uni-ulm.de](mailto:helpdesk@uni-ulm.de)
+🌐 [https://www.uni-ulm.de/einrichtungen/kiz](https://www.uni-ulm.de/einrichtungen/kiz)
+
+---
+
+🔗 _This information is based on the official guide from the [kiz](https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/netzwerk-konnektivitaet/vpn/ssl-vpn/)._

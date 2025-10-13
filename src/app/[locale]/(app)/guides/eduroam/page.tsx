@@ -4,6 +4,7 @@ import GuideCard from "@/components/guides/guide-card";
 import { getAllGuidesInFolder } from "@/content/guides/guides";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
+import { useLocale, useTranslations } from "next-intl";
 
 // Wrong since already statically generated using internationalization
 // export const dynamic = "force-static";
@@ -14,14 +15,21 @@ export const metadata: Metadata = {
 };
 
 export default function GuidePage() {
+  const locale = useLocale();
+  const t = useTranslations("GuidesPage");
+
   const guides = getAllGuidesInFolder("eduroam");
+
+  const guidesLocale = guides.filter((g) =>
+    !g.locale ? true : g.locale === locale,
+  );
 
   return (
     <BaseLayout>
       <div className="px-4">
-        <h1 className="text-2xl font-bold">eduroam® Anleitung</h1>
+        <h1 className="text-2xl font-bold">eduroam® {t("title")}</h1>
         <p className="text-muted-foreground text-sm">
-          Anleitungen zur Einrichtung von eduroam® an verschiedenen Geräten.
+          {t("eduroamDescription")}
         </p>
 
         <div className="flex gap-2">
@@ -43,7 +51,7 @@ export default function GuidePage() {
       </div>
 
       <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-4 lg:grid-cols-3">
-        {guides.map((guide) => (
+        {guidesLocale.map((guide) => (
           <GuideCard key={guide.filePath} guide={guide} />
         ))}
       </div>

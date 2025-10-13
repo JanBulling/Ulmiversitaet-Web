@@ -59,6 +59,8 @@
   },
   "GuidesPage": {
     "title": "Guides",
-    "description": "A collection of useful guides for students at Ulm University. You have more ideas? <a>Let us know!</a>."
+    "description": "A collection of useful guides for students at Ulm University. You have more ideas? <a>Let us know!</a>.",
+    "backToAll": "Back to all guides",
+    "eduroamDescription": "Guides to get eduroam® onto different devices."
   }
 }

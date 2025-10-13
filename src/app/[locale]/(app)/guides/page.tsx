@@ -6,7 +6,7 @@ import {
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
 import FolderCard from "@/components/guides/folder-card";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 // Wrong since already statically generated using internationalization
 // export const dynamic = "force-static";
@@ -18,10 +18,15 @@ export const metadata: Metadata = {
 };
 
 export default function GuidesPage() {
+  const locale = useLocale();
   const t = useTranslations("GuidesPage");
 
   const allGuides = getAllGuidesInFolder();
   const allFolders = getAllGuideFolders();
+
+  const allGuidesLocale = allGuides.filter((g) =>
+    !g.locale ? true : g.locale === locale,
+  );
 
   return (
     <BaseLayout>
@@ -45,7 +50,7 @@ export default function GuidesPage() {
       </div>
 
       <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:px-4 md:grid-cols-3">
-        {allGuides.map((guide) => (
+        {allGuidesLocale.map((guide) => (
           <GuideCard key={guide.filePath} guide={guide} />
         ))}
       </div>

@@ -13,9 +13,10 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { siteConfig } from "@/config/site";
 import FolderCard from "@/components/guides/folder-card";
+import { getTranslations } from "next-intl/server";
 
 interface GuidePageProps {
-  params: Promise<{ slug: string[] }>;
+  params: Promise<{ locale: string; slug: string[] }>;
 }
 
 export async function generateStaticParams() {
@@ -49,9 +50,10 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: GuidePageProps): Promise<Metadata> {
-  const guideFilePath = decodeURI((await params).slug.join("/"));
+  const { slug, locale } = await params;
+  const guideFilePath = slug.map((s) => decodeURI(s)).join("/");
 
-  const guide = getGuide(guideFilePath);
+  const guide = getGuide(guideFilePath, { locale: locale });
 
   if (guide) {
     return {
@@ -92,9 +94,11 @@ export async function generateMetadata({
 }
 
 export default async function GuidePage({ params }: GuidePageProps) {
-  const guideFilePath = (await params).slug.map((s) => decodeURI(s)).join("/");
+  const { slug, locale } = await params;
+  const t = await getTranslations("GuidesPage");
+  const guideFilePath = slug.map((s) => decodeURI(s)).join("/");
 
-  const guide = getGuide(guideFilePath);
+  const guide = getGuide(guideFilePath, { locale: locale });
 
   if (guide) {
     const date = new Date(guide.metadata.publishedAt);
@@ -129,6 +133,10 @@ export default async function GuidePage({ params }: GuidePageProps) {
   const allFolders = getAllGuideFolders(guideFilePath);
   const allGuides = getAllGuidesInFolder(guideFilePath);
 
+  const allGuidesLocale = allGuides.filter((g) =>
+    !g.locale ? true : g.locale === locale,
+  );
+
   if (allFolders.length === 0 && allGuides.length === 0) {
     return notFound();
   }
@@ -139,7 +147,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
     <BaseLayout>
       <div className="px-4">
         <h1 className="text-2xl font-bold">
-          Anleitungen <span className="text-primary">{folderName}</span>
+          {t("title")} <span className="text-primary">{folderName}</span>
         </h1>
       </div>
 
@@ -150,7 +158,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
       </div>
 
       <div className="my-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:px-4 lg:grid-cols-3">
-        {allGuides.map((guide) => (
+        {allGuidesLocale.map((guide) => (
           <GuideCard key={guide.filePath} guide={guide} />
         ))}
       </div>

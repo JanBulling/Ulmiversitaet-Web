@@ -8,7 +8,7 @@ import { eventsTable } from "@/lib/db/schema";
 import { asc } from "drizzle-orm";
 import EventItem from "./event-item";
 import { ScrollArea } from "@/ui/scroll-area";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 
 const getEvents = cache(
   async () => {
@@ -24,6 +24,7 @@ const getEvents = cache(
 export default async function EventSection({
   className,
 }: React.ComponentProps<"section">) {
+  const locale = await getLocale();
   const t = await getTranslations("HomePage.Events");
   const events = await getEvents();
 
@@ -58,7 +59,11 @@ export default async function EventSection({
       </div>
 
       <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Calendar events={eventsFormatted} className="hidden md:block" />
+        <Calendar
+          locale={locale}
+          events={eventsFormatted}
+          className="hidden md:block"
+        />
 
         <div className="md:max-h-[550px]">
           <h3 className="hidden text-xl font-bold md:block">
