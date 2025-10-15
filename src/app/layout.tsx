@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import type { Metadata } from "next";
+import { NextIntlClientProvider, useLocale } from "next-intl";
 
 import { META_THEME_COLORS, siteConfig } from "@/config/site";
 import { fontMono, fontSans } from "@/styles/fonts";
@@ -65,9 +66,11 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const locale = useLocale();
+
   return (
     <html
-      lang="de"
+      lang={locale}
       suppressContentEditableWarning
       data-scroll-behavior="smooth"
     >
@@ -92,12 +95,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
           fontMono.variable,
         )}
       >
-        <ThemeProvider>
-          {children}
-          <TailwindIndicator />
-          <AnalyticsProvider />
-          <InsightsProvider />
-        </ThemeProvider>
+        <NextIntlClientProvider>
+          <ThemeProvider>
+            {children}
+            <TailwindIndicator />
+            <AnalyticsProvider />
+            <InsightsProvider />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

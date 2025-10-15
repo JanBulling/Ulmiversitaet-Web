@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Icons } from "@/ui/icons";
+import { useTranslations } from "next-intl";
 
 export default function GuruButton({
   className,
   ...props
 }: React.ComponentProps<"button">) {
+  const t = useTranslations("HomePage.Mensa");
+
   return (
     <button
       className={cn(
@@ -18,15 +21,9 @@ export default function GuruButton({
       aria-label="Frage den Guru"
       {...props}
     >
-      {/*   <ShineBorder
-        shineColor={["#22d3ee", "#60a5fa", "#ec4899"]}
-        borderWidth={2}
-        duration={10}
-        className="pointer-events-none"
-      /> */}
       <span className="relative z-10 flex items-center gap-2 font-semibold tracking-wide">
         <Icons.sparkles className="size-5" aria-hidden />
-        <span>Frage den Guru</span>
+        <span>{t("askGuru")}</span>
       </span>
     </button>
   );

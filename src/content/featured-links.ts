@@ -15,23 +15,23 @@ export type FeaturedLink = {
 
 export const featuredLinks: FeaturedLink[] = [
   {
-    label: "Exmatrikulation",
-    description: "Soll ich mich exmatrikulieren?",
-    href: "/exmatrikulation",
+    label: "links.exmatriculation",
+    description: "links.exmatriculationDescription",
+    href: "/exmatriculation",
     internalLink: true,
     icon: LinkIcon,
   },
 
   {
-    label: "Campus-Karte",
-    description: "Finde dich auf dem Kampus zurecht",
+    label: "links.map",
+    description: "links.mapDescription",
     href: "/campus-map",
     icon: MapIcon,
     internalLink: true,
   },
   {
-    label: "Bibliothekskatalog",
-    description: "Bücher ausleihen",
+    label: "links.library",
+    description: "links.libraryDescription",
     href: "https://ulm.ibs-bw.de/aDISWeb/app?service=direct/0/Home/$DirectLink&sp=SOPAC00",
     icon: BookOpenIcon,
   },

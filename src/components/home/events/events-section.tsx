@@ -8,6 +8,7 @@ import { eventsTable } from "@/lib/db/schema";
 import { asc } from "drizzle-orm";
 import EventItem from "./event-item";
 import { ScrollArea } from "@/ui/scroll-area";
+import { getLocale, getTranslations } from "next-intl/server";
 
 const getEvents = cache(
   async () => {
@@ -23,6 +24,8 @@ const getEvents = cache(
 export default async function EventSection({
   className,
 }: React.ComponentProps<"section">) {
+  const locale = await getLocale();
+  const t = await getTranslations("HomePage.Events");
   const events = await getEvents();
 
   // apparently unstable_cache converts dates to strings (???) -> convert back if necessary
@@ -52,15 +55,19 @@ export default async function EventSection({
     >
       <div className="flex items-center gap-4">
         <CalendarClock className="text-primary size-8" />
-        <h2 className="flex-1 text-2xl font-bold">Events</h2>
+        <h2 className="flex-1 text-2xl font-bold">{t("title")}</h2>
       </div>
 
       <div className="my-2 grid grid-cols-1 gap-4 md:grid-cols-2">
-        <Calendar events={eventsFormatted} className="hidden md:block" />
+        <Calendar
+          locale={locale}
+          events={eventsFormatted}
+          className="hidden md:block"
+        />
 
         <div className="md:max-h-[550px]">
           <h3 className="hidden text-xl font-bold md:block">
-            Zukünftige Events
+            {t("futureEvents")}
           </h3>
 
           <ScrollArea className="h-full md:mt-2 md:h-[calc(100%-28px-8px)]">

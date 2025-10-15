@@ -8,6 +8,7 @@ import { Button } from "@/ui/button";
 import Link from "next/link";
 import { ExternalLink } from "lucide-react";
 import MensaGuru from "../mensa-guru/guru";
+import { getTranslations } from "next-intl/server";
 
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
@@ -26,13 +27,9 @@ const shownListCategories: MensaCategory[] = [
 export async function MensaSection({
   className,
 }: React.ComponentProps<"section">) {
-  const { date, mensaPlan } = await getMensaMenu();
+  const t = await getTranslations("HomePage.Mensa");
 
-  const dateFormatter = Intl.DateTimeFormat("de-DE", {
-    month: "short",
-    day: "numeric",
-    weekday: "short",
-  });
+  const { date, mensaPlan } = await getMensaMenu();
 
   const singleCategoriesMensaPlan = mensaPlan?.filter(
     (menu) =>
@@ -48,8 +45,9 @@ export async function MensaSection({
         <h2 className="text-2xl font-bold">Mensa</h2>
         <div className="flex items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            <span className="hidden sm:inline">Heute,</span>{" "}
-            {dateFormatter.format(date)}
+            <span className="hidden sm:inline">
+              {t("date", { date: date })}
+            </span>
           </p>
           <Link
             href="https://stwulm.my-mensa.de/mensatogo.php?mensa=2"
@@ -57,7 +55,7 @@ export async function MensaSection({
             rel="noopener noreferrer"
           >
             <Button variant="default" size="sm" className="cursor-pointer">
-              Bestellung West
+              {t("orderWest")}
               <ExternalLink className="size-3" />
             </Button>
           </Link>
@@ -67,7 +65,7 @@ export async function MensaSection({
       {singleCategoriesMensaPlan?.length === 0 &&
         listCategoriesMensaPlan!.length === 0 && (
           <div className="text-muted-foreground mt-8 mb-12 text-center italic">
-            Mensa heute geschlossen
+            {t("mensaClosed")}
           </div>
         )}
 
@@ -97,7 +95,7 @@ export async function MensaSection({
           // rel="noopener noreferrer"
         >
           <Button variant="outline" className="cursor-pointer">
-            Mehr Gerichte
+            {t("moreMeals")}
             <ExternalLink className="size-3" />
           </Button>
         </Link>

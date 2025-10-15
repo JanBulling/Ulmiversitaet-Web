@@ -21,18 +21,18 @@ export const META_THEME_COLORS = {
 export const navItems = [
   {
     href: "/",
-    label: "Home",
+    label: "home",
   },
   {
     href: "/links",
-    label: "Alle Links",
+    label: "links",
   },
   {
     href: "/guides",
-    label: "Anleitungen",
+    label: "guides",
   },
   {
     href: "/campus-map",
-    label: "Karte",
+    label: "map",
   },
 ];
