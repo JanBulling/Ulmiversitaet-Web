@@ -1,5 +1,6 @@
 import { getFeaturedGuides } from "@/content/guides/guides";
 import { ArrowRight, BookTextIcon, ChevronRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import { unstable_cache } from "next/cache";
 import Link from "next/link";
 
@@ -10,14 +11,14 @@ const featuredGuides = unstable_cache(
 );
 
 export async function FeaturedGuidesSection() {
+  const t = await getTranslations("HomePage.Featured");
+
   const guides = await featuredGuides();
 
   return (
     <section className="px-4">
-      <h2 className="text-2xl font-bold">Anleitungen</h2>
-      <p className="text-muted-foreground text-sm">
-        Es gibt diverse Anleitungen für den Uni-Alltag von der Ulmiversität
-      </p>
+      <h2 className="text-2xl font-bold">{t("guides.title")}</h2>
+      <p className="text-muted-foreground text-sm">{t("guides.description")}</p>
 
       <ul className="mt-2 grid grid-cols-1 gap-2 sm:grid-cols-2">
         {guides.map((guide) => (
@@ -41,7 +42,7 @@ export async function FeaturedGuidesSection() {
         <Link href="/guides" className="group block rounded-xl sm:col-span-2">
           <li className="border-primary hover:border-primary/50 hover:text-primary/50 text-primary flex items-center gap-4 rounded-lg border-2 border-dashed px-4 py-4">
             <BookTextIcon className="size-6" />
-            <h3 className="flex-1 font-semibold">Weitere Anleitungen</h3>
+            <h3 className="flex-1 font-semibold">{t("guides.more")}</h3>
             <ArrowRight className="size-5 shrink-0 self-center transition-transform duration-200 group-hover:translate-x-0.5" />
           </li>
         </Link>

@@ -99,7 +99,7 @@ export default function SingleStopDepartures({
                         : "text-muted-foreground",
                   )}
                 >
-                  {delayFormatter(d.scheduledTime, d.actualTime)}
+                  {delayFormatter(d.scheduledTime, d.actualTime, "Pünktlich")}
                 </p>
               </div>
               <p className="text-muted-foreground mx-2 font-mono font-semibold">

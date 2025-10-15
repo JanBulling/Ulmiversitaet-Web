@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 export function countdownFormatter(countdown: number, actualDeparture: Date) {
   if (countdown <= -60) return "Abgefahren";
   if (countdown <= 0) return "Jetzt";
@@ -14,12 +16,13 @@ export function countdownFormatter(countdown: number, actualDeparture: Date) {
 export function delayFormatter(
   scheduledDeparture: Date,
   actualDeparture: Date,
+  onTimeStr: string,
 ) {
   const difference = Math.round(
     (actualDeparture.getTime() - scheduledDeparture.getTime()) / 1000,
   );
 
-  if (Math.abs(difference) < 10) return "Pünktlich";
+  if (Math.abs(difference) < 10) return onTimeStr;
 
   const delaySign = Math.sign(difference);
   const delayText = delaySign < 0 ? "-" : "+";

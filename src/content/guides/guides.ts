@@ -17,6 +17,7 @@ export type GuidesMetadata = {
 };
 
 export type Guide = {
+  locale?: string;
   filePath: string;
   metadata: GuidesMetadata;
   content: string;
@@ -24,7 +25,7 @@ export type Guide = {
 
 const GUIDES_BASE_PATH = path.join(process.cwd(), "src", "content", "guides");
 
-export function getAllGuidesInFolder(basePath?: string) {
+export function getAllGuidesInFolder(basePath?: string): Guide[] {
   const directoryPath = path.join(GUIDES_BASE_PATH, basePath ? basePath : "");
   const filesInDirectory = getMdxFilesInDirectory(directoryPath);
 
@@ -37,8 +38,12 @@ export function getAllGuidesInFolder(basePath?: string) {
         .replace(GUIDES_BASE_PATH + "/", "")
         .replace(path.extname(fileData.filePath), "");
 
+      const locale =
+        filePath.split(".").length === 2 ? filePath.split(".")[1] : undefined;
+
       return {
-        filePath: filePath,
+        locale: locale,
+        filePath: filePath.split(".")[0],
         metadata: fileData.metadata,
         content: fileData.content,
       };
@@ -50,8 +55,18 @@ export function getAllGuideFolders(basePath?: string) {
   return getMdxFolders(parentDirectory);
 }
 
-export function getGuide(filePath: string): Guide | null {
-  const guideFilePath = path.join(GUIDES_BASE_PATH, filePath + ".mdx");
+export function getGuide(
+  filePath: string,
+  options?: { locale?: string },
+): Guide | null {
+  const guideFilePath = path.join(
+    GUIDES_BASE_PATH,
+    filePath +
+      (options !== undefined && options.locale !== undefined
+        ? `.${options!.locale}`
+        : "") +
+      ".mdx",
+  );
   const fileContent = readMdxFile<GuidesMetadata>(guideFilePath);
 
   if (!fileContent) return null;
@@ -78,7 +93,14 @@ export function getAllGuides(): Guide[] {
             .replace(GUIDES_BASE_PATH + "\\", "")
             .replace(GUIDES_BASE_PATH + "/", "")
             .replace(path.extname(fileContent.filePath), "");
+
+          const locale =
+            filePath.split(".").length === 3
+              ? filePath.split(".")[1]
+              : undefined;
+
           guides.push({
+            locale: locale,
             filePath: relativeFilePath,
             metadata: fileContent.metadata,
             content: fileContent.content,

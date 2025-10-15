@@ -1,0 +1,115 @@
+---
+title: ASQ Registration
+titleWeb: Additive Key Qualifications (ASQ)
+summary: Step-by-step guide for registering for Additive Key Qualifications (ASQ)
+publishedAt: 2025-10-05
+author: Stefan Rau
+keywords: ASQ, Ulm, Campus, Ulm University, Humanities, Foreign Languages
+description: Step-by-step guide for registering for Additive Key Qualifications (ASQ) through Ulm University’s CoronaNG system.
+---
+
+## ℹ️ 1. What is ASQ?
+
+**ASQ** stands for **Additive Key Qualifications**.
+These are additional courses open to all Ulm University students. They teach cross-disciplinary skills such as **foreign languages**, **communication**, **intercultural competence**, and **academic writing**.
+
+These courses are primarily offered by the **Department of Humanities (Philosophy, Languages, ASQ)** and may be **mandatory or elective**, depending on your degree program.
+
+---
+
+## 🧭 2. Registration via the CoronaNG Portal
+
+ASQ registration operates on a **first-come, first-served** basis — the faster you are, the better your chances of getting a spot!
+Here’s how to proceed with the registration.
+
+First, open the Ulm University campus system (CoronaNG):
+
+👉 [CoronaNG – ASQ Registration](https://campusonline.uni-ulm.de/CoronaNG/index.html)
+
+- Log in with your **kiz account** – these are the same credentials you use for **Moodle**.
+
+---
+
+## 📂 3. Open the Course Overview
+
+1. After logging in, click on **“Courses”** in the left-hand side menu.
+2. You’ll see the message:
+   _“The tree is being built (0%)”_
+   🔁 **Refresh the page every few seconds** until the course tree has fully loaded.
+
+---
+
+## 📚 4. Find ASQ Courses
+
+1. In the loaded tree, click on **“Course Catalog”**.
+2. Choose **“Department of Humanities (Philosophy, Languages, ASQ)”**.
+3. Then click on **“Additive Key Qualifications (ASQ)”**.
+4. Next, open **“Foreign Languages and Intercultural Competence”** to view all available ASQ courses.
+
+📖 **Tip:** Expand the entire tree to see the full list of available courses.
+
+---
+
+## 👀 5. Watch ASQs
+
+If you find a course you like:
+
+1. Click on the **name of the ASQ** to open its detail page.
+
+2. There you’ll find information such as:
+   - Number of participants
+   - Dates and time period
+   - Instructor
+   - Room or online link
+
+3. Scroll down to the **“Action”** section and click
+   **“Watch this course”**.
+
+You can watch as many courses as you like at the same time.
+
+---
+
+## 📝 6. Apply for Participation
+
+1. In the left menu, open **“My CoronaNG → Watched Courses & Participation”**.
+2. At the top, you’ll see all the courses you’re watching.
+3. Select the desired courses using the **checkboxes** on the left.
+4. Click **“Participate in selected”** at the top.
+5. Then press the **“Execute”** button.
+
+🕓 The button is **only activated on the registration day** (usually the **first day of the semester at 4:00 PM**).
+
+💡 **Note:** You can **apply for multiple ASQs simultaneously** this way.
+Please **withdraw from any courses you don’t intend to attend** after the allocation phase.
+
+---
+
+## ⚡ 7. Technical Notes
+
+- Access works most reliably **within the university network** (eduroam® or VPN).
+- If your connection is slow, loading the course tree may take longer.
+- If you need help or encounter errors, you can find manuals and support pages on Ulm University’s website.
+
+---
+
+## 👩‍💻 8. Automated Registration
+
+For the computer nerds — there’s a script on [Valentin Kolb’s blog](https://valentin-kolb.blog/blog/2024-11-20) that automates registration:
+
+```bash
+#!/usr/bin/env bash
+watch -n 1 curl 'https://campusonline.uni-ulm.de/CoronaNG/user/mycorona.html' \
+--compressed \
+-X POST \
+-H 'Cookie: JSESSIONID={SESSION_ID}; {...}' \
+--data-raw 'check_{ASQ_1_ID}=on&action=5' > out.html
+```
+
+---
+
+## 📎 Contact & Support
+
+If you encounter problems or technical issues:
+
+✉️ [support@kiz.uni-ulm.de](mailto:support@kiz.uni-ulm.de)
+🌐 [kiz – Campus Online Services](https://www.uni-ulm.de/einrichtungen/kiz/)

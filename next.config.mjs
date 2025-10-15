@@ -1,5 +1,8 @@
 !process.env.SKIP_ENV_VALIDATION && (await import("./src/env.mjs"));
 
+import createNextIntlPlugin from "next-intl/plugin";
+const withNextIntl = createNextIntlPlugin();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   /* config options here */
@@ -7,4 +10,4 @@ const nextConfig = {
   transpilePackages: ["next-mdx-remote"],
 };
 
-export default nextConfig;
+export default withNextIntl(nextConfig);

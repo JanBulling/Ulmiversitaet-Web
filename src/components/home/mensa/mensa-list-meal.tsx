@@ -32,14 +32,15 @@ export function MensaListMeal({ category, meals }: MensaListMealProps) {
           href={`https://mensa.ulmiversitaet.de/meal/${generateSlug(meal.name)}`}
         >
           <div className="hover:bg-muted flex items-center justify-between gap-4 px-4 py-1">
-            <div className="flex items-center gap-2">
-              <h4 className="text-sm font-semibold">{meal.name}</h4>
-              <Rating
-                size={16}
-                value={meal.rating ?? 0}
-                numberRatings={meal.numberRatings ?? 0}
-              />
-            </div>
+            <h4 className="flex-1 text-xs font-semibold md:text-sm">
+              {meal.name}
+            </h4>
+            <Rating
+              className="shrink-0"
+              size={16}
+              value={meal.rating ?? 0}
+              numberRatings={meal.numberRatings ?? 0}
+            />
             <p className="text-muted-foreground font-mono text-sm">
               {meal.prices.student}€
             </p>

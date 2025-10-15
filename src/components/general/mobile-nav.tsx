@@ -13,6 +13,7 @@ import Link from "next/link";
 import { ModeSwitcher } from "./mode-switcher";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export default function MobileNav({
   className,
@@ -21,6 +22,8 @@ export default function MobileNav({
 }: React.ComponentProps<"nav"> & {
   items: { href: string; label: string }[];
 }) {
+  const t = useTranslations("Nav");
+
   const [open, setOpen] = React.useState<boolean>(false);
 
   return (
@@ -42,7 +45,7 @@ export default function MobileNav({
           >
             {items.map((item) => (
               <Link key={item.label} href={item.href}>
-                {item.label}
+                {t(item.label)}
               </Link>
             ))}
             <ModeSwitcher />
