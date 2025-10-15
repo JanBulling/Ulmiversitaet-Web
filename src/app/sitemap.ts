@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.97,
     },
     {
+      url: `${BASE_URL}/campus-map`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.96,
+    },
+    {
       url: `${BASE_URL}/exmatriculation`,
       lastModified: new Date(),
       changeFrequency: "monthly",
