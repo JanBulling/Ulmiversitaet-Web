@@ -70,15 +70,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
 function getGuideSitemaps(): MetadataRoute.Sitemap {
   const allGuides = getAllGuides();
 
-  const data: { url: string; date?: string | Date }[] = allGuides.map(
-    (guide) => ({
+  const data: { url: string; date?: string | Date }[] = allGuides
+    .filter((guide) => guide.locale === "de")
+    .map((guide) => ({
       url: guide.filePath
         .split(/[/\\]+/)
         .map((s) => encodeURI(s))
-        .join("/"),
+        .join("/")
+        .split(".")[0],
       date: guide.metadata.publishedAt,
-    }),
-  );
+      locale: guide.locale,
+    }));
 
   // Also generate slugs for folder pages
   const folderSlugs = new Set<string>();
@@ -102,7 +104,7 @@ function getGuideSitemaps(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/guides/${data.url}`,
     lastModified: data.date ?? new Date(),
     changeFrequency: "monthly",
-    priority: 0.95,
+    priority: 0.9,
   }));
 }
 
@@ -113,6 +115,6 @@ function getLinksSitemaps(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/links/${data.slug}`,
     lastModified: new Date(),
     changeFrequency: "monthly",
-    priority: 0.9,
+    priority: 0.85,
   }));
 }
