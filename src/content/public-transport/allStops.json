@@ -2,1421 +2,1653 @@
   {
     "id": 1240,
     "name": "Universität Süd",
+    "short_name": "Uni Süd",
     "lat": 48.42202388888889,
     "long": 9.956625
   },
   {
     "id": 1241,
     "name": "Botanischer Garten",
+    "short_name": "Bot. Garten",
     "lat": 48.424839444444444,
     "long": 9.956803055555556
   },
   {
     "id": 1245,
     "name": "Kliniken Wissenschaftsstadt",
+    "short_name": "Klinik. W-Stadt",
     "lat": 48.42350111111111,
     "long": 9.949899444444444
   },
   {
     "id": 1246,
     "name": "Universität West",
+    "short_name": "Uni West",
     "lat": 48.42225,
     "long": 9.94741
   },
   {
     "id": 1247,
     "name": "Manfred-Börner-Straße",
+    "short_name": "M.-Börner-Str.",
     "lat": 48.41981694444444,
     "long": 9.942866111111112
   },
   {
     "id": 1008,
     "name": "Hauptbahnhof",
+    "short_name": "Hbf",
     "lat": 48.3993525,
     "long": 9.984206666666667
   },
   {
     "id": 1350,
     "name": "Ehinger Tor",
+    "short_name": "Ehinger Tor",
     "lat": 48.3947125,
     "long": 9.981028333333333
   },
   {
     "id": 1701,
     "name": "Adenauerbrücke",
+    "short_name": "Adenauerbr.",
     "lat": 48.388576944444445,
     "long": 9.988762777777778
   },
   {
     "id": 1061,
     "name": "Albecker Steige",
+    "short_name": "Albecker Stg.",
     "lat": 48.41385,
     "long": 10.003878888888888
   },
   {
     "id": 1162,
     "name": "Albstraße",
+    "short_name": "Albstraße",
     "lat": 48.43488277777778,
     "long": 9.986047777777777
   },
   {
     "id": 1083,
     "name": "Alfred-Delp-Weg",
+    "short_name": "Alf.-Delp-Weg",
     "lat": 48.423472777777775,
     "long": 10.013206666666667
   },
   {
     "id": 1431,
     "name": "Allewind",
+    "short_name": "Allewind",
     "lat": 48.376529444444444,
     "long": 9.892604166666667
   },
   {
     "id": 1767,
     "name": "Allgäuer Straße",
+    "short_name": "Allgäuer Str.",
     "lat": 48.36392,
     "long": 10.013341666666667
   },
   {
     "id": 1132,
     "name": "Alte Straße",
+    "short_name": "Alte Str.",
     "lat": 48.435535,
     "long": 9.943245
   },
   {
     "id": 1222,
     "name": "Am Hetzenbäumle",
+    "short_name": "Hetzenbäumle",
     "lat": 48.40462472222222,
     "long": 9.966378888888888
   },
   {
     "id": 1675,
     "name": "Am Hohen Rain",
+    "short_name": "Hohen Rain",
     "lat": 48.33097083333333,
     "long": 9.938561111111111
   },
   {
     "id": 1673,
     "name": "Am Kraftwerk",
+    "short_name": "Kraftwerk",
     "lat": 48.32528888888889,
     "long": 9.926644444444445
   },
   {
     "id": 1339,
     "name": "Am Roten Berg",
+    "short_name": "Roter Berg",
     "lat": 48.40095222222222,
     "long": 9.940031944444444
   },
   {
     "id": 1705,
     "name": "Amtsgericht",
+    "short_name": "Amtsgericht",
     "lat": 48.39167111111111,
     "long": 9.994389444444444
   },
   {
     "id": 1745,
     "name": "Arena",
+    "short_name": "Arena",
     "lat": 48.38201,
     "long": 10.005705
   },
   {
     "id": 1173,
     "name": "Auf dem Hart",
+    "short_name": "Auf d. Hart",
     "lat": 48.43913138888889,
     "long": 9.98719611111111
   },
   {
     "id": 1367,
     "name": "Auf der Gölde",
+    "short_name": "A. d. Gölde",
     "lat": 48.40056,
     "long": 9.967503055555555
   },
   {
     "id": 1331,
     "name": "Auf der Laue",
+    "short_name": "A. d.Laue",
     "lat": 48.394976944444444,
     "long": 9.948499444444444
   },
   {
     "id": 1713,
     "name": "Augsburger Tor",
+    "short_name": "Augsb. Tor",
     "lat": 48.39827722222222,
     "long": 10.004100277777777
   },
   {
     "id": 1411,
     "name": "Bahnübergang Einsingen",
+    "short_name": "BÜ Einsingen",
     "lat": 48.3528425,
     "long": 9.917231666666666
   },
   {
     "id": 1395,
     "name": "Barbaralinde",
+    "short_name": "Barbaralinde",
     "lat": 48.37947777777778,
     "long": 9.949580555555556
   },
   {
     "id": 1366,
     "name": "Beim B'scheid",
+    "short_name": "B. B'scheid",
     "lat": 48.401781944444444,
     "long": 9.973983333333333
   },
   {
     "id": 1676,
     "name": "Beim Brückle",
+    "short_name": "B. Brückle",
     "lat": 48.330218055555555,
     "long": 9.938894444444445
   },
   {
     "id": 1280,
     "name": "Beim Türmle",
+    "short_name": "B.Türmle",
     "lat": 48.40653,
     "long": 9.956515
   },
   {
     "id": 1174,
     "name": "Beimerstetter Straße",
+    "short_name": "Beimerst. Str.",
     "lat": 48.446663055555554,
     "long": 9.98602111111111
   },
   {
     "id": 1354,
     "name": "Blautal-Center",
+    "short_name": "BlautalCtr",
     "lat": 48.40045694444444,
     "long": 9.961273333333333
   },
   {
     "id": 1225,
     "name": "Bleicher Hag",
+    "short_name": "Bleicher Hag",
     "lat": 48.40602361111111,
     "long": 9.971879722222223
   },
   {
     "id": 1351,
     "name": "Blücherstraße",
+    "short_name": "Blücherstr.",
     "lat": 48.39386138888889,
     "long": 9.973339166666667
   },
   {
     "id": 1507,
     "name": "Boschstraße",
+    "short_name": "Boschstr.",
     "lat": 48.370685,
     "long": 9.954142777777777
   },
-
   {
     "id": 1734,
     "name": "Bradleystraße",
+    "short_name": "Bradleystr.",
     "lat": 48.38564916666667,
     "long": 10.011562222222222
   },
   {
     "id": 1693,
     "name": "Breite Ost",
+    "short_name": "Breite Ost",
     "lat": 48.334561944444445,
     "long": 9.971388055555556
   },
   {
     "id": 1210,
     "name": "Burgunderweg",
+    "short_name": "Burgunderweg",
     "lat": 48.408768055555555,
     "long": 9.961351111111112
   },
   {
     "id": 1342,
     "name": "Clarissenstraße",
+    "short_name": "Clarissenstr.",
     "lat": 48.39890888888889,
     "long": 9.953323333333334
   },
   {
     "id": 1049,
     "name": "Congress Centrum",
+    "short_name": "CCU",
     "lat": 48.40092,
     "long": 10.00366
   },
   {
     "id": 1502,
     "name": "Daimlerstraße",
+    "short_name": "Daimlerstr.",
     "lat": 48.36678694444444,
     "long": 9.952852222222223
   },
   {
     "id": 1772,
     "name": "Danziger Straße",
+    "short_name": "Danziger Str.",
     "lat": 48.370783055555556,
     "long": 10.01131111111111
   },
   {
     "id": 1167,
     "name": "Donau-Iller-Werkstätten",
+    "short_name": "D-I-Werkst.",
     "lat": 48.447139444444446,
     "long": 9.985263333333334
   },
   {
     "id": 1702,
     "name": "Donaubad",
+    "short_name": "Donaubad",
     "lat": 48.38516805555555,
     "long": 9.98694
   },
   {
     "id": 1707,
     "name": "Donaucenter",
+    "short_name": "DonauCtr",
     "lat": 48.394399166666666,
     "long": 9.997217777777777
   },
   {
     "id": 1054,
     "name": "Donauhalle",
+    "short_name": "Donauhalle",
     "lat": 48.412127777777776,
     "long": 10.011256111111111
   },
   {
     "id": 1739,
     "name": "Donauklinik",
+    "short_name": "Donauklinik",
     "lat": 48.393252777777775,
     "long": 9.993491666666667
   },
   {
     "id": 1052,
     "name": "Donaustadion",
+    "short_name": "Donaustadion",
     "lat": 48.40500888888889,
     "long": 10.007362222222222
   },
   {
     "id": 1541,
     "name": "Donautal",
+    "short_name": "Donautal",
     "lat": 48.34867805555555,
     "long": 9.938038888888888
   },
   {
     "id": 1505,
     "name": "Dornierstraße",
+    "short_name": "Dornierstr.",
     "lat": 48.35856611111111,
     "long": 9.942733055555555
   },
   {
     "id": 1725,
     "name": "Edisoncenter",
+    "short_name": "EdisonCtr",
     "lat": 48.3791975,
     "long": 10.007031388888889
   },
   {
     "id": 1170,
     "name": "Edith-Stein-Ring",
+    "short_name": "E.-Stein-Ring",
     "lat": 48.439909722222225,
     "long": 9.993241666666666
   },
   {
     "id": 1087,
     "name": "Egertweg",
+    "short_name": "Egertweg",
     "lat": 48.42587888888889,
     "long": 10.0122875
   },
   {
     "id": 1266,
     "name": "Ehrensteiner Feld",
+    "short_name": "Ehrenst. Feld",
     "lat": 48.41128916666667,
     "long": 9.94816
   },
   {
     "id": 1081,
     "name": "Eichberg",
+    "short_name": "Eichberg",
     "lat": 48.42314416666667,
     "long": 10.00563111111111
   },
   {
     "id": 1082,
     "name": "Eichberg Nord",
+    "short_name": "Eichberg N",
     "lat": 48.426389444444446,
     "long": 10.007305
   },
   {
     "id": 1079,
     "name": "Eichenplatz",
+    "short_name": "Eichenplatz",
     "lat": 48.419643055555554,
     "long": 10.003672222222223
   },
   {
     "id": 1090,
     "name": "Eiselauer Weg",
+    "short_name": "Eiselauer Wg.",
     "lat": 48.45233,
     "long": 9.9734
   },
   {
     "id": 1403,
     "name": "Eisenbahnstraße",
+    "short_name": "Eisenbahnstr.",
     "lat": 48.37029638888889,
     "long": 9.937044722222222
   },
   {
     "id": 1022,
     "name": "Ensingerstraße",
+    "short_name": "Ensingerstr.",
     "lat": 48.4045,
     "long": 9.98837
   },
   {
     "id": 1412,
     "name": "Ensostraße",
+    "short_name": "Ensostr.",
     "lat": 48.352539166666666,
     "long": 9.905680555555556
   },
   {
     "id": 1620,
     "name": "Erenlauh",
+    "short_name": "Erenlauh",
     "lat": 48.35849638888889,
     "long": 9.971093333333334
   },
   {
     "id": 1539,
     "name": "Ernst-Abbe-Straße",
+    "short_name": "E.-Abbe-Str.",
     "lat": 48.352733055555554,
     "long": 9.928711666666667
   },
   {
     "id": 1732,
     "name": "Escheugraben",
+    "short_name": "Escheugr.",
     "lat": 48.387886944444446,
     "long": 10.005670277777778
   },
   {
     "id": 1200,
     "name": "Eselsberg Hasenkopf",
+    "short_name": "E. Hasenkopf",
     "lat": 48.41437888888889,
     "long": 9.96305861111111
   },
   {
     "id": 1255,
     "name": "Eselsbergsteige",
+    "short_name": "Eselsbergstg.",
     "lat": 48.41370972222222,
     "long": 9.950425277777779
   },
   {
     "id": 1080,
     "name": "Eugen-Bolz-Straße",
+    "short_name": "E.-Bolz-Str.",
     "lat": 48.42048861111111,
     "long": 10.017802222222222
   },
   {
     "id": 1741,
     "name": "Fachoberschule",
+    "short_name": "FOS",
     "lat": 48.38814166666667,
     "long": 10.00269638888889
   },
   {
     "id": 1165,
     "name": "Fichtenstraße",
+    "short_name": "Fichtenstr.",
     "lat": 48.44938,
     "long": 9.990954722222222
   },
   {
     "id": 1621,
     "name": "Fischerhauser Weg",
+    "short_name": "Fischerh. Wg.",
     "lat": 48.36044361111111,
     "long": 9.97643888888889
   },
   {
     "id": 1346,
     "name": "Franz-Wiedemeier-Straße",
+    "short_name": "Franz-W.-Str.",
     "lat": 48.398960833333334,
     "long": 9.93681638888889
   },
   {
     "id": 1161,
     "name": "Franzenhauserweg",
+    "short_name": "Franzenh.-Weg",
     "lat": 48.429024444444444,
     "long": 9.985512222222223
   },
   {
     "id": 1031,
     "name": "Frauensteige",
+    "short_name": "Frauenstg.",
     "lat": 48.40964861111111,
     "long": 9.990398611111111
   },
   {
     "id": 1602,
     "name": "Friedhof Wiblingen",
+    "short_name": "Friedhof Wibl.",
     "lat": 48.353861944444446,
     "long": 9.982965277777778
   },
   {
     "id": 1345,
     "name": "Fünf-Bäume-Weg",
+    "short_name": "Fünf-Bäume-Wg.",
     "lat": 48.39649083333333,
     "long": 9.948705555555556
   },
   {
     "id": 1324,
     "name": "Fünf-Bäume-Weg Mitte",
+    "short_name": "Fünf-Bäume-Mitte",
     "lat": 48.396503333333335,
     "long": 9.945019722222222
   },
   {
     "id": 1006,
     "name": "Gänsturm",
+    "short_name": "Gänsturm",
     "lat": 48.3988,
     "long": 10.001055
   },
   {
     "id": 1723,
     "name": "Gartenstraße",
+    "short_name": "Gartenstr.",
     "lat": 48.39243666666667,
     "long": 10.000256666666667
   },
   {
     "id": 1166,
     "name": "Gehrnstraße",
+    "short_name": "Gehrnstr.",
     "lat": 48.445840833333335,
     "long": 9.9923875
   },
   {
     "id": 1383,
     "name": "Gewerbeschulen Königstraße",
+    "short_name": "Gewerbeschule",
     "lat": 48.38476361111111,
     "long": 9.960988333333333
   },
   {
     "id": 1323,
     "name": "Gleißelstetten",
+    "short_name": "Gleißelstetten",
     "lat": 48.38791138888889,
     "long": 9.947535277777778
   },
   {
     "id": 1561,
     "name": "Graf-Arco-Straße",
+    "short_name": "Graf-Arco-Str.",
     "lat": 48.35811,
     "long": 9.9421725
   },
   {
     "id": 1735,
     "name": "Grethe-Weiser-Straße",
+    "short_name": "G.-Weiser-Str.",
     "lat": 48.38456194444444,
     "long": 10.009056944444444
   },
   {
     "id": 1393,
     "name": "Grimmelfinger Weg",
+    "short_name": "Grimmelf. Wg.",
     "lat": 48.38561,
     "long": 9.96537
   },
   {
     "id": 1401,
     "name": "Häberlinweg",
+    "short_name": "Häberlinwg.",
     "lat": 48.3731125,
     "long": 9.94102611111111
   },
   {
     "id": 1009,
     "name": "Hafengasse",
+    "short_name": "Hafeng.",
     "lat": 48.39863611111111,
     "long": 9.996268055555555
   },
   {
     "id": 1768,
     "name": "Hafnerweg",
+    "short_name": "Hafnerweg",
     "lat": 48.366280277777776,
     "long": 10.01801
   },
   {
     "id": 1656,
     "name": "Halde",
+    "short_name": "Halde",
     "lat": 48.334601944444444,
     "long": 9.93514888888889
   },
   {
     "id": 1540,
     "name": "Hans-Lorenser-Straße",
+    "short_name": "Hans-L.-Str.",
     "lat": 48.35634805555556,
     "long": 9.944646111111112
   },
   {
     "id": 1528,
     "name": "Hans-Reyhing-Weg",
+    "short_name": "H.-Reyhing-Wg.",
     "lat": 48.37506666666667,
     "long": 9.955541666666667
   },
   {
     "id": 1453,
     "name": "Harthauser Straße",
+    "short_name": "Harthauser Str.",
     "lat": 48.397016111111114,
     "long": 9.932691111111112
   },
   {
     "id": 1694,
     "name": "Hartstraße",
+    "short_name": "Hartstr.",
     "lat": 48.3314625,
     "long": 9.967327777777777
   },
   {
     "id": 1765,
     "name": "Hasenweg",
+    "short_name": "Hasenweg",
     "lat": 48.366926666666664,
     "long": 10.010967222222222
   },
   {
     "id": 1074,
     "name": "Haslacher Weg",
+    "short_name": "Haslacher Wg.",
     "lat": 48.430366666666664,
     "long": 10.014179444444444
   },
   {
     "id": 1359,
     "name": "Haßlerstraße",
+    "short_name": "Haßlerstr.",
     "lat": 48.38946972222222,
     "long": 9.978281944444445
   },
-
   {
     "id": 1005,
     "name": "Haus der Begegnung",
+    "short_name": "Haus d. Begeg.",
     "lat": 48.397705,
     "long": 9.99821
   },
   {
     "id": 1015,
     "name": "Herdbruckerstraße",
+    "short_name": "Herdbruckerstr.",
     "lat": 48.39648833333333,
     "long": 9.995813055555555
   },
   {
     "id": 1503,
     "name": "Heuweg",
+    "short_name": "Heuweg",
     "lat": 48.364716666666666,
     "long": 9.952063888888889
   },
   {
     "id": 3676,
     "name": "Hirsch Dellmensingen",
+    "short_name": "Hirsch Dellm.",
     "lat": 48.299875,
     "long": 9.906416666666667
   },
   {
     "id": 1743,
     "name": "Hochschule Neu-Ulm",
+    "short_name": "HNU",
     "lat": 48.37954472222222,
     "long": 10.008941666666667
   },
   {
     "id": 1416,
     "name": "Hohe Steige",
+    "short_name": "Hohe Stg.",
     "lat": 48.352626944444445,
     "long": 9.910605
   },
   {
     "id": 1652,
     "name": "Hoher Berg",
+    "short_name": "Hoher Berg",
     "lat": 48.338645,
     "long": 9.93914111111111
   },
   {
     "id": 1160,
     "name": "Hörvelsinger Weg",
+    "short_name": "Hörvels. Wg.",
     "lat": 48.425735277777775,
     "long": 9.986203611111112
   },
   {
     "id": 1704,
     "name": "Illerbrücke",
+    "short_name": "Illerbrücke",
     "lat": 48.372636944444444,
     "long": 9.989563333333333
   },
   {
     "id": 1672,
     "name": "Illerkirchberger Straße",
+    "short_name": "Illerkirchb. Str.",
     "lat": 48.328159722222225,
     "long": 9.931935833333334
   },
   {
     "id": 1091,
     "name": "Im Lehrer Feld Nord",
+    "short_name": "Lehrer Feld N",
     "lat": 48.45508,
     "long": 9.97039
   },
   {
     "id": 1093,
     "name": "Im Lehrer Feld Süd",
+    "short_name": "Lehrer Feld S",
     "lat": 48.45218,
     "long": 9.97113
   },
   {
     "id": 1092,
     "name": "Im Lehrer Feld West",
+    "short_name": "Lehrer Feld W",
     "lat": 48.45312,
     "long": 9.9685
   },
   {
     "id": 1106,
     "name": "Industriestraße",
+    "short_name": "Industriestr.",
     "lat": 48.43605111111111,
     "long": 9.972386944444445
   },
   {
     "id": 1349,
     "name": "Jägerstraße",
+    "short_name": "Jägerstr.",
     "lat": 48.400149722222224,
     "long": 9.955575833333333
   },
   {
     "id": 1703,
     "name": "Jakobsruhe",
+    "short_name": "Jakobsruhe",
     "lat": 48.381636944444445,
     "long": 9.989846666666667
   },
   {
     "id": 1103,
     "name": "Junginger Straße",
+    "short_name": "Junginger Str.",
     "lat": 48.436385,
     "long": 9.97189
   },
   {
     "id": 1011,
     "name": "Justizgebäude",
+    "short_name": "Justizgeb.",
     "lat": 48.401945,
     "long": 9.992737777777778
   },
   {
     "id": 1605,
     "name": "Kapelle",
+    "short_name": "Kapelle",
     "lat": 48.36049805555555,
     "long": 9.983845
   },
   {
     "id": 1714,
     "name": "Kasernstraße",
+    "short_name": "Kasernstr.",
     "lat": 48.39667055555555,
     "long": 10.006776666666667
   },
   {
     "id": 1590,
     "name": "Kastbrücke",
+    "short_name": "Kastbrücke",
     "lat": 48.36185777777778,
     "long": 9.962768055555555
   },
   {
     "id": 1766,
     "name": "Katholische Kirche",
+    "short_name": "Kath. Kirche",
     "lat": 48.36723638888889,
     "long": 10.013655277777778
   },
   {
     "id": 1251,
     "name": "Kelternweg",
+    "short_name": "Kelternweg",
     "lat": 48.413515,
     "long": 9.960215
   },
   {
     "id": 1632,
     "name": "Kemptener Straße",
+    "short_name": "Kemptener Str.",
     "lat": 48.346492777777776,
     "long": 9.972912222222222
   },
   {
     "id": 1012,
     "name": "Keplerstraße",
+    "short_name": "Keplerstr.",
     "lat": 48.40561,
     "long": 9.9926
   },
   {
     "id": 3672,
     "name": "Kirche Dellmensingen",
+    "short_name": "Kirche Dellm.",
     "lat": 48.30177222222222,
     "long": 9.900252777777778
   },
   {
     "id": 1414,
     "name": "Kirche Einsingen",
+    "short_name": "Kirche Eins.",
     "lat": 48.354301944444444,
     "long": 9.894983055555555
   },
   {
     "id": 1451,
     "name": "Kirche Harthausen",
+    "short_name": "Kirche Harth.",
     "lat": 48.390752222222225,
     "long": 9.914199722222222
   },
   {
     "id": 1030,
     "name": "Kliniken Michelsberg",
+    "short_name": "Kliniken Mich.",
     "lat": 48.41130694444445,
     "long": 9.992256944444444
   },
-
   {
     "id": 1600,
     "name": "Kloster Wiblingen",
+    "short_name": "Kloster Wibl.",
     "lat": 48.360683611111114,
     "long": 9.988369722222222
   },
   {
     "id": 1311,
     "name": "Königstraße",
+    "short_name": "Königstr.",
     "lat": 48.39449611111111,
     "long": 9.9611625
   },
   {
     "id": 1390,
     "name": "Kuhberg Schulzentrum",
+    "short_name": "Kuhberg SZ",
     "lat": 48.38350555555556,
     "long": 9.955475833333333
   },
   {
     "id": 1413,
     "name": "Lachhaustraße",
+    "short_name": "Lachhstr.",
     "lat": 48.35281,
     "long": 9.900260833333334
   },
   {
     "id": 3673,
     "name": "Lange Straße",
+    "short_name": "Lange Str.",
     "lat": 48.30088055555556,
     "long": 9.902319444444444
   },
   {
     "id": 1232,
     "name": "Lehrer Tal",
+    "short_name": "Lehrer Tal",
     "lat": 48.40655666666667,
     "long": 9.975269166666667
   },
   {
     "id": 1322,
     "name": "Leonberger Weg",
+    "short_name": "Leonberger Wg.",
     "lat": 48.39184361111111,
     "long": 9.949720833333334
   },
   {
     "id": 1595,
     "name": "Lichternsee",
+    "short_name": "Lichternsee",
     "lat": 48.358916944444445,
     "long": 9.951265
   },
   {
     "id": 1396,
     "name": "Lindenhöhe",
+    "short_name": "Lindenhöhe",
     "lat": 48.37683,
     "long": 9.947315
   },
   {
     "id": 1254,
     "name": "Lise-Meitner-Straße",
+    "short_name": "L.-Meitner-Str.",
     "lat": 48.41878805555555,
     "long": 9.93506111111111
   },
   {
     "id": 1501,
     "name": "Liststraße",
+    "short_name": "Liststr.",
     "lat": 48.36966972222222,
     "long": 9.949085
   },
   {
     "id": 1102,
     "name": "Loherstraße",
+    "short_name": "Loherstr.",
     "lat": 48.432743055555555,
     "long": 9.968713611111111
   },
   {
     "id": 1078,
     "name": "Ludwig-Beck-Straße",
+    "short_name": "L.-Beck-Str.",
     "lat": 48.42212333333333,
     "long": 10.007013055555555
   },
   {
     "id": 1218,
     "name": "Lupferbrücke",
+    "short_name": "Lupferbrücke",
     "lat": 48.403574722222224,
     "long": 9.956746388888888
   },
   {
     "id": 1353,
     "name": "Magirusstraße",
+    "short_name": "Magirusstr.",
     "lat": 48.39444638888889,
     "long": 9.964307222222223
   },
   {
     "id": 1332,
     "name": "Maienweg",
+    "short_name": "Maienweg",
     "lat": 48.38970722222222,
     "long": 9.9486375
   },
   {
     "id": 1325,
     "name": "Maienweg Nord",
+    "short_name": "Maienweg N",
     "lat": 48.394817777777774,
     "long": 9.945706666666666
   },
-
   {
     "id": 1171,
     "name": "Margarete-Steiff-Straße",
+    "short_name": "M.-Steiff-Str.",
     "lat": 48.44159027777778,
     "long": 9.996472222222222
   },
   {
     "id": 1105,
     "name": "Mariusweg",
+    "short_name": "Mariusweg",
     "lat": 48.43265111111111,
     "long": 9.977163055555556
   },
   {
     "id": 1361,
     "name": "Martin-Luther-Kirche",
+    "short_name": "M.-Luther-Kirche",
     "lat": 48.39263694444445,
     "long": 9.978526111111112
   },
   {
     "id": 1504,
     "name": "Maybachstraße",
+    "short_name": "Maybachstr.",
     "lat": 48.3613975,
     "long": 9.946526944444445
   },
   {
     "id": 1072,
     "name": "Mecklenburgweg",
+    "short_name": "Mecklenb.-Wg.",
     "lat": 48.434506666666664,
     "long": 10.024234444444444
   },
   {
     "id": 1729,
     "name": "Meininger Allee",
+    "short_name": "Meininger Allee",
     "lat": 48.394828333333336,
     "long": 10.008346111111111
   },
   {
     "id": 1724,
     "name": "Memminger Straße",
+    "short_name": "Memminger Str.",
     "lat": 48.38517916666667,
     "long": 10.00393388888889
   },
   {
     "id": 1202,
     "name": "Multscherschule",
+    "short_name": "Multscherschule",
     "lat": 48.40859,
     "long": 9.9677325
   },
   {
     "id": 1044,
     "name": "Neuer Friedhof",
+    "short_name": "Neuer Friedh.",
     "lat": 48.415754166666666,
     "long": 9.98666
   },
   {
     "id": 1557,
     "name": "Nicolaus-Otto-Straße",
+    "short_name": "N.-Otto-Str.",
     "lat": 48.36159111111111,
     "long": 9.933165
   },
   {
     "id": 1391,
     "name": "Oberer Kuhberg",
+    "short_name": "Ob. Kuhberg",
     "lat": 48.38182972222222,
     "long": 9.952676944444445
   },
   {
     "id": 1329,
     "name": "Oberer Roter Berg",
+    "short_name": "Roter Berg Ob.",
     "lat": 48.40142027777778,
     "long": 9.935336111111111
   },
   {
     "id": 1601,
     "name": "Oberer Wirt",
+    "short_name": "Ob. Wirt",
     "lat": 48.356181666666664,
     "long": 9.985928888888889
   },
   {
     "id": 1771,
     "name": "Oberfeld",
+    "short_name": "Oberfeld",
     "lat": 48.36407083333334,
     "long": 10.010924166666667
   },
   {
     "id": 1048,
     "name": "Örlinger Straße",
+    "short_name": "Örlinger Str.",
     "lat": 48.40939111111111,
     "long": 10.002503055555556
   },
   {
     "id": 1608,
     "name": "Ostermahdweg",
+    "short_name": "Ostermahdwg.",
     "lat": 48.3650025,
     "long": 9.990728333333333
   },
   {
     "id": 1058,
     "name": "Ostplatz",
+    "short_name": "Ostplatz",
     "lat": 48.405860833333335,
     "long": 10.001556666666668
   },
   {
     "id": 1070,
     "name": "Ostpreußenweg",
+    "short_name": "Ostpreußenwg.",
     "lat": 48.434240833333334,
     "long": 10.030585555555556
   },
   {
     "id": 1301,
     "name": "Ottiliengasse",
+    "short_name": "Ottiliengasse",
     "lat": 48.396770555555555,
     "long": 9.955573333333334
   },
   {
     "id": 1432,
     "name": "Panoramastraße",
+    "short_name": "Panoramastr.",
     "lat": 48.37784583333333,
     "long": 9.896436111111111
   },
   {
     "id": 1708,
     "name": "Petrusplatz",
+    "short_name": "Petruspl.",
     "lat": 48.39463583333333,
     "long": 9.998170277777778
   },
   {
     "id": 1422,
     "name": "Rathaus Eggingen",
+    "short_name": "Rathaus Egg.",
     "lat": 48.363817222222224,
     "long": 9.878831944444444
   },
   {
     "id": 1163,
     "name": "Rathaus Jungingen",
+    "short_name": "Rathaus Jung.",
     "lat": 48.442895,
     "long": 9.986635
   },
   {
     "id": 1133,
     "name": "Rathaus Mähringen",
+    "short_name": "Rathaus Mähr.",
     "lat": 48.436233055555554,
     "long": 9.940446111111111
   },
   {
     "id": 1710,
     "name": "Rathaus Neu-Ulm",
+    "short_name": "Rathaus NU",
     "lat": 48.395089166666665,
     "long": 10.000705277777778
   },
   {
     "id": 1002,
     "name": "Rathaus Ulm",
+    "short_name": "Rathaus Ulm",
     "lat": 48.397553055555555,
     "long": 9.993470555555556
   },
   {
     "id": 1692,
     "name": "Rathaus Unterweiler",
+    "short_name": "Rathaus Unt.",
     "lat": 48.330286111111114,
     "long": 9.966175
   },
   {
     "id": 1400,
     "name": "Rathausstraße",
+    "short_name": "Rathausstr.",
     "lat": 48.3719,
     "long": 9.936137222222222
   },
   {
     "id": 1769,
     "name": "Reichenberger Straße",
+    "short_name": "Reichenb. Str.",
     "lat": 48.369320555555554,
     "long": 10.015050833333333
   },
   {
     "id": 1635,
     "name": "Reutlinger Straße",
+    "short_name": "Reutlinger Str.",
     "lat": 48.35451916666667,
     "long": 9.97007638888889
   },
   {
     "id": 1653,
     "name": "Riedlenstraße",
+    "short_name": "Riedlenstr.",
     "lat": 48.33487,
     "long": 9.936715
   },
   {
     "id": 1733,
     "name": "Riedstraße",
+    "short_name": "Riedstr.",
     "lat": 48.387945277777774,
     "long": 10.01007888888889
   },
   {
     "id": 1340,
     "name": "Riedwiesenweg",
+    "short_name": "Riedwiesenwg.",
     "lat": 48.401809722222225,
     "long": 9.94530638888889
   },
   {
     "id": 1421,
     "name": "Ringinger Straße",
+    "short_name": "Ringinger Str.",
     "lat": 48.361153055555555,
     "long": 9.879643333333334
   },
   {
     "id": 1360,
     "name": "Römerplatz",
+    "short_name": "Römerpl.",
     "lat": 48.39029333333333,
     "long": 9.974800833333333
   },
   {
     "id": 1003,
     "name": "Rosengasse",
+    "short_name": "Roseng.",
     "lat": 48.40053944444445,
     "long": 9.996804166666667
   },
   {
     "id": 1104,
     "name": "Rührweg",
+    "short_name": "Rührweg",
     "lat": 48.43022388888889,
     "long": 9.972605
   },
   {
     "id": 1260,
     "name": "Ruländerweg",
+    "short_name": "Ruländerwg.",
     "lat": 48.40834,
     "long": 9.95597
   },
   {
     "id": 1404,
     "name": "S-Bahnhalt Ulm-Donautal",
+    "short_name": "Ulm-Donautal",
     "lat": 48.36705638888889,
     "long": 9.939799722222222
   },
   {
     "id": 1025,
     "name": "S-Bahnhalt Ulm-Ost",
+    "short_name": "Ulm-Ost",
     "lat": 48.40649194444445,
     "long": 9.993195277777778
   },
   {
     "id": 1220,
     "name": "S-Bahnhalt Ulm-Söflingen",
+    "short_name": "Ulm-Söflingen",
     "lat": 48.403084166666666,
     "long": 9.958839166666667
   },
   {
     "id": 1380,
     "name": "Saarlandstraße",
+    "short_name": "Saarlandstr.",
     "lat": 48.387967777777774,
     "long": 9.970469444444445
   },
   {
     "id": 1060,
     "name": "Safranberg",
+    "short_name": "Safranberg",
     "lat": 48.41240805555555,
     "long": 10.003248055555556
   },
   {
     "id": 1633,
     "name": "Saulgauer Straße",
+    "short_name": "Saulgauer Str.",
     "lat": 48.34829027777778,
     "long": 9.968297777777778
   },
   {
     "id": 1032,
     "name": "Schillerhöhe",
+    "short_name": "Schillerhöhe",
     "lat": 48.40791472222222,
     "long": 9.98855
   },
   {
     "id": 1321,
     "name": "Schongauer Weg",
+    "short_name": "Schongauer Wg.",
     "lat": 48.39344833333333,
     "long": 9.948456111111112
   },
   {
     "id": 1452,
     "name": "Schönstatt-Kapelle",
+    "short_name": "Schönstatt",
     "lat": 48.39534,
     "long": 9.92512
   },
   {
     "id": 3677,
     "name": "Schule Dellmensingen",
+    "short_name": "Schule Dellm.",
     "lat": 48.302955555555556,
     "long": 9.90193611111111
   },
   {
     "id": 1706,
     "name": "Schützenstraße",
+    "short_name": "Schützenstr.",
     "lat": 48.39360611111111,
     "long": 9.9974875
   },
   {
     "id": 1164,
     "name": "Schwarzenbergstraße",
+    "short_name": "Schwarzenb.str.",
     "lat": 48.448791944444444,
     "long": 9.9863775
   },
   {
     "id": 1249,
     "name": "Science Park II",
+    "short_name": "SP II",
     "lat": 48.421436944444444,
     "long": 9.936131944444444
   },
   {
     "id": 1250,
     "name": "Science Park III",
+    "short_name": "SP III",
     "lat": 48.424396944444446,
     "long": 9.93702888888889
   },
   {
     "id": 1299,
     "name": "Sedanstraße",
+    "short_name": "Sedanstr.",
     "lat": 48.392175,
     "long": 9.960282777777778
   },
   {
     "id": 1532,
     "name": "Siemensstraße",
+    "short_name": "Siemensstr.",
     "lat": 48.362143333333336,
     "long": 9.954970833333334
   },
   {
     "id": 1300,
     "name": "Söflingen",
+    "short_name": "Söflingen",
     "lat": 48.395064166666664,
     "long": 9.954963611111111
   },
   {
     "id": 1257,
     "name": "Söflinger Weinberge",
+    "short_name": "Weinberge",
     "lat": 48.412284166666666,
     "long": 9.942017777777778
   },
   {
     "id": 1258,
     "name": "Sonnenfeld",
+    "short_name": "Sonnenfeld",
     "lat": 48.414136666666664,
     "long": 9.937425
   },
   {
     "id": 1310,
     "name": "Sonnenstraße",
+    "short_name": "Sonnenstr.",
     "lat": 48.39463805555555,
     "long": 9.957821388888888
   },
   {
     "id": 1108,
     "name": "Sportpark Nord",
+    "short_name": "Sportpark N",
     "lat": 48.426560555555554,
     "long": 9.9565625
   },
   {
     "id": 1343,
     "name": "Sportzentrum TSG",
+    "short_name": "TSG Sportz.",
     "lat": 48.3978175,
     "long": 9.944785
   },
   {
     "id": 1362,
     "name": "St.-Elisabeth-Kirche",
+    "short_name": "St. Elisabeth",
     "lat": 48.395653055555556,
     "long": 9.973463055555555
   },
   {
     "id": 1631,
     "name": "St.-Gallener-Straße",
+    "short_name": "St.-Gallener-Str.",
     "lat": 48.3499,
     "long": 9.97868
   },
   {
     "id": 1341,
     "name": "St.-Jakob-Straße",
+    "short_name": "St.-Jakob-Str.",
     "lat": 48.40065555555555,
     "long": 9.949679444444444
   },
   {
     "id": 1020,
     "name": "Stadtwerke",
+    "short_name": "Stadtwerke",
     "lat": 48.403326944444444,
     "long": 9.985941111111112
   },
   {
     "id": 1051,
     "name": "Staufenring",
+    "short_name": "Staufenring",
     "lat": 48.40351138888889,
     "long": 10.004348055555555
   },
   {
     "id": 1500,
     "name": "Steinbeisstraße",
+    "short_name": "Steinbeisstr.",
     "lat": 48.36855888888889,
     "long": 9.953358333333334
   },
   {
     "id": 1001,
     "name": "Steinerne Brücke",
+    "short_name": "Steinerne Br.",
     "lat": 48.39723722222222,
     "long": 9.987900555555555
   },
   {
     "id": 1059,
     "name": "Steinhövelstraße",
+    "short_name": "Steinhövelstr.",
     "lat": 48.4103575,
     "long": 10.003968333333333
   },
   {
     "id": 1731,
     "name": "Steubenstraße",
+    "short_name": "Steubenstr.",
     "lat": 48.3901475,
     "long": 10.00768361111111
   },
   {
     "id": 1297,
     "name": "Sulzbachweg",
+    "short_name": "Sulzbachweg",
     "lat": 48.388975555555554,
     "long": 9.95966861111111
   },
   {
     "id": 1634,
     "name": "Tannenplatz Zentrum",
+    "short_name": "Tannenpl.",
     "lat": 48.351259166666665,
     "long": 9.973001666666667
   },
   {
     "id": 1248,
     "name": "Technische Hochschule",
+    "short_name": "THU",
     "lat": 48.4187525,
     "long": 9.9380425
   },
   {
     "id": 1010,
     "name": "Theater",
+    "short_name": "Theater",
     "lat": 48.40128555555555,
     "long": 9.987659444444445
   },
   {
     "id": 1352,
     "name": "Theodor-Heuss-Platz",
+    "short_name": "Th.-Heuss-Pl.",
     "lat": 48.394757222222225,
     "long": 9.968491944444445
   },
   {
     "id": 1073,
     "name": "Thüringenweg",
+    "short_name": "Thüringenwg.",
     "lat": 48.43331527777778,
     "long": 10.019919166666666
   },
   {
     "id": 1333,
     "name": "Torstraße",
+    "short_name": "Torstr.",
     "lat": 48.39517222222222,
     "long": 9.951882222222222
   },
   {
     "id": 1261,
     "name": "Traminerweg",
+    "short_name": "Traminerwg.",
     "lat": 48.41148,
     "long": 9.957075
   },
   {
     "id": 1131,
     "name": "Ulmer Steige",
+    "short_name": "Ulmer Stg.",
     "lat": 48.435383888888886,
     "long": 9.944066944444444
   },
   {
     "id": 3675,
     "name": "Ulmer Straße",
+    "short_name": "Ulmer Str.",
     "lat": 48.30581388888889,
     "long": 9.906755555555556
   },
   {
     "id": 3678,
     "name": "Ulmer Straße 7",
+    "short_name": "Ulmer Str. 7",
     "lat": 48.30375277777778,
     "long": 9.900675
   },
   {
     "id": 1265,
     "name": "Veltlinerweg",
+    "short_name": "Veltlinerwg.",
     "lat": 48.409855,
     "long": 9.95077
   },
   {
     "id": 1256,
     "name": "Virchowstraße",
+    "short_name": "Virchowstr.",
     "lat": 48.414076944444446,
     "long": 9.94609
   },
   {
     "id": 1433,
     "name": "Waldstraße",
+    "short_name": "Waldstr.",
     "lat": 48.38192333333333,
     "long": 9.897588333333333
   },
   {
     "id": 1744,
     "name": "Washingtonallee",
+    "short_name": "Washingtonallee",
     "lat": 48.379890277777776,
     "long": 10.011129444444444
   },
   {
     "id": 1671,
     "name": "Wasserturm",
+    "short_name": "Wasserturm",
     "lat": 48.33165972222222,
     "long": 9.933054166666667
   },
   {
     "id": 1134,
     "name": "Wendeschleife Mähringen",
+    "short_name": "Wende Mähr.",
     "lat": 48.43736194444445,
     "long": 9.936338888888889
   },
   {
     "id": 1107,
     "name": "Wengenholz",
+    "short_name": "Wengenholz",
     "lat": 48.431201944444446,
     "long": 9.963016944444444
   },
   {
     "id": 1736,
     "name": "Wiley Club",
+    "short_name": "Wiley Club",
     "lat": 48.38111361111111,
     "long": 10.007763888888888
   },
   {
     "id": 1727,
     "name": "Wiley Süd",
+    "short_name": "Wiley Süd",
     "lat": 48.37693888888889,
     "long": 10.010581666666667
   },
   {
     "id": 1046,
     "name": "Wilhelmsburgkaserne",
+    "short_name": "Wilhelmsburg",
     "lat": 48.41804944444444,
     "long": 9.98381
   },
   {
     "id": 1050,
     "name": "Willy-Brandt-Platz",
+    "short_name": "W.-Brandt-Pl.",
     "lat": 48.40258444444444,
     "long": 10.001135555555555
   },
   {
     "id": 1053,
     "name": "Wohnpark Friedrichsau",
+    "short_name": "Friedrichsau",
     "lat": 48.40846916666667,
     "long": 10.008958611111112
   },
   {
     "id": 1654,
     "name": "Wollgrasweg",
+    "short_name": "Wollgraswg.",
     "lat": 48.3318125,
     "long": 9.9340375
   },
   {
     "id": 1000,
     "name": "ZOB",
+    "short_name": "ZOB",
     "lat": 48.39778611111111,
     "long": 9.983831111111112
   },
   {
     "id": 1651,
     "name": "Zollbrücke",
+    "short_name": "Zollbrücke",
     "lat": 48.3429425,
     "long": 9.941305555555555
   },
   {
     "id": 1700,
     "name": "ZUP",
+    "short_name": "ZUP",
     "lat": 48.39206138888889,
-    "long": 10.003284444444445
+    "long": 10.003284444445
   }
 ]

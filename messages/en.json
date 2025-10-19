@@ -19,7 +19,8 @@
       "title": "Real-time public transport",
       "moreStops": "More stops",
       "onTime": "On time",
-      "delayed": "Delayed"
+      "delayed": "Delayed",
+      "noDepartures": "No departures found."
     },
     "Mensa": {
       "title": "Mensa",
