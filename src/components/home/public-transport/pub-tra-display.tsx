@@ -78,7 +78,7 @@ export default function PublicTransportDisplay({
 
     // Convert nearest stations to the same format as featured stops
     const nearestStops = nearest.map(station => ({
-      name: station.name.length > 10 ? station.name.substring(0, 10) + "..." : station.name,
+      name: station.short_name.length > 14 ? station.short_name.substring(0, 13) + "..." : station.short_name,
       stopId: station.id
     }));
 

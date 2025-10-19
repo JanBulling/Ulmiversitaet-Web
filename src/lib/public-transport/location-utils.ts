@@ -4,13 +4,15 @@ import { GeolocationPosition } from "@/lib/geolocation";
 export interface StopWithDistance {
     id: number;
     name: string;
+    short_name: string;
     lat: number;
     long: number;
     distance: number; // in meters
 }
 
 /**
- * Calculate the distance between two points using the Haversine formula
+ * Calculate the distance between two points using simple Euclidean distance
+ * Suitable for small distances within 20km - treats Earth as flat
  * @param lat1 - Latitude of first point
  * @param lon1 - Longitude of first point
  * @param lat2 - Latitude of second point
@@ -23,34 +25,34 @@ function calculateDistance(
     lat2: number,
     lon2: number
 ): number {
-    const R = 6371000; // Earth's radius in meters
-    const dLat = (lat2 - lat1) * (Math.PI / 180);
-    const dLon = (lon2 - lon1) * (Math.PI / 180);
+    // Simple difference in degrees
+    const dLat = lat2 - lat1;
+    const dLon = lon2 - lon1;
 
-    const a =
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) *
-        Math.cos(lat2 * (Math.PI / 180)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
+    // Convert to meters (1 degree ≈ 111,320 meters)
+    const x = dLon * 111320;
+    const y = dLat * 111320;
 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
+    // Euclidean distance
+    return Math.sqrt(x * x + y * y);
 }
 
 /**
  * Find the nearest stations to a given location
  * @param position - User's geolocation position
  * @param count - Number of nearest stations to return (default: 3)
+ * @param maxDistance - Maximum distance in meters (default: 1000m = 1km)
  * @returns Array of stops with distance information, sorted by distance
  */
 export function findNearestStations(
     position: GeolocationPosition,
-    count: number = 3
+    count: number = 3,
+    maxDistance: number = 1000
 ): StopWithDistance[] {
     const stopsWithDistance: StopWithDistance[] = allStops.map((stop) => ({
         id: stop.id,
         name: stop.name,
+        short_name: stop.short_name,
         lat: stop.lat,
         long: stop.long,
         distance: calculateDistance(
@@ -61,8 +63,9 @@ export function findNearestStations(
         ),
     }));
 
-    // Sort by distance and return the nearest ones
+    // Filter by distance and sort by distance, then return the nearest ones
     return stopsWithDistance
+        .filter(stop => stop.distance <= maxDistance)
         .sort((a, b) => a.distance - b.distance)
         .slice(0, count);
 }

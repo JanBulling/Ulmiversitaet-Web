@@ -18,7 +18,14 @@ export default function NearestStationsDisplay({
     className,
 }: NearestStationsDisplayProps) {
     if (nearestStations.length === 0) {
-        return null;
+        return (
+            <div className={cn("space-y-2", className)}>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Navigation className="size-4" />
+                    <span>There are no stops within 1km of your location.</span>
+                </div>
+            </div>
+        );
     }
 
     return (
@@ -43,7 +50,9 @@ export default function NearestStationsDisplay({
                                 <MapPin className="size-3 flex-shrink-0" />
                                 <span className="font-mono">{formatDistance(station.distance)}</span>
                             </div>
-                            <span className="truncate text-left">{station.name}</span>
+                            <span className="truncate text-left">
+                                {station.name}
+                            </span>
                         </div>
                     </Button>
                 ))}
