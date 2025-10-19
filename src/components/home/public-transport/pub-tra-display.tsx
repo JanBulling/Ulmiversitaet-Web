@@ -13,6 +13,9 @@ import {
 import { cn } from "@/lib/utils";
 import { featuredStops, defaultStop } from "@/content/public-transport/config";
 import { useTranslations } from "next-intl";
+import LocationButton from "@/components/öpnv/location-button";
+import { findNearestStations, StopWithDistance } from "@/lib/public-transport/location-utils";
+import { GeolocationPosition } from "@/lib/geolocation";
 
 interface PublicTransportDisplayProps {
   initialStopNumber: number;
@@ -28,6 +31,9 @@ export default function PublicTransportDisplay({
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
     React.useState<Departure[]>(initialDepartures);
+  const [nearestStations, setNearestStations] = React.useState<StopWithDistance[]>([]);
+  const [currentStops, setCurrentStops] = React.useState(featuredStops);
+  const [isLocationMode, setIsLocationMode] = React.useState(false);
 
   async function fetchNewDeparture(stopNr: number) {
     try {
@@ -63,23 +69,65 @@ export default function PublicTransportDisplay({
   async function updateStopNumber(number: string) {
     const newStopNumber = +number;
     setStopNumber(newStopNumber);
-    await fetchNewDeparture(newStopNumber); // Re-added this line
+    await fetchNewDeparture(newStopNumber);
+  }
+
+  function handleLocationFound(position: GeolocationPosition) {
+    const nearest = findNearestStations(position, 3);
+    setNearestStations(nearest);
+
+    // Convert nearest stations to the same format as featured stops
+    const nearestStops = nearest.map(station => ({
+      name: station.name.length > 10 ? station.name.substring(0, 10) + "..." : station.name,
+      stopId: station.id
+    }));
+
+    setCurrentStops(nearestStops);
+    setIsLocationMode(true);
+
+    // Automatically select the nearest station
+    if (nearest.length > 0) {
+      setStopNumber(nearest[0].id);
+      fetchNewDeparture(nearest[0].id);
+    }
+  }
+
+  function handleRevertToOriginal() {
+    setCurrentStops(featuredStops);
+    setIsLocationMode(false);
+    setStopNumber(defaultStop.stopId);
+    fetchNewDeparture(defaultStop.stopId);
+  }
+
+  function handleLocationError(error: string) {
+    console.error("Location error:", error);
+    // You could show a toast notification here
   }
 
   return (
     <div className="my-2">
-      <Tabs
-        defaultValue={defaultStop.stopId.toString()}
-        onValueChange={updateStopNumber}
-      >
-        <TabsList className="w-full">
-          {featuredStops.map((stop) => (
-            <TabsTrigger key={stop.stopId} value={stop.stopId.toString()}>
-              {stop.name}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Tabs>
+      <div className="flex items-center gap-2 mb-2">
+        <Tabs
+          value={stopNumber.toString()}
+          onValueChange={updateStopNumber}
+          className="flex-1"
+        >
+          <TabsList className="w-full">
+            {currentStops.map((stop) => (
+              <TabsTrigger key={stop.stopId} value={stop.stopId.toString()}>
+                {stop.name}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+        <LocationButton
+          onLocationFound={handleLocationFound}
+          onError={handleLocationError}
+          onRevert={handleRevertToOriginal}
+          isLocationMode={isLocationMode}
+          size="sm"
+        />
+      </div>
       <ol className="mt-2 divide-y">
         {departures?.length > 0 ? (
           departures.map((d, idx) => (
@@ -106,7 +154,7 @@ export default function PublicTransportDisplay({
             </li>
           ))
         ) : (
-          <p className="text-muted-foreground mt-4">No departures found.</p>
+          <p className="text-muted-foreground mt-4">{t("noDepartures")}</p>
         )}
       </ol>
     </div>

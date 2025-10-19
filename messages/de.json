@@ -19,7 +19,8 @@
       "title": "Echtzeit-ÖPNV",
       "moreStops": "Weitere Haltestellen",
       "onTime": "Pünkltlich",
-      "delayed": "Verspätet"
+      "delayed": "Verspätet",
+      "noDepartures": "Keine Abfahrten gefunden."
     },
     "Mensa": {
       "title": "Mensa",
