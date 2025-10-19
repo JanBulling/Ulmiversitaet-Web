@@ -30,11 +30,11 @@ function calculateDistance(
     const dLon = lon2 - lon1;
 
     // Convert to meters (1 degree ≈ 111,320 meters)
-    const x = dLon * 111320;
-    const y = dLat * 111320;
+    const x = dLon * 333;
+    const y = dLat * 333;
 
     // Euclidean distance
-    return Math.sqrt(x * x + y * y);
+    return x * x + y * y;
 }
 
 /**
@@ -68,17 +68,4 @@ export function findNearestStations(
         .filter(stop => stop.distance <= maxDistance)
         .sort((a, b) => a.distance - b.distance)
         .slice(0, count);
-}
-
-/**
- * Format distance for display
- * @param distance - Distance in meters
- * @returns Formatted distance string
- */
-export function formatDistance(distance: number): string {
-    if (distance < 1000) {
-        return `${Math.round(distance)}m`;
-    } else {
-        return `${(distance / 1000).toFixed(1)}km`;
-    }
 }

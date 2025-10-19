@@ -6,7 +6,7 @@ import { MensaSingleMeal } from "./mensa-single-meal";
 import { MensaListMeal } from "./mensa-list-meal";
 import { Button } from "@/ui/button";
 import Link from "next/link";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, CookingPot } from "lucide-react";
 import MensaGuru from "../mensa-guru/guru";
 import { getTranslations } from "next-intl/server";
 
@@ -42,7 +42,10 @@ export async function MensaSection({
   return (
     <section className={cn("bg-card border-y py-4 md:border", className)}>
       <div className="flex items-center justify-between gap-4 px-4">
-        <h2 className="text-2xl font-bold">Mensa</h2>
+        <div className="flex items-center gap-4">
+          <CookingPot className="text-primary size.6 md:size-8" />
+          <h2 className="text-2xl font-bold">Mensa</h2>
+        </div>
         <div className="flex items-center gap-4">
           <p className="text-muted-foreground text-sm">
             <span className="hidden sm:inline">
@@ -91,8 +94,8 @@ export async function MensaSection({
       <div className="flex items-center justify-center">
         <Link
           href="https://mensa.ulmiversitaet.de?utm=ulmiversitaet"
-          // target="_blank"
-          // rel="noopener noreferrer"
+        // target="_blank"
+        // rel="noopener noreferrer"
         >
           <Button variant="outline" className="cursor-pointer">
             {t("moreMeals")}
