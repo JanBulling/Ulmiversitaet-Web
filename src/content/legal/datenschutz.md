@@ -29,23 +29,20 @@ Siehe die Angaben im [Impressum](/impressum).
 
 - Mensa-API `mensa.ulmiversitaet.de`: Abruf tagesaktueller Speisepläne und Guru-Inhalte. Dabei wird Ihre IP-Adresse technisch bedingt an den API-Server übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und f DSGVO.
 - SWU Mobility API `api.swu.de`: Abruf von ÖPNV-Abfahrten/Passagen für angezeigte Haltestellen. Dabei wird Ihre IP-Adresse technisch bedingt an den API-Server übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. b und f DSGVO.
+- MapTiler (Anbieter: MapTiler S.A.): Bereitstellung von Kartenkacheln für die Campus-Karte. Dabei wird Ihre IP-Adresse technisch bedingt an den Anbieter übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
+- OpenStreetMap: Nutzung von OpenStreetMap-Daten für die Campus-Karte. Dabei wird Ihre IP-Adresse technisch bedingt an die OpenStreetMap-Server übermittelt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO.
 
 ### 3. Datenbank
 
-- Speicherung von Veranstaltungsdaten (z. B. Titel, Beschreibung, Zeit, Ort) in einer PostgreSQL-Datenbank (Neon; Zugriff über Drizzle ORM). Es werden dabei keine personenbezogenen Daten der Webseitenbesuchenden gespeichert.
-- Für den geschützten Admin-Bereich werden Sitzungsdaten gespeichert (z. B. Session-ID, Rolle, Ablaufzeitpunkt). Diese Daten dienen ausschließlich der Zugangskontrolle und werden automatisch gelöscht, wenn sie ablaufen.
+- Speicherung von Veranstaltungsdaten (z. B. Titel, Beschreibung, Zeit, Ort) in einer PostgreSQL-Datenbank (Neon). Es werden dabei keine personenbezogenen Daten der Webseitenbesuchenden gespeichert.
 
-### 4. Anmeldung und Sitzungen (Admin-Bereich)
-
-- Für die Verwaltung von Inhalten gibt es einen geschützten Admin-Bereich. Beim Login wird ein sitzungsbezogenes, HTTP-only Cookie mit dem Namen `session` gesetzt. Dieses Cookie enthält ein Session-Token, dient ausschließlich der Authentifizierung/Zugangskontrolle, ist nicht für Dritte auslesbar und wird in der Regel nach bis zu 12 Stunden automatisch ungültig. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Betrieb und Absicherung des Admin-Bereichs).
-
-### 5. Lokale Speicherung (LocalStorage)
+### 4. Lokale Speicherung (LocalStorage)
 
 - Für Komfortfunktionen (z. B. Darstellung Hell/Dunkel/System) werden Einstellungen im `localStorage` Ihres Browsers abgelegt. Diese Daten werden nicht an den Server übertragen und dienen ausschließlich der Darstellung. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (Nutzerfreundlichkeit).
 
-### 6. Cookies
+### 5. Cookies
 
-- Wir setzen keine Tracking-Cookies ein. Das Authentifizierungs-Cookie `session` wird ausschließlich für den Admin-Bereich verwendet (siehe oben); es ist HTTP-only, in Produktionsumgebungen nur über HTTPS übertragbar und dient nicht der Reichweitenmessung oder Profilbildung.
+- Wir setzen keine Tracking-Cookies ein. Cookies werden ausschließlich für die korrekte Sprachauswahl verwendet und dienen nicht der Reichweitenmessung oder Profilbildung.
 
 ## Protokolldaten (Server-Logs)
 
@@ -53,7 +50,7 @@ Beim Aufruf unserer Seiten werden technische Zugriffsdaten verarbeitet (IP-Adres
 
 ## Empfänger von Daten / Drittlandtransfer
 
-- Im Rahmen der oben genannten Dienste kann es zu einer Übermittlung von Daten an in der EU bzw. ggf. in Drittländern ansässige Anbieter kommen (z. B. Vercel als Hosting/Analytics, Neon als Datenbank). Soweit erforderlich, stützen wir Übermittlungen auf geeignete Garantien gem. Art. 44 ff. DSGVO (z. B. EU-Standardvertragsklauseln) und minimieren die Daten.
+- Im Rahmen der oben genannten Dienste kann es zu einer Übermittlung von Daten an in der EU bzw. ggf. in Drittländern ansässige Anbieter kommen (z. B. Vercel als Hosting/Analytics, Neon als Datenbank, MapTiler für Kartendienste). Soweit erforderlich, stützen wir Übermittlungen auf geeignete Garantien gem. Art. 44 ff. DSGVO (z. B. EU-Standardvertragsklauseln) und minimieren die Daten.
 
 ## Externe Links
 

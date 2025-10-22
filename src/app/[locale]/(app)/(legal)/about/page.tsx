@@ -1,29 +1,16 @@
-import path from "path";
-import { notFound } from "next/navigation";
-
 import SiteLayout from "@/layouts/site-layout";
-import { readMdxFile } from "@/lib/mdx-utils";
-import { CustomMDX } from "@/mdx-components";
+import AboutUs from "@/components/general/about-us";
 import { Metadata } from "next";
 
-// Wrong since already statically generated using internationalization
-// export const dynamic = "force-static";
-
 export const metadata: Metadata = {
-  title: "Über",
-  description: "Informationen über die Ulmiversität",
+  title: "Über uns",
+  description: "Informationen über die Entwickler der Website Ulmiversität",
 };
 
 export default function AboutPage() {
-  const fileContent = readMdxFile(
-    path.join(process.cwd(), "src", "content", "legal", "about") + ".md",
-  );
-
-  if (!fileContent) return notFound();
-
   return (
-    <SiteLayout className="px-4">
-      <CustomMDX source={fileContent.content} />
+    <SiteLayout className="px-4 py-8">
+      <AboutUs />
     </SiteLayout>
   );
 }
