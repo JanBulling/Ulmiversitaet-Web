@@ -62,10 +62,10 @@ export function getGuide(
   const guideFilePath = path.join(
     GUIDES_BASE_PATH,
     filePath +
-      (options !== undefined && options.locale !== undefined
-        ? `.${options!.locale}`
-        : "") +
-      ".mdx",
+    (options !== undefined && options.locale !== undefined
+      ? `.${options!.locale}`
+      : "") +
+    ".mdx",
   );
   const fileContent = readMdxFile<GuidesMetadata>(guideFilePath);
 
@@ -94,14 +94,16 @@ export function getAllGuides(): Guide[] {
             .replace(GUIDES_BASE_PATH + "/", "")
             .replace(path.extname(fileContent.filePath), "");
 
-          const locale =
-            filePath.split(".").length === 3
-              ? filePath.split(".")[1]
-              : undefined;
+          // Extract locale from the relative file path (e.g., "eduroam/ios.de" -> "de")
+          const parts = relativeFilePath.split(".");
+          const locale = parts.length === 2 ? parts[1] : undefined;
+
+          // Normalize file path by stripping any trailing locale suffix (e.g., "eduroam/ios.de" -> "eduroam/ios")
+          const normalizedFilePath = parts[0];
 
           guides.push({
             locale: locale,
-            filePath: relativeFilePath,
+            filePath: normalizedFilePath,
             metadata: fileContent.metadata,
             content: fileContent.content,
           });

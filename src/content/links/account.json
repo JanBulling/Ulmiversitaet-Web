@@ -1,6 +1,6 @@
 {
   "title": "Account-Management",
-  "description": "Diverse accounts an der Uni Ulm, wie z.B. Chipkarte, PC-Pools, Mailinglisten, Sona, etc.",
+  "description": "Schnellzugriff auf deine Chipkarte, PC-Pools, Mailinglisten, SONA etc.",
   "content": [
     {
       "type": "LINK",
@@ -9,7 +9,7 @@
       "description": "Zentrale Verwaltung von Personendaten und Chipkarte.",
       "related": [
         {
-          "label": "Mehr informationen",
+          "label": "Mehr Informationen",
           "href": "https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/account-zugang/idm/"
         },
         {

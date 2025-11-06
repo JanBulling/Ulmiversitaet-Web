@@ -10,6 +10,7 @@ import { Input } from "@/ui/input/input";
 import { Button } from "@/ui/button";
 import { SearchIcon } from "lucide-react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import {
   Select,
   SelectContent,
@@ -39,25 +40,26 @@ const urls: Record<string, string> = {
     "https://api.maptiler.com/maps/satellite/{z}/{x}/{y}{r}.jpg?key=aiupYKVO4aLhrM0FpgZb",
 };
 
-const layers = ["Gebäude", "Hörsaal", "Wichtige Orte"];
+const layerKeys = ["buildings", "lectureHalls", "poi"] as const;
 
 export default function Map({ lectureHalls, buildings }: CampusMapProps) {
+  const t = useTranslations("CampusMap");
   const [search, setSearch] = React.useState("");
-  const [selectedLayer, setSelectedLayer] = React.useState(layers[0]);
+  const [selectedLayerKey, setSelectedLayerKey] = React.useState<(typeof layerKeys)[number]>(layerKeys[0]);
   const { resolvedTheme } = useTheme();
 
   return (
     <div className="mt-2">
       <div className="px-4">
-        <Label htmlFor="select-layer">Auswählen, was angezeigt wird</Label>
-        <Select value={selectedLayer} onValueChange={setSelectedLayer}>
+        <Label htmlFor="select-layer">{t("selectLabel")}</Label>
+        <Select value={selectedLayerKey} onValueChange={(v) => setSelectedLayerKey(v as (typeof layerKeys)[number])}>
           <SelectTrigger id="select-layer" className="mt-1 w-[280px]">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="z-1000">
-            {layers.map((layer) => (
-              <SelectItem key={layer} value={layer}>
-                {layer}
+            {layerKeys.map((key) => (
+              <SelectItem key={key} value={key}>
+                {t(`layers.${key}`)}
               </SelectItem>
             ))}
           </SelectContent>
@@ -75,12 +77,12 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
         >
           <Input
             id="search"
-            placeholder={`Suche ${selectedLayer}`}
+            placeholder={t("searchPlaceholder", { layer: t(`layers.${selectedLayerKey}`) })}
             className="text-sm"
           />
           <Button type="submit" className="hidden md:inline-flex">
             <SearchIcon />
-            Suchen
+            {t("searchButton")}
           </Button>
           <Button type="submit" className="md:hidden" size="icon">
             <SearchIcon />
@@ -100,7 +102,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
           <LayersControl position="topright">
             <LayersControl.BaseLayer
               checked={resolvedTheme === "light"}
-              name="Hell"
+              name={t("baseLayers.light")}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -112,7 +114,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer
               checked={resolvedTheme === "dark"}
-              name="Dunkel"
+              name={t("baseLayers.dark")}
             >
               <TileLayer
                 attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
@@ -122,7 +124,7 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
                 minZoom={14}
               />
             </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name="Satellit">
+            <LayersControl.BaseLayer name={t("baseLayers.satellite")}>
               <TileLayer
                 attribution='&copy; <a href="https://www.maptiler.com/copyright">MapTiler</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>'
                 url={urls.satellite}
@@ -132,10 +134,10 @@ export default function Map({ lectureHalls, buildings }: CampusMapProps) {
               />
             </LayersControl.BaseLayer>
           </LayersControl>
-          {selectedLayer === layers[0] && (
+          {selectedLayerKey === layerKeys[0] && (
             <BuildingsMapLayer buildings={buildings} searchTerm={search} />
           )}
-          {selectedLayer === layers[1] && (
+          {selectedLayerKey === layerKeys[1] && (
             <LectureHallsMapLayer
               lectureHalls={lectureHalls}
               searchTerm={search}

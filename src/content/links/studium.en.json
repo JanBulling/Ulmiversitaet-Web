@@ -1,6 +1,6 @@
 {
-  "title": "Studium",
-  "description": "Hier findest du Modulhandbücher, Bibliotheksverzeichnisse und Veranstaltungen.",
+  "title": "Studies",
+  "description": "Here you can find module handbooks, library catalogs, and courses.",
   "content": [
     {
       "type": "LINK",
@@ -11,21 +11,21 @@
       "type": "LINK",
       "label": "CampusOnline",
       "href": "https://campusonline.uni-ulm.de/",
-      "description": "Das Portal Studium und Lehre (LSF) ist die zentrale Anlaufstelle für Prüfungsanmeldungen, Modulhandbücher und Veranstaltungsverzeichnisse.",
+      "description": "The portal for studies and teaching (LSF) is the central place for exam registration, module handbooks, and course catalogs.",
       "related": [
         {
           "type": "LINK",
-          "label": "Veranstaltungsverzeichnis",
+          "label": "Course Catalog",
           "href": "https://portal.uni-ulm.de/PortalWI/sso/vvz.html"
         },
         {
           "type": "LINK",
-          "label": "Modulhandbücher",
+          "label": "Module Handbooks",
           "href": "https://campusonline.uni-ulm.de/qislsf/rds?state=change&type=1&moduleParameter=modulhandbuecherMenue&nextdir=change&next=menu.vm&subdir=applications&xml=menu&purge=y&database=n&navigationPosition=modules%2CModulhandbuecher&breadcrumb=mod_handbuecher_UL&topitem=modules&subitem=Modulhandbuecher"
         },
         {
           "type": "LINK",
-          "label": "Veranstaltungsarchiv",
+          "label": "Course Archive",
           "href": "https://campusonline.uni-ulm.de/qislsf/rds?state=change&type=1&moduleParameter=VVZArchivMenue&nextdir=change&next=menu.vm&subdir=applications&xml=menu&purge=y&database=n&navigationPosition=lectures%2CVVZArchiv&topitem=lectures&subitem=VVZArchiv"
         }
       ]
@@ -34,13 +34,13 @@
       "type": "LINK",
       "label": "Campus4",
       "href": "https://campus4.uni-ulm.de/",
-      "description": "Hier gibt es alle möglichen Bescheinigungen."
+      "description": "Here you can download all kinds of certificates."
     },
     {
       "type": "LINK",
       "label": "Print@Uni",
       "href": "https://print.uni-ulm.de/",
-      "description": "Nur aus dem Uni-Netz erreichbar."
+      "description": "Accessible only from the university network."
     },
     {
       "type": "LINK",
@@ -49,18 +49,18 @@
     },
     {
       "type": "LINK",
-      "label": "Bibliothekskatalog",
+      "label": "Library Catalog",
       "href": "https://ulm.ibs-bw.de/",
-      "description": "Hier findest du hoffentlich all deine Bücher!",
+      "description": "Hopefully you’ll find all your books here!",
       "related": [
         {
           "type": "LINK",
-          "label": "Buche einen Raum in der Bib",
+          "label": "Book a Room in the Library",
           "href": "https://www.uni-ulm.de/einrichtungen/kiz/weiteres/formulare/reservierung-leseplatz-bibl-zentrale/"
         },
         {
           "type": "LINK",
-          "label": "Öffnungszeiten",
+          "label": "Opening Hours",
           "href": "https://www.uni-ulm.de/einrichtungen/kiz/home/service-points/service-point-ausleihe/"
         }
       ]
@@ -69,23 +69,23 @@
       "type": "LINK",
       "label": "CoronaNG",
       "href": "https://campusonline.uni-ulm.de/CoronaNG/index.html",
-      "description": "Anmeldungen für bestimmte Kurse (z.B. ASQ).",
+      "description": "Registration portal for certain courses (e.g. ASQ).",
       "related": [
         {
           "type": "LINK",
-          "label": "Anleitung zur Anmeldung von ASQ",
+          "label": "Guide: ASQ Registration",
           "href": "/guides/ASQ"
         }
       ]
     },
     {
       "type": "LINK",
-      "label": "Hörsaalfinder",
+      "label": "Lecture Hall Finder",
       "href": "https://www.uni-ulm.de/einrichtungen/kiz/weiteres/campus-navigation/hoersaalfinder/"
     },
     {
       "type": "LINK",
-      "label": "Exmatrikulation",
+      "label": "Unenrollment",
       "href": "/exmatriculation"
     }
   ]

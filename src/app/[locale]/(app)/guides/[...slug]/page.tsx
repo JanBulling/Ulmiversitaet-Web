@@ -66,9 +66,8 @@ export async function generateMetadata({
         url: `${siteConfig.url}/guides/${guideFilePath}`,
         images: [
           {
-            url: `/og?title=${
-              guide.metadata.title ?? guideFilePath
-            }&description=${guide.metadata.summary ?? undefined}`,
+            url: `/og?title=${guide.metadata.title ?? guideFilePath
+              }&description=${guide.metadata.summary ?? undefined}`,
           },
         ],
       },
@@ -78,9 +77,8 @@ export async function generateMetadata({
         description: guide.metadata.summary ?? undefined,
         images: [
           {
-            url: `/og?title=${
-              guide.metadata.title ?? guideFilePath
-            }&description=${guide.metadata.summary ?? undefined}`,
+            url: `/og?title=${guide.metadata.title ?? guideFilePath
+              }&description=${guide.metadata.summary ?? undefined}`,
           },
         ],
         creator: "@ulmiversitaet",
