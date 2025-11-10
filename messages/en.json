@@ -63,5 +63,45 @@
     "description": "A collection of useful guides for students at Ulm University. You have more ideas? <a>Let us know!</a>.",
     "backToAll": "Back to all guides",
     "eduroamDescription": "Guides to get eduroam® onto different devices."
+  },
+  "CampusMapPage": {
+    "title": "Campus map",
+    "subtitle": "Find your way around the campus!"
+  },
+  "CampusMap": {
+    "selectLabel": "Choose what to display",
+    "searchPlaceholder": "Search {layer}",
+    "searchButton": "Search",
+    "baseLayers": {
+      "light": "Light",
+      "dark": "Dark",
+      "satellite": "Satellite"
+    },
+    "layers": {
+      "buildings": "Buildings",
+      "lectureHalls": "Lecture halls",
+      "poi": "Points of interest"
+    }
+  },
+  "NotFound": {
+    "title": "Schrödinger's cat has died",
+    "description": "The page exists — or it doesn't. Unfortunately, the universe decided against you this time.",
+    "backHome": "Back to homepage"
+  },
+  "AboutPage": {
+    "title": "About us",
+    "subtitle": "Two master's students in physics who wanted to make student life at Ulm University simpler and clearer.",
+    "roleDeveloper": "Website developer",
+    "roleQA": "Quality assurance",
+    "bioJan": "Jan is a master's student in physics at Ulm University and develops the Ulmiversität website. With his technical background and interest in web development, he built this platform to make everyday university life easier for students.",
+    "bioStefan": "Stefan is also a master's student in physics at Ulm University and takes care of the website's quality assurance. He ensures that all content is correct and up to date and meets students' needs.",
+    "missionTitle": "Our mission",
+    "missionText": "As students, we know the typical everyday challenges: finding lecture halls, checking the canteen menu, keeping track of important dates. With the Ulmiversität website, we wanted to create a central hub that makes this information clear and quickly accessible.",
+    "independenceTitle": "Independence",
+    "important": "Important:",
+    "independenceText": "We are completely independent of Ulm University and the student representation (StuVe). We develop this platform externally and on our own initiative.",
+    "contactTitle": "Contact & feedback",
+    "contactDescription": "Do you have questions, suggestions or feedback? We look forward to hearing from you!",
+    "footerSlogan": "By students, for students"
   }
 }

@@ -12,10 +12,10 @@ const defaultQuickLinksLabel: QuickLinkLabelType[] = [
   "Moodle",
   "Campus Online",
   "Campus4",
-  "Sogo",
+  "SOGo",
   "Print@Uni",
   "CloudStore",
-  "Karte",
+  "Map",
 ];
 
 export const quickLinks = [
@@ -29,7 +29,7 @@ export const quickLinks = [
     icon: "/icons/quick-links/campus4.png",
   },
   {
-    label: "Karte",
+    label: "Map",
     href: "/campus-map",
     icon: "/icons/quick-links/map.png",
     internalLink: true,
@@ -72,7 +72,7 @@ export const quickLinks = [
     icon: "/icons/quick-links/print.png",
   },
   {
-    label: "Sogo",
+    label: "SOGo",
     href: "https://sogo.uni-ulm.de",
     icon: "/icons/quick-links/mail.png",
   },

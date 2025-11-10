@@ -7,114 +7,136 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const guidesSitemap = getGuideSitemaps();
   const linksSitemap = getLinksSitemaps();
 
-  return [
+  const locales: { locale: "de" | "en"; prefix: string }[] = [
+    { locale: "de", prefix: "" },
+    { locale: "en", prefix: "/en" },
+  ];
+
+  const staticPages = locales.flatMap(({ prefix }) => [
     {
-      url: BASE_URL,
+      url: `${BASE_URL}${prefix || ""}`,
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "daily" as const,
       priority: 1,
     },
     {
-      url: `${BASE_URL}/guides`,
+      url: `${BASE_URL}${prefix}/guides`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.98,
     },
     {
-      url: `${BASE_URL}/links`,
+      url: `${BASE_URL}${prefix}/links`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.97,
     },
     {
-      url: `${BASE_URL}/campus-map`,
+      url: `${BASE_URL}${prefix}/campus-map`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.96,
     },
     {
-      url: `${BASE_URL}/exmatriculation`,
+      url: `${BASE_URL}${prefix}/exmatriculation`,
       lastModified: new Date(),
-      changeFrequency: "monthly",
+      changeFrequency: "monthly" as const,
       priority: 0.7,
     },
     {
-      url: `${BASE_URL}/public-transport`,
+      url: `${BASE_URL}${prefix}/public-transport`,
       lastModified: new Date(),
-      changeFrequency: "daily",
+      changeFrequency: "daily" as const,
       priority: 0.5,
     },
     {
-      url: `${BASE_URL}/about`,
+      url: `${BASE_URL}${prefix}/about`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.2,
     },
     {
-      url: `${BASE_URL}/privacy`,
+      url: `${BASE_URL}${prefix}/privacy`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.2,
     },
     {
-      url: `${BASE_URL}/imprint`,
+      url: `${BASE_URL}${prefix}/imprint`,
       lastModified: new Date(),
-      changeFrequency: "yearly",
+      changeFrequency: "yearly" as const,
       priority: 0.2,
     },
-    ...guidesSitemap,
-    ...linksSitemap,
-  ];
+  ]) as MetadataRoute.Sitemap;
+
+  return [...staticPages, ...guidesSitemap, ...linksSitemap];
 }
 
 function getGuideSitemaps(): MetadataRoute.Sitemap {
   const allGuides = getAllGuides();
 
-  const data: { url: string; date?: string | Date }[] = allGuides
-    .filter((guide) => guide.locale === "de")
-    .map((guide) => ({
-      url: guide.filePath
-        .split(/[/\\]+/)
-        .map((s) => encodeURI(s))
-        .join("/")
-        .split(".")[0],
-      date: guide.metadata.publishedAt,
-      locale: guide.locale,
-    }));
+  type Data = { url: string; date?: string | Date; locale: "de" | "en" };
+  const data: Data[] = allGuides.map((guide) => ({
+    url: guide.filePath
+      .split(/[/\\]+/)
+      .map((s) => encodeURI(s))
+      .join("/")
+      .split(".")[0],
+    date: guide.metadata.publishedAt,
+    locale: guide.locale === "en" ? "en" : "de",
+  }));
 
-  // Also generate slugs for folder pages
-  const folderSlugs = new Set<string>();
+  const folderSlugsByLocale = new Map<"de" | "en", Set<string>>([
+    ["de", new Set<string>()],
+    ["en", new Set<string>()],
+  ]);
   allGuides.forEach((guide) => {
     const pathParts = guide.filePath.split(/[/\\]+/);
     for (let i = 1; i < pathParts.length; i++) {
       const folderPath = pathParts.slice(0, i).join("/");
-      folderSlugs.add(folderPath);
+      const loc = guide.locale === "en" ? "en" : "de";
+      folderSlugsByLocale.get(loc)!.add(folderPath);
     }
   });
-  folderSlugs.forEach((folderPath) => {
-    data.push({
-      url: folderPath
-        .split(/[/\\]+/)
-        .map((s) => encodeURI(s))
-        .join("/"),
+  folderSlugsByLocale.forEach((folderSlugs, locale) => {
+    folderSlugs.forEach((folderPath) => {
+      data.push({
+        url: folderPath
+          .split(/[/\\]+/)
+          .map((s) => encodeURI(s))
+          .join("/"),
+        locale,
+      });
     });
   });
 
-  return data.map((data) => ({
-    url: `${BASE_URL}/guides/${data.url}`,
-    lastModified: data.date ?? new Date(),
-    changeFrequency: "monthly",
-    priority: 0.9,
-  }));
+  return data.map((data) => {
+    const prefix = data.locale === "en" ? "/en" : "";
+    return {
+      url: `${BASE_URL}${prefix}/guides/${data.url}`,
+      lastModified: data.date ?? new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.9,
+    };
+  });
 }
 
 function getLinksSitemaps(): MetadataRoute.Sitemap {
-  const allLinkCategories = getAllLinkCategories();
+  const deCategories = getAllLinkCategories("de");
+  const enCategories = getAllLinkCategories("en");
 
-  return allLinkCategories.map((data) => ({
-    url: `${BASE_URL}/links/${data.slug}`,
-    lastModified: new Date(),
-    changeFrequency: "monthly",
-    priority: 0.85,
-  }));
+  return [
+    ...deCategories.map((data) => ({
+      url: `${BASE_URL}/links/${data.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    })),
+    ...enCategories.map((data) => ({
+      url: `${BASE_URL}/en/links/${data.slug}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.84,
+    })),
+  ] as MetadataRoute.Sitemap;
 }

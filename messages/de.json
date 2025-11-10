@@ -12,7 +12,7 @@
   "HomePage": {
     "title": "Ulmiversität",
     "QuickLinks": {
-      "more": "Weitere Links",
+      "more": "Mehr Links",
       "moreShort": "Mehr Links"
     },
     "PublicTransport": {
@@ -63,5 +63,45 @@
     "description": "Die Ulmiversität hat eine Sammlung von Anleitungen, die den Uni-Alltag erleichtern sollen. Eine Anleitung fehlt oder Du hast weitere Ideen? <a>Schreibe uns!</a>.",
     "backToAll": "Zurück zu allen Anleitungen",
     "eduroamDescription": "Anleitungen zur Einrichtung von eduroam® an verschiedenen Geräten."
+  },
+  "CampusMapPage": {
+    "title": "Campus-Karte",
+    "subtitle": "Finde dich auf dem Campus zurecht!"
+  },
+  "CampusMap": {
+    "selectLabel": "Auswählen, was angezeigt wird",
+    "searchPlaceholder": "Suche {layer}",
+    "searchButton": "Suchen",
+    "baseLayers": {
+      "light": "Hell",
+      "dark": "Dunkel",
+      "satellite": "Satellit"
+    },
+    "layers": {
+      "buildings": "Gebäude",
+      "lectureHalls": "Hörsäle",
+      "poi": "Wichtige Orte"
+    }
+  },
+  "NotFound": {
+    "title": "Schrödingers Katze ist gestorben",
+    "description": "Die Seite existiert – oder existiert nicht. Leider hat das Universum sich gegen dich entschieden.",
+    "backHome": "Zur Startseite"
+  },
+  "AboutPage": {
+    "title": "Über uns",
+    "subtitle": "Zwei Physik-Masterstudenten, die das Studierendenleben an der Uni Ulm einfacher und übersichtlicher gestalten wollten.",
+    "roleDeveloper": "Entwickler der Website",
+    "roleQA": "Qualitätssicherung",
+    "bioJan": "Jan studiert Physik im Master an der Uni Ulm und entwickelt die Ulmiversität-Website. Mit seinem technischen Hintergrund und Interesse an Webentwicklung hat er diese Plattform erstellt, um Studierenden den Unialltag zu erleichtern.",
+    "bioStefan": "Stefan studiert ebenfalls Physik im Master an der Uni Ulm und kümmert sich um die Qualitätssicherung der Website. Er sorgt dafür, dass alle Inhalte korrekt und aktuell sind und die Bedürfnisse der Studierenden erfüllt werden.",
+    "missionTitle": "Unser Ziel",
+    "missionText": "Als Studierende kennen wir die typischen Probleme des Unialltags: Hörsäle finden, Mensa-Speisepläne checken, wichtige Termine im Blick behalten. Mit der Ulmiversität-Website wollten wir eine zentrale Anlaufstelle schaffen, die diese Informationen übersichtlich und schnell zugänglich macht.",
+    "independenceTitle": "Unabhängigkeit",
+    "important": "Wichtig:",
+    "independenceText": "Wir sind vollständig unabhängig von der Universität Ulm und der Studierendenvertretung (StuVe). Diese Plattform entwickeln wir extern und aus eigenem Antrieb heraus.",
+    "contactTitle": "Kontakt & Feedback",
+    "contactDescription": "Habt ihr Fragen, Anregungen oder Feedback? Wir freuen uns über eure Nachrichten!",
+    "footerSlogan": "Von Studierenden für Studierende"
   }
 }

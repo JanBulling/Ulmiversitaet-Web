@@ -6,18 +6,21 @@ import { Icons } from "@/ui/icons";
 import { Heart, Users, Code, Shield, GraduationCap, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/config/site";
+import { useTranslations } from "next-intl";
 
 export default function AboutUs() {
+    const t = useTranslations("AboutPage");
+
     return (
         <div className="mx-auto max-w-4xl space-y-8">
             {/* Header Section */}
             <div className="text-center space-y-4">
                 <div className="flex items-center justify-center gap-2 mb-4">
                     <Users className="h-8 w-8 text-primary" />
-                    <h1 className="text-4xl font-bold">Über uns</h1>
+                    <h1 className="text-4xl font-bold">{t("title")}</h1>
                 </div>
                 <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                    Zwei Physik-Masterstudenten, die das Studierendenleben an der Uni Ulm einfacher und übersichtlicher gestalten wollten.
+                    {t("subtitle")}
                 </p>
             </div>
 
@@ -39,14 +42,14 @@ export default function AboutUs() {
                                 <CardTitle className="text-xl">Jan Bulling</CardTitle>
                                 <CardDescription className="flex items-center gap-2">
                                     <Code className="h-4 w-4" />
-                                    Entwickler der Website
+                                    {t("roleDeveloper")}
                                 </CardDescription>
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent className="relative">
                         <p className="text-muted-foreground">
-                            Jan studiert Physik im Master an der Uni Ulm und entwickelt die Ulmiversität-Website. Mit seinem technischen Hintergrund und Interesse an Webentwicklung hat er diese Plattform erstellt, um Studierenden den Unialltag zu erleichtern.
+                            {t("bioJan")}
                         </p>
                     </CardContent>
                 </Card>
@@ -67,14 +70,14 @@ export default function AboutUs() {
                                 <CardTitle className="text-xl">Stefan Rau</CardTitle>
                                 <CardDescription className="flex items-center gap-2">
                                     <Shield className="h-4 w-4" />
-                                    Qualitätssicherung
+                                    {t("roleQA")}
                                 </CardDescription>
                             </div>
                         </div>
                     </CardHeader>
                     <CardContent className="relative">
                         <p className="text-muted-foreground">
-                            Stefan studiert ebenfalls Physik im Master an der Uni Ulm und kümmert sich um die Qualitätssicherung der Website. Er sorgt dafür, dass alle Inhalte korrekt und aktuell sind und die Bedürfnisse der Studierenden erfüllt werden.
+                            {t("bioStefan")}
                         </p>
                     </CardContent>
                 </Card>
@@ -87,12 +90,12 @@ export default function AboutUs() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2">
                         <Heart className="h-5 w-5 text-red-500" />
-                        Unser Ziel
+                        {t("missionTitle")}
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-muted-foreground leading-relaxed">
-                        Als Studierende kennen wir die typischen Probleme des Unialltags: Hörsäle finden, Mensa-Speisepläne checken, wichtige Termine im Blick behalten. Mit der Ulmiversität-Website wollten wir eine zentrale Anlaufstelle schaffen, die diese Informationen übersichtlich und schnell zugänglich macht.
+                        {t("missionText")}
                     </p>
                 </CardContent>
             </Card>
@@ -102,12 +105,12 @@ export default function AboutUs() {
                 <CardHeader>
                     <CardTitle className="flex items-center gap-2 text-amber-800 dark:text-amber-200">
                         <Icons.gitHub className="h-5 w-5" />
-                        Unabhängigkeit
+                        {t("independenceTitle")}
                     </CardTitle>
                 </CardHeader>
                 <CardContent>
                     <p className="text-amber-700 dark:text-amber-300 leading-relaxed">
-                        <strong>Wichtig:</strong> Wir sind vollständig unabhängig von der Universität Ulm und der Studierendenvertretung (StuVe). Diese Plattform entwickeln wir extern und aus eigenem Antrieb heraus.
+                        <strong>{t("important")}</strong> {t("independenceText")}
                     </p>
                 </CardContent>
             </Card>
@@ -115,9 +118,9 @@ export default function AboutUs() {
             {/* Contact Section */}
             <Card>
                 <CardHeader>
-                    <CardTitle>Kontakt & Feedback</CardTitle>
+                    <CardTitle>{t("contactTitle")}</CardTitle>
                     <CardDescription>
-                        Habt ihr Fragen, Anregungen oder Feedback? Wir freuen uns über eure Nachrichten!
+                        {t("contactDescription")}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -144,7 +147,7 @@ export default function AboutUs() {
             <div className="text-center py-8">
                 <div className="flex items-center justify-center gap-2 text-muted-foreground">
                     <Heart className="h-4 w-4 text-red-500" />
-                    <span>Von Studierenden für Studierende</span>
+                    <span>{t("footerSlogan")}</span>
                 </div>
             </div>
         </div>
