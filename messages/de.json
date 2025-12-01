@@ -18,7 +18,7 @@
     "PublicTransport": {
       "title": "Echtzeit-ÖPNV",
       "moreStops": "Weitere Haltestellen",
-      "onTime": "Pünkltlich",
+      "onTime": "Pünktlich",
       "delayed": "Verspätet",
       "noDepartures": "Keine Abfahrten gefunden."
     },
