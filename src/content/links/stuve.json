@@ -6,52 +6,52 @@
             "type": "LINK",
             "label": "StuVe-Website",
             "description": "Die zentrale Website der StuVe (Studierendenvertretung). Hier geht's auch zu den Seiten der Fachschaften.",
-            "href": "https://stuve.uni-ulm.de/",
+            "href": "https://stuve.de/",
             "related": [
                 {
                     "type": "LINK",
                     "label": "Fachschaften",
-                    "href": "https://stuve.uni-ulm.de/fachschaften"
+                    "href": "https://stuve.de/fachschaften"
                 },
                 {
                     "type": "LINK",
                     "label": "StuVe Accountanfrage",
-                    "href": "https://stuve.uni-ulm.de/referate/computerreferat/it-accountanfrage"
+                    "href": "https://account.stuve.de/"
                 }
             ]
         },
         {
             "type": "LINK",
             "label": "Aktuelle Veranstaltungen",
-            "href": "https://stuve.uni-ulm.de/aktuelles/veranstaltungen"
+            "href": "https://stuve.de/aktuelles/veranstaltungen"
         },
         {
             "type": "LINK",
             "label": "StuVe-Pad",
             "description": "HedgeDoc-Pad für gemeinsames Arbeiten an Dokumenten.",
-            "href": "https://pad.stuve.uni-ulm.de/"
+            "href": "https://pad.stuve.de/"
         },
         {
             "type": "LINK",
             "label": "StuVe-Wiki",
-            "href": "https://wiki.stuve.uni-ulm.de/de/home"
+            "href": "https://wiki.stuve.de/de/home"
         },
         {
             "type": "LINK",
-            "label": "StuVe-IT",
-            "href": "https://it.stuve.uni-ulm.de/events"
+            "label": "StuVe-IT Tools",
+            "href": "https://it.stuve.de/"
         },
         {
             "type": "LINK",
             "label": "StuVe-Druck-Service",
             "description": "Abrechnungsdienst für Druckaufträge der StuVe.",
-            "href": "https://druck.stuve.uni-ulm.de/"
+            "href": "https://druck.stuve.de/"
         },
         {
             "type": "LINK",
             "label": "TYPO3",
             "description": "Tool zur Verwaltung der StuVe-Websites.",
-            "href": "https://stuve.uni-ulm.de/typo3/"
+            "href": "https://stuve.de/typo3/"
         }
     ]
 }
