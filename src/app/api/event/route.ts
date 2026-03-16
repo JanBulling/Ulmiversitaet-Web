@@ -58,7 +58,7 @@ export async function POST(req: Request) {
       endTime: endTime,
     });
 
-    revalidateTag("events");
+    revalidateTag("events", "max");
     revalidatePath("/");
 
     return new Response("Success");
@@ -106,7 +106,7 @@ export async function DELETE(req: Request) {
 
     await db.delete(eventsTable).where(eq(eventsTable.id, data.id));
 
-    revalidateTag("events");
+    revalidateTag("events", "max");
     revalidatePath("/");
 
     return new Response("Success");
