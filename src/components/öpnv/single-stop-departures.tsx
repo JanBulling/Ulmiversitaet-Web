@@ -11,6 +11,7 @@ import {
 } from "@/lib/public-transport/pub-tra-time-formatter";
 import { getDeparturesAtStop } from "@/lib/public-transport/swu-api";
 import StopSelectorButton from "./stop-select-btn";
+import { useTranslations } from "next-intl";
 
 interface SingleStopDeparturesProps {
   initialStopNumber: number;
@@ -25,6 +26,7 @@ export default function SingleStopDepartures({
   onVehicleClick,
   vehicleId,
 }: SingleStopDeparturesProps) {
+  const t = useTranslations("HomePage.PublicTransport");
   const [stopNumber, setStopNumber] = React.useState<number>(initialStopNumber);
   const [departures, setDepartures] =
     React.useState<Departure[]>(initialDepartures);
@@ -108,7 +110,7 @@ export default function SingleStopDepartures({
             </li>
           ))
         ) : (
-          <p className="text-muted-foreground mt-4">No departures found.</p>
+          <p className="text-muted-foreground mt-4">{t("noDepartures")}</p>
         )}
       </ol>
     </div>

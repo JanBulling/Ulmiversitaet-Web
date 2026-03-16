@@ -1,16 +1,16 @@
 {
     "title": "International Office",
-    "description": "Links zum Auslandssemester / ERAMSUS+ Programm.",
+    "description": "Links for semesters abroad / ERASMUS+ program.",
     "content": [
         {
             "type": "LINK",
             "label": "International Office",
-            "description": "Alle Informationen zum Auslandssemester-Programm.",
+            "description": "All information about the semester abroad program.",
             "href": "https://www.uni-ulm.de/io/",
             "related": [
                 {
                     "type": "LINK",
-                    "label": "Ereichbar unter study-abroad(at)uni-ulm.de",
+                    "label": "Reachable at study-abroad(at)uni-ulm.de",
                     "href": "mailto:study-abroad@uni-ulm.de"
                 }
             ]
@@ -22,25 +22,27 @@
         },
         {
             "type": "LINK",
-            "label": "ERASMUS+ Programm",
+            "label": "ERASMUS+ Program",
             "href": "https://www.uni-ulm.de/io/mob-out/ausland-semester-jahr/erasmus-sms/bewerbung-intern/",
             "related": [
                 {
                     "type": "LINK",
-                    "label": "Suchportal für Partneruniversitäten",
+                    "label": "Search portal for partner universities",
                     "href": "https://www.service4mobility.com/europe/PortalServlet?identifier=ULM01&showAll=0&showPartner=0&preselectTab=ver_nav_button&sprache=de"
                 },
                 {
                     "type": "LINK",
-                    "label": "Sprachtests",
+                    "label": "Language tests",
                     "href": "https://www.uni-ulm.de/einrichtungen/zsp/test/daad/"
                 },
                 {
                     "type": "LINK",
-                    "label": "Erfahrungsberichte",
+                    "label": "Experience reports",
                     "href": "https://www.service4mobility.com/europe/PortalServlet?identifier=ULM01&showAll=0&showPartner=0&preselectTab=ver_nav_button&sprache=de"
                 }
             ]
         }
     ]
 }
+
+

@@ -78,7 +78,7 @@ export default function EventItem({ event }: EventItemProps) {
           {(event.startTime || event.endTime) && (
             <p className="flex items-center gap-2 text-sm">
               <ClockIcon className="size-4 shrink-0" />
-              {`${event.startTime} - ${event.endTime?.length === 2 ? event.endTime : "open end"}`}
+              {`${event.startTime} - ${event.endTime?.length === 9 ? event.endTime : "open end"}`}
             </p>
           )}
         </div>

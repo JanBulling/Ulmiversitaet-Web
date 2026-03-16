@@ -49,12 +49,8 @@ export async function getDeparturesAtStop(
 
     return departures;
   } catch (error) {
-    console.error(
-      "[getDeparturesAtStop]",
-      "Parsing Error - Unexpected API format",
-      error,
-    );
-    throw new ParsingError("Failed to parse departures data.");
+    // Return empty array instead of throwing error to show "no vehicles upcoming"
+    return [];
   }
 }
 

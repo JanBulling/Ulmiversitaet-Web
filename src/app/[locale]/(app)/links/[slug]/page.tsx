@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 interface LinkPageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string; locale: "de" | "en" }>;
 }
 
 export async function generateStaticParams() {
@@ -19,9 +19,9 @@ export const dynamicParams = false;
 export async function generateMetadata({
   params,
 }: LinkPageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
 
-  const linkCategory = getLinkCategory(slug);
+  const linkCategory = getLinkCategory(slug, locale);
 
   return {
     title: linkCategory?.description ?? slug,
@@ -30,8 +30,8 @@ export async function generateMetadata({
 }
 
 export default async function LinkPage({ params }: LinkPageProps) {
-  const { slug } = await params;
-  const linkCategory = getLinkCategory(slug);
+  const { slug, locale } = await params;
+  const linkCategory = getLinkCategory(slug, locale);
 
   if (!linkCategory) notFound();
 

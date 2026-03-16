@@ -2,7 +2,7 @@ import LinkCategoryCard from "@/components/links/link-category-card";
 import { getAllLinkCategories } from "@/content/links/links";
 import BaseLayout from "@/layouts/base-layout";
 import { Metadata } from "next";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 // Wrong since already statically generated using internationalization
 // export const dynamic = "force-static";
@@ -15,8 +15,11 @@ export const metadata: Metadata = {
 
 export default function LinksPage() {
   const t = useTranslations("LinkPage");
+  const locale = useLocale();
 
-  const allLinkCategories = getAllLinkCategories();
+  const allLinkCategories = getAllLinkCategories(
+    (locale as "de" | "en") ?? "de",
+  );
 
   return (
     <BaseLayout>

@@ -1,0 +1,60 @@
+{
+    "title": "Account Management",
+    "description": "Quick access to your chip card, PC pools, mailing lists, SONA, etc.",
+    "content": [
+        {
+            "type": "LINK",
+            "label": "Identity Management",
+            "href": "https://portal.uni-ulm.de/idmFrontend/",
+            "description": "Central management of personal data and chip card.",
+            "related": [
+                {
+                    "label": "More information",
+                    "href": "https://www.uni-ulm.de/einrichtungen/kiz/service-katalog/account-zugang/idm/"
+                },
+                {
+                    "type": "GUIDE",
+                    "label": "Extend chip card",
+                    "href": "/guides/chipkarte"
+                }
+            ]
+        },
+        {
+            "type": "LINK",
+            "label": "kiz Web Services",
+            "href": "https://portal.uni-ulm.de/PortalWI/index.html",
+            "description": "An overview of all web services provided by kiz."
+        },
+        {
+            "type": "LINK",
+            "label": "SGI Account",
+            "href": "https://www.uni-ulm.de/in/sgi/services/account-system/account-erstellen/",
+            "description": "Access to the Computer Science PC pools",
+            "related": [
+                {
+                    "label": "Reset password",
+                    "href": "https://psi.informatik.uni-ulm.de:1244/sgi/password-reset"
+                }
+            ]
+        },
+        {
+            "type": "LINK",
+            "label": "Mailing lists",
+            "href": "https://imap.uni-ulm.de/lists",
+            "description": "Subscribe / unsubscribe from mailing lists."
+        },
+        {
+            "type": "LINK",
+            "label": "SONA",
+            "href": "https://uulm.sona-systems.com/",
+            "description": "Management of psychological experiments and research participation hours.",
+            "related": [
+                {
+                    "type": "LINK",
+                    "label": "Reset password",
+                    "href": "https://uulm.sona-systems.com/lost_password.aspx"
+                }
+            ]
+        }
+    ]
+}

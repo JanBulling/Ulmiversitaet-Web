@@ -1,0 +1,57 @@
+{
+    "title": "StuVe Services",
+    "description": "Links to StuVe services.",
+    "content": [
+        {
+            "type": "LINK",
+            "label": "StuVe Website",
+            "description": "The central website of StuVe (student representation). This also links to the student councils.",
+            "href": "https://stuve.uni-ulm.de/",
+            "related": [
+                {
+                    "type": "LINK",
+                    "label": "Student councils",
+                    "href": "https://stuve.uni-ulm.de/fachschaften"
+                },
+                {
+                    "type": "LINK",
+                    "label": "StuVe IT account request",
+                    "href": "https://stuve.uni-ulm.de/referate/computerreferat/it-accountanfrage"
+                }
+            ]
+        },
+        {
+            "type": "LINK",
+            "label": "Current events",
+            "href": "https://stuve.uni-ulm.de/aktuelles/veranstaltungen"
+        },
+        {
+            "type": "LINK",
+            "label": "StuVe Pad",
+            "description": "HedgeDoc pad for collaborative editing.",
+            "href": "https://pad.stuve.uni-ulm.de/"
+        },
+        {
+            "type": "LINK",
+            "label": "StuVe Wiki",
+            "href": "https://wiki.stuve.uni-ulm.de/de/home"
+        },
+        {
+            "type": "LINK",
+            "label": "StuVe IT",
+            "href": "https://it.stuve.uni-ulm.de/events"
+        },
+        {
+            "type": "LINK",
+            "label": "StuVe print service",
+            "description": "Billing service for StuVe print jobs.",
+            "href": "https://druck.stuve.uni-ulm.de/"
+        },
+        {
+            "type": "LINK",
+            "label": "TYPO3",
+            "description": "Tool for managing StuVe websites.",
+            "href": "https://stuve.uni-ulm.de/typo3/"
+        }
+    ]
+}
