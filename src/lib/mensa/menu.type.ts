@@ -8,6 +8,7 @@ import {
   Pizza,
   Salad,
   Utensils,
+  Vegan,
   Wheat,
 } from "lucide-react";
 
@@ -36,6 +37,8 @@ export type MensaCategory =
   | "TOPF UND PFANNE"
   | "PRIMA KLIMA"
   | "FLEISCH UND FISCH"
+  | "VEGAN"
+  | "VEGETARISCH"
   | "PIZZA"
   | "PASTA"
   | "SNACKS"
@@ -50,6 +53,8 @@ export const mensaCategoryColorMap: Partial<Record<MensaCategory, string>> = {
   "FLEISCH UND FISCH": "#ef4444",
   "PRIMA KLIMA": "#22c55e",
   "TOPF UND PFANNE": "#3b82f6",
+  VEGAN: "#9bbd1d",
+  VEGETARISCH: "#22c55e",
   SALAT: "#65a30d",
   SALATBUFFET: "#16a34a",
   BEILAGE: "#525252",
@@ -72,6 +77,8 @@ export const mensaCategoryIconMap: Partial<
   "FLEISCH UND FISCH": Ham,
   "PRIMA KLIMA": Leaf,
   "TOPF UND PFANNE": CookingPot,
+  VEGAN: Vegan,
+  VEGETARISCH: Leaf,
   SALAT: Salad,
   SALATBUFFET: Salad,
   DESSERT: IceCream,

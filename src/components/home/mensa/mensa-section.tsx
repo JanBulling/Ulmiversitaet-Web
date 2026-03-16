@@ -12,6 +12,8 @@ import { getTranslations } from "next-intl/server";
 
 const shownSingleCategories: MensaCategory[] = [
   "SATTMACHER",
+  "VEGAN",
+  "VEGETARISCH",
   "TOPF UND PFANNE",
   "PRIMA KLIMA",
   "FLEISCH UND FISCH",
