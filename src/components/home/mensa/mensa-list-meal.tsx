@@ -5,8 +5,8 @@ import {
   mensaCategoryIconMap,
   MensaMeal,
 } from "@/lib/mensa/menu.type";
-import { generateSlug } from "@/lib/utils";
 import { Rating } from "@/ui/rating";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 
 interface MensaListMealProps {
@@ -15,6 +15,8 @@ interface MensaListMealProps {
 }
 
 export function MensaListMeal({ category, meals }: MensaListMealProps) {
+  const locale = useLocale();
+
   const Icon = mensaCategoryIconMap[category] ?? MensaCategoryDefaultIcon;
 
   return (
@@ -29,11 +31,11 @@ export function MensaListMeal({ category, meals }: MensaListMealProps) {
       {meals.map((meal) => (
         <Link
           key={meal.name}
-          href={`https://mensa.ulmiversitaet.de/meal/${generateSlug(meal.name)}`}
+          href={`https://mensa.ulmiversitaet.de/meal/${meal.slug}`}
         >
           <div className="hover:bg-muted flex items-center justify-between gap-4 px-4 py-1">
             <h4 className="flex-1 text-xs font-semibold md:text-sm">
-              {meal.name}
+              {locale === "de" ? meal.name : meal.nameEn}
             </h4>
             <Rating
               className="shrink-0"

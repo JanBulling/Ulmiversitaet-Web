@@ -19,6 +19,8 @@ export type MensaMenu = {
 
 export type MensaMeal = {
   name: string;
+  nameEn: string;
+  slug: string;
   types: MensaMealTypes[];
   prices: {
     note?: string;
