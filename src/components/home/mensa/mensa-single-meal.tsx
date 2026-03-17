@@ -3,8 +3,8 @@ import {
   mensaCategoryColorMap,
   MensaMeal,
 } from "@/lib/mensa/menu.type";
-import { generateSlug } from "@/lib/utils";
 import { Rating } from "@/ui/rating";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 
 interface MensaSingleMealProps {
@@ -13,7 +13,8 @@ interface MensaSingleMealProps {
 }
 
 export function MensaSingleMeal({ category, meal }: MensaSingleMealProps) {
-  const slug = generateSlug(meal.name);
+  const locale = useLocale();
+  const slug = meal.slug;
 
   return (
     <Link href={`https://mensa.ulmiversitaet.de/meal/${slug}`}>
@@ -29,7 +30,9 @@ export function MensaSingleMeal({ category, meal }: MensaSingleMealProps) {
           />
         </div>
         <div className="mt-1 flex items-center justify-between gap-4">
-          <h4 className="font-semibold">{meal.name}</h4>
+          <h4 className="font-semibold">
+            {locale === "de" ? meal.name : meal.nameEn}
+          </h4>
           <p className="text-muted-foreground font-mono text-sm">
             {meal.prices.student}€
           </p>
