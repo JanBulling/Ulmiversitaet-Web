@@ -8,6 +8,8 @@ import { FeaturedLinksSection } from "@/components/home/featured-sections/featur
 import { FeaturedGuidesSection } from "@/components/home/featured-sections/featured-guides-section";
 import BaseLayout from "@/layouts/base-layout";
 import { Suspense } from "react";
+import { ParkingLotSection } from "@/components/home/parking-lot/parking-lot-section";
+import ParkingLotLoading from "@/components/home/parking-lot/parking-lot-loading";
 
 // mensa won't load
 export const dynamic = "force-dynamic";
@@ -26,6 +28,10 @@ export default function Home() {
           fallback={<PublicTransportLoading className="md:col-span-3" />}
         >
           <PublicTransportSection className="md:col-span-3" />
+        </Suspense>
+
+        <Suspense fallback={<ParkingLotLoading className="col-span-full" />}>
+          <ParkingLotSection className="col-span-full" />
         </Suspense>
       </div>
 
