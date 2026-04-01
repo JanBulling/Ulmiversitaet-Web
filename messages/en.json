@@ -22,6 +22,9 @@
       "delayed": "Delayed",
       "noDepartures": "No departures found."
     },
+    "ParkingLot": {
+      "title": "Parking Lots"
+    },
     "Mensa": {
       "title": "Mensa",
       "moreMeals": "More meals",

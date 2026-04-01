@@ -24,7 +24,7 @@ export async function PublicTransportSection({
   return (
     <section className={cn("bg-card border-y px-4 py-4 md:border", className)}>
       <div className="flex items-center gap-4">
-        <TramFront className="text-primary size.6 md:size-8" />
+        <TramFront className="text-primary size-6 md:size-8" />
 
         <h2 className="flex-1 text-xl font-bold md:text-2xl">{t("title")}</h2>
 
