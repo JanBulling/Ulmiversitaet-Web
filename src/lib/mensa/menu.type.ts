@@ -1,5 +1,6 @@
 import {
   CookingPot,
+  Gem,
   Ham,
   Hamburger,
   IceCream,
@@ -41,6 +42,7 @@ export type MensaCategory =
   | "FLEISCH UND FISCH"
   | "VEGAN"
   | "VEGETARISCH"
+  | "SPECIALS"
   | "PIZZA"
   | "PASTA"
   | "SNACKS"
@@ -56,6 +58,7 @@ export const mensaCategoryColorMap: Partial<Record<MensaCategory, string>> = {
   "PRIMA KLIMA": "#22c55e",
   "TOPF UND PFANNE": "#3b82f6",
   VEGAN: "#9bbd1d",
+  SPECIALS: "#a957f7",
   VEGETARISCH: "#22c55e",
   SALAT: "#65a30d",
   SALATBUFFET: "#16a34a",
@@ -79,6 +82,7 @@ export const mensaCategoryIconMap: Partial<
   "FLEISCH UND FISCH": Ham,
   "PRIMA KLIMA": Leaf,
   "TOPF UND PFANNE": CookingPot,
+  SPECIALS: Gem,
   VEGAN: Vegan,
   VEGETARISCH: Leaf,
   SALAT: Salad,

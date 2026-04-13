@@ -17,6 +17,7 @@ const shownSingleCategories: MensaCategory[] = [
   "TOPF UND PFANNE",
   "PRIMA KLIMA",
   "FLEISCH UND FISCH",
+  "SPECIALS",
 ];
 
 const shownListCategories: MensaCategory[] = [
@@ -96,8 +97,8 @@ export async function MensaSection({
       <div className="flex items-center justify-center">
         <Link
           href="https://mensa.ulmiversitaet.de?utm=ulmiversitaet"
-        // target="_blank"
-        // rel="noopener noreferrer"
+          // target="_blank"
+          // rel="noopener noreferrer"
         >
           <Button variant="outline" className="cursor-pointer">
             {t("moreMeals")}
