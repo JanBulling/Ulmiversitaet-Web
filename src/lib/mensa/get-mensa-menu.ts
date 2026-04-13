@@ -5,7 +5,7 @@ export async function getMensaMenu(): Promise<{
   mensaPlan: MensaMenu[] | null;
 }> {
   try {
-    const request = await fetch("http://localhost:3000/api/v1/today");
+    const request = await fetch("https://mensa.ulmiversitaet.de/api/v1/today");
     const data = await request.json();
 
     const date = new Date();
