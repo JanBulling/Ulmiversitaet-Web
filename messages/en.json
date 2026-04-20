@@ -71,6 +71,10 @@
     "title": "Campus map",
     "subtitle": "Find your way around the campus!"
   },
+  "ParkingLotPage": {
+    "title": "Parking Lots",
+    "description": "Real-time information about free parking spots at Ulm University"
+  },
   "CampusMap": {
     "selectLabel": "Choose what to display",
     "searchPlaceholder": "Search {layer}",
