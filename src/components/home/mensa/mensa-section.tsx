@@ -36,7 +36,7 @@ export async function MensaSection({
 
   const singleCategoriesMensaPlan = mensaPlan?.filter(
     (menu) =>
-      shownSingleCategories.includes(menu.category) && menu.meals.length === 1,
+      shownSingleCategories.includes(menu.category) && menu.meals.length >= 1,
   );
   const listCategoriesMensaPlan = mensaPlan?.filter((menu) =>
     shownListCategories.includes(menu.category),

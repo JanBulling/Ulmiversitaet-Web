@@ -71,6 +71,10 @@
     "title": "Campus-Karte",
     "subtitle": "Finde dich auf dem Campus zurecht!"
   },
+  "ParkingLotPage": {
+    "title": "Parkplätze",
+    "description": "Echtzeit Auskunft der Parkplätze an der Universität Ulm"
+  },
   "CampusMap": {
     "selectLabel": "Auswählen, was angezeigt wird",
     "searchPlaceholder": "Suche {layer}",

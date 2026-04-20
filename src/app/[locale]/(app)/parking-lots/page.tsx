@@ -1,8 +1,10 @@
-import DeparturePassageSection from "@/components/öpnv/departues-passage-section";
-import PassengerAlert from "@/components/öpnv/passenger-alert";
+import BaseLayout from "@/layouts/base-layout";
 import SiteLayout from "@/layouts/site-layout";
 import { getAllParkingLots } from "@/lib/parking/partking-api";
+import { Separator } from "@/ui/separator";
 import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Parkplätze",
@@ -26,10 +28,19 @@ function parkingLotColor(free: number, total: number) {
 }
 
 export default async function ParkinglotsPage() {
+  const t = await getTranslations("ParkingLotPage");
+
   const data = await getAllParkingLots();
 
   return (
     <SiteLayout className="px-0 md:px-4">
+      <div className="px-4">
+        <h1 className="text-2xl font-bold">{t("title")}</h1>
+        <p className="text-muted-foreground">{t("description")}</p>
+      </div>
+
+      <Separator className="my-8" />
+
       {data.map((p) => (
         <div className="hover:bg-muted flex items-center justify-between px-4 py-4">
           <div>
@@ -59,6 +70,19 @@ export default async function ParkinglotsPage() {
           )}
         </div>
       ))}
+
+      <p className="text-muted-foreground mt-4 text-sm">
+        Real-time data taken from{" "}
+        <Link
+          className="underline"
+          href="http://tsu-app.rrooaarr.biz/front/mitarbeiter.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DUU
+        </Link>
+        .
+      </p>
     </SiteLayout>
   );
 }

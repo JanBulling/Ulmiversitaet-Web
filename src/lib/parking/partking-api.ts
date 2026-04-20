@@ -39,7 +39,7 @@ export async function getMainParkingLots(): Promise<ParkingLotData[]> {
   for (const lot of MAIN_LOTS) {
     const cars = await getCarsOnParkingLot(lot.id);
 
-    const freeSpace = lot.total - cars;
+    const freeSpace = Math.max(0, lot.total - cars);
 
     result.push({
       ...lot,
@@ -55,7 +55,7 @@ export async function getAllParkingLots(): Promise<ParkingLotData[]> {
   for (const lot of parkingLots) {
     if (lot.id !== -1) {
       const cars = await getCarsOnParkingLot(lot.id);
-      const freeSpace = lot.total - cars;
+      const freeSpace = Math.max(0, lot.total - cars);
 
       result.push({
         ...lot,
