@@ -24,6 +24,10 @@ export const navItems = [
     label: "home",
   },
   {
+    href: "/alpiversitaet",
+    label: "alpiversitaet",
+  },
+  {
     href: "/links",
     label: "links",
   },
