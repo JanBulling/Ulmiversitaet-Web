@@ -1,6 +1,7 @@
 {
   "Nav": {
     "home": "Home",
+    "alpiversitaet": "Alpiversitaet",
     "links": "All links",
     "guides": "Guides",
     "map": "Map",
@@ -74,6 +75,44 @@
   "ParkingLotPage": {
     "title": "Parking Lots",
     "description": "Real-time information about free parking spots at Ulm University"
+  },
+  "AlpiversitaetPage": {
+    "title": "Alpiversitaet Dashboard",
+    "description": "Weather data in the Zugspitze corridor used for Alpine visibility forecast in Ulm.",
+    "verdict": "Forecast",
+    "verdicts": {
+      "veryLikely": "YES - Alpine visibility is very likely",
+      "likely": "LIKELY - Good chance of Alpine visibility",
+      "possible": "POSSIBLE - Alpine visibility is not excluded",
+      "unlikely": "UNLIKELY - Conditions are not ideal",
+      "no": "NO - Alpine visibility is not expected"
+    },
+    "score": "Overall score",
+    "updatedAt": "Updated",
+    "stationsTitle": "Weather stations",
+    "factorsTitle": "Contributing factors",
+    "rawTitle": "Raw metrics",
+    "errorsTitle": "Weather data unavailable",
+    "errorsDescription": "Could not load the data right now. Please try again later.",
+    "locations": {
+      "ulm": "Ulm",
+      "garmisch": "Garmisch-Partenkirchen",
+      "innsbruck": "Innsbruck"
+    },
+    "labels": {
+      "temperature": "Temperature",
+      "dewPoint": "Dew point",
+      "humidity": "Humidity",
+      "pressure": "Pressure",
+      "normalizedPressure": "Normalized pressure",
+      "visibility": "Visibility",
+      "precipitation": "Precipitation",
+      "wind": "Wind",
+      "cloudCover": "Cloud cover",
+      "cloudLow": "Low clouds",
+      "cloudMid": "Mid clouds",
+      "cloudHigh": "High clouds"
+    }
   },
   "CampusMap": {
     "selectLabel": "Choose what to display",

@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
+import { Wrench } from "lucide-react";
 
-interface RouteIconProps extends React.ComponentProps<"svg"> {
+interface RouteIconProps extends React.ComponentProps<"div"> {
   route: string;
 }
 
@@ -46,13 +47,25 @@ const specialRouteMap: Record<string, string> = {
 export default function PublicTransportRouteIcon({
   route,
   className,
-  ...props
 }: RouteIconProps) {
   const actualRoute = specialRouteMap[route] ?? route;
   const isTram = squareIcon.includes(actualRoute);
   const color = routeToColorMap[actualRoute] ?? defaultColor;
 
   const isWhite = color === "#FFFFFF";
+
+  if (actualRoute === "-") {
+    return (
+      <div
+        className={cn(
+          "inline-flex aspect-square items-center justify-center rounded-[2px] border border-black bg-white",
+          className,
+        )}
+      >
+        <Wrench className="size-[60%] text-black" strokeWidth={2.2} />
+      </div>
+    );
+  }
 
   return (
     <svg
@@ -61,7 +74,6 @@ export default function PublicTransportRouteIcon({
       width="40"
       height="40"
       className={cn("size-8", className)}
-      {...props}
     >
       {isTram ? (
         <rect

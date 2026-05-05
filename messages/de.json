@@ -1,6 +1,7 @@
 {
   "Nav": {
     "home": "Home",
+    "alpiversitaet": "Alpiversität",
     "links": "Alle Links",
     "guides": "Anleitungen",
     "map": "Karte",
@@ -74,6 +75,44 @@
   "ParkingLotPage": {
     "title": "Parkplätze",
     "description": "Echtzeit Auskunft der Parkplätze an der Universität Ulm"
+  },
+  "AlpiversitaetPage": {
+    "title": "Alpiversität Dashboard",
+    "description": "Wetterdaten im Zugspitz-Korridor für die aktuelle Alpensicht-Prognose in Ulm.",
+    "verdict": "Einschätzung",
+    "verdicts": {
+      "veryLikely": "JA - Alpensicht sehr wahrscheinlich",
+      "likely": "WAHRSCHEINLICH - Gute Chancen auf Alpensicht",
+      "possible": "MOEGLICH - Alpensicht nicht ausgeschlossen",
+      "unlikely": "EHER NEIN - Bedingungen unguenstig",
+      "no": "NEIN - Keine Alpensicht"
+    },
+    "score": "Gesamtscore",
+    "updatedAt": "Aktualisiert",
+    "stationsTitle": "Wetterstationen",
+    "factorsTitle": "Einflussfaktoren",
+    "rawTitle": "Rohdaten",
+    "errorsTitle": "Wetterdaten nicht verfügbar",
+    "errorsDescription": "Die Daten konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
+    "locations": {
+      "ulm": "Ulm",
+      "garmisch": "Garmisch-Partenkirchen",
+      "innsbruck": "Innsbruck"
+    },
+    "labels": {
+      "temperature": "Temperatur",
+      "dewPoint": "Taupunkt",
+      "humidity": "Luftfeuchte",
+      "pressure": "Luftdruck",
+      "normalizedPressure": "Normierter Druck",
+      "visibility": "Sichtweite",
+      "precipitation": "Niederschlag",
+      "wind": "Wind",
+      "cloudCover": "Wolken gesamt",
+      "cloudLow": "Wolken tief",
+      "cloudMid": "Wolken mittel",
+      "cloudHigh": "Wolken hoch"
+    }
   },
   "CampusMap": {
     "selectLabel": "Auswählen, was angezeigt wird",
