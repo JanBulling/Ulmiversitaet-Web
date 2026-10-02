@@ -1,4 +1,3 @@
-import { PublicTransportSection } from "@/components/home/public-transport/pub-tra-section";
 import DeparturePassageSection from "@/components/öpnv/departues-passage-section";
 import PassengerAlert from "@/components/öpnv/passenger-alert";
 import { defaultStop } from "@/content/public-transport/config";
@@ -33,9 +32,6 @@ export default async function PublicTransportPage({
 
   return (
     <SiteLayout className="px-0 md:px-4">
-      {/* TEMP: landing page widget, for testing */}
-      <PublicTransportSection className="my-8" />
-
       <PassengerAlert />
 
       <DeparturePassageSection
