@@ -5,6 +5,7 @@ import { Button } from "@/ui/button";
 import { getCurrentPosition, GeolocationPosition } from "@/lib/geolocation";
 import { Loader2, MapPin, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface LocationButtonProps {
     onLocationFound?: (position: GeolocationPosition) => void;
@@ -23,6 +24,7 @@ export default function LocationButton({
     className,
     size = "md",
 }: LocationButtonProps) {
+    const t = useTranslations("HomePage.PublicTransport");
     const [isLoading, setIsLoading] = React.useState(false);
 
     const handleClick = async () => {
@@ -73,7 +75,7 @@ export default function LocationButton({
                 sizeClasses[size],
                 className
             )}
-            title={isLocationMode ? "Revert to original stations" : "Find nearest stations using your location"}
+            title={isLocationMode ? t("revertStops") : t("findNearbyStops")}
         >
             {isLoading ? (
                 <Loader2 className={cn("animate-spin", iconSizes[size])} />

@@ -1,24 +1,27 @@
 import { cn } from "@/lib/utils";
 
-interface RouteIconProps extends React.ComponentProps<"svg"> {
+interface RouteIconProps extends React.ComponentProps<"span"> {
   route: string;
+  isTram: boolean;
+  color?: string;
 }
 
+// Fallback for when the API has no live colour (no vehicle on the line yet)
 const routeToColorMap: Record<string, string> = {
-  "1": "#E52129",
-  "2": "#3EAD56",
-  "4": "#14816E",
-  "5": "#17A9BF",
-  "6": "#F39437",
-  "7": "#B2116C",
-  "8": "#77418F",
-  "9": "#E09DBC",
+  "1": "#ED1B24",
+  "2": "#37B355",
+  "4": "#01806D",
+  "5": "#1AA8BE",
+  "6": "#F79534",
+  "7": "#B1006A",
+  "8": "#76408C",
+  "9": "#DF9CBB",
   "10": "#A5A158",
-  "11": "#085EA4",
-  "12": "#B22E2B",
-  "13": "#7CC191",
-  "14": "#26ABE3",
-  "15": "#B281B8",
+  "11": "#005DA3",
+  "12": "#B22C2B",
+  "13": "#7AC4A5",
+  "14": "#00ADEF",
+  "15": "#B382BA",
   "16": "#DE4B95",
   "17": "#CC9900",
   E: "#FFFFFF",
@@ -33,68 +36,29 @@ const routeToColorMap: Record<string, string> = {
 };
 const defaultColor = "#FFFFFF";
 
-const squareIcon = ["1", "2", "W", "F", "-"];
-
-const specialRouteMap: Record<string, string> = {
-  "101": "1", // Route 1 as a bus
-  "102": "2", // Route 2 as a bus
-  "201": "S", // Werkstattfahrt
-  "202": "S", // Fahrschule
-  "19": "E",
-};
-
 export default function PublicTransportRouteIcon({
   route,
+  isTram,
+  color: liveColor,
   className,
   ...props
 }: RouteIconProps) {
-  const actualRoute = specialRouteMap[route] ?? route;
-  const isTram = squareIcon.includes(actualRoute);
-  const color = routeToColorMap[actualRoute] ?? defaultColor;
+  const color = liveColor ?? routeToColorMap[route] ?? defaultColor;
 
   const isWhite = color === "#FFFFFF";
 
   return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 40 40"
-      width="40"
-      height="40"
-      className={cn("size-8", className)}
+    <span
+      className={cn(
+        "flex size-8 shrink-0 items-center justify-center font-sans text-[15px] leading-none font-semibold tabular-nums",
+        isTram ? "rounded-none" : "rounded-full",
+        isWhite ? "border-2 border-black text-black" : "text-white",
+        className,
+      )}
+      style={{ backgroundColor: color }}
       {...props}
     >
-      {isTram ? (
-        <rect
-          x="0"
-          y="0"
-          width="40"
-          height="40"
-          fill={color}
-          stroke={isWhite ? "#000000" : "transparent"}
-          strokeWidth="2"
-        />
-      ) : (
-        <circle
-          cx="20"
-          cy="20"
-          r="20"
-          fill={color}
-          stroke={isWhite ? "#000000" : "transparent"}
-          strokeWidth="2"
-        />
-      )}
-      <text
-        x="50%"
-        y="50%"
-        fill={isWhite ? "#000000" : "#FFFFFF"}
-        fontSize="26"
-        fontWeight="400"
-        fontFamily="sans-serif"
-        textAnchor="middle"
-        dominantBaseline="central"
-      >
-        {actualRoute}
-      </text>
-    </svg>
+      {route}
+    </span>
   );
 }

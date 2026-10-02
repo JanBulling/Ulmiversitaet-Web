@@ -1,9 +1,18 @@
 import { getPassengerAlert } from "@/lib/public-transport/swu-api";
 import { Alert, AlertDescription, AlertTitle } from "@/ui/alert";
 import { AlertTriangleIcon } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 
 export default async function PassengerAlert() {
-  const alert = await getPassengerAlert();
+  const t = await getTranslations("HomePage.PublicTransport");
+
+  let alert;
+  try {
+    alert = await getPassengerAlert();
+  } catch (error) {
+    console.error("[PassengerAlert]", error);
+    return null;
+  }
 
   return (
     <Alert
@@ -12,7 +21,7 @@ export default async function PassengerAlert() {
     >
       <AlertTitle>
         {alert.title ??
-          (alert.status === "OK" ? "Keine Störung" : "Aktuelle Störung")}
+          (alert.status === "OK" ? t("noDisruption") : t("disruption"))}
       </AlertTitle>
       <AlertDescription>
         {alert.data?.map((a) => (

@@ -1,3 +1,4 @@
+import { PublicTransportSection } from "@/components/home/public-transport/pub-tra-section";
 import DeparturePassageSection from "@/components/öpnv/departues-passage-section";
 import PassengerAlert from "@/components/öpnv/passenger-alert";
 import { defaultStop } from "@/content/public-transport/config";
@@ -25,10 +26,16 @@ export default async function PublicTransportPage({
       ? parseInt(stopIdParam)
       : defaultStop.stopId;
 
-  const initialDepartures = await getDeparturesAtStop(stopId, 12);
+  // SWU being down must not break the page: the client retries on mount
+  const initialDepartures = await getDeparturesAtStop(stopId, 12).catch(
+    () => [],
+  );
 
   return (
     <SiteLayout className="px-0 md:px-4">
+      {/* TEMP: landing page widget, for testing */}
+      <PublicTransportSection className="my-8" />
+
       <PassengerAlert />
 
       <DeparturePassageSection

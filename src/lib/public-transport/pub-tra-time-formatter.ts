@@ -1,8 +1,10 @@
-import { useTranslations } from "next-intl";
-
-export function countdownFormatter(countdown: number, actualDeparture: Date) {
-  if (countdown <= -60) return "Abgefahren";
-  if (countdown <= 0) return "Jetzt";
+export function countdownFormatter(
+  countdown: number,
+  actualDeparture: Date,
+  t: (key: "departed" | "now") => string,
+) {
+  if (countdown <= -60) return t("departed");
+  if (countdown <= 0) return t("now");
   if (countdown <= 60) return `${countdown} s`;
   if (countdown <= 3600) return `${Math.ceil(countdown / 60)} min`;
 

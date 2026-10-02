@@ -1,5 +1,16 @@
+export type Stop = {
+  id: number;
+  name: string;
+  short_name: string;
+  lat: number;
+  long: number;
+};
+
 export type Departure = {
   route: string;
+  routeNumber: number;
+  isTram: boolean;
+  color?: string;
   directionText: string;
   scheduledTime: Date;
   actualTime: Date;
@@ -20,7 +31,7 @@ type PassageStatus =
   | "IN-PROGRESS"
   | "ARRIVED"
   | "PASSED"
-  | "CANCELLED";
+  | "SKIPPED";
 export type Passage = {
   name: string;
   status: PassageStatus;
@@ -35,5 +46,5 @@ export const passageStatusMap: Record<number, PassageStatus> = {
   2: "IN-PROGRESS",
   3: "ARRIVED",
   4: "PASSED",
-  5: "CANCELLED",
+  5: "SKIPPED", // drove through without stopping
 };

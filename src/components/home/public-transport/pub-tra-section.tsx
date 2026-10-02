@@ -18,8 +18,15 @@ export async function PublicTransportSection({
 }: React.ComponentProps<"section">) {
   const t = await getTranslations("HomePage.PublicTransport");
 
-  const departures = await getDeparturesAtStop(defaultStop.stopId);
-  const passengerAlert = await getPassengerAlert();
+  // SWU being down must not break the page: the client retries on mount
+  const [departuresResult, alertResult] = await Promise.allSettled([
+    getDeparturesAtStop(defaultStop.stopId),
+    getPassengerAlert(),
+  ]);
+  const departures =
+    departuresResult.status === "fulfilled" ? departuresResult.value : [];
+  const passengerAlert =
+    alertResult.status === "fulfilled" ? alertResult.value : undefined;
 
   return (
     <section className={cn("bg-card border-y px-4 py-4 md:border", className)}>
@@ -34,7 +41,7 @@ export async function PublicTransportSection({
         </div>
       </div>
 
-      {passengerAlert.status === "DISRUPTION" && (
+      {passengerAlert?.status === "DISRUPTION" && (
         <Alert variant="destructive" className="mt-2">
           <AlertTitle>{passengerAlert.title}</AlertTitle>
           <AlertDescription>
@@ -46,7 +53,7 @@ export async function PublicTransportSection({
       )}
 
       <PublicTransportDisplay
-        initialDepartures={departures!}
+        initialDepartures={departures}
         initialStopNumber={defaultStop.stopId}
       />
 
