@@ -1,12 +1,8 @@
-import allStops from "@/content/public-transport/allStops.json";
 import { GeolocationPosition } from "@/lib/geolocation";
+import { Stop } from "./public-transport.type";
+import { getStops } from "./swu-api";
 
-export interface StopWithDistance {
-    id: number;
-    name: string;
-    short_name: string;
-    lat: number;
-    long: number;
+export interface StopWithDistance extends Stop {
     distance: number; // in meters
 }
 
@@ -25,30 +21,27 @@ function calculateDistance(
     lat2: number,
     lon2: number
 ): number {
-    // Simple difference in degrees
-    const dLat = lat2 - lat1;
-    const dLon = lon2 - lon1;
+    // Equirectangular approximation: 1° latitude ≈ 111,320 m,
+    // 1° longitude shrinks with cos(latitude)
+    const x = (lon2 - lon1) * 111320 * Math.cos((lat1 * Math.PI) / 180);
+    const y = (lat2 - lat1) * 111320;
 
-    // Convert to meters (1 degree ≈ 111,320 meters)
-    const x = dLon * 333;
-    const y = dLat * 333;
-
-    // Euclidean distance
-    return x * x + y * y;
+    return Math.sqrt(x * x + y * y);
 }
 
 /**
  * Find the nearest stations to a given location
  * @param position - User's geolocation position
  * @param count - Number of nearest stations to return (default: 3)
- * @param maxDistance - Maximum distance in meters (default: 1000m = 1km)
+ * @param maxDistance - Maximum distance in meters (default: 10km)
  * @returns Array of stops with distance information, sorted by distance
  */
-export function findNearestStations(
+export async function findNearestStations(
     position: GeolocationPosition,
     count: number = 3,
-    maxDistance: number = 1000
-): StopWithDistance[] {
+    maxDistance: number = 10000
+): Promise<StopWithDistance[]> {
+    const allStops = await getStops();
     const stopsWithDistance: StopWithDistance[] = allStops.map((stop) => ({
         id: stop.id,
         name: stop.name,

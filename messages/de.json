@@ -20,7 +20,24 @@
       "moreStops": "Weitere Haltestellen",
       "onTime": "Pünktlich",
       "delayed": "Verspätet",
-      "noDepartures": "Keine Abfahrten gefunden."
+      "noDepartures": "Keine Abfahrten gefunden.",
+      "departed": "Abgefahren",
+      "now": "Jetzt",
+      "selectStop": "Haltestelle auswählen...",
+      "searchStop": "Haltestelle suchen...",
+      "stopNotFound": "Haltestelle nicht gefunden.",
+      "findNearbyStops": "Haltestellen in deiner Nähe finden",
+      "revertStops": "Zurück zu den Standard-Haltestellen",
+      "passageTitle": "Abfahrten",
+      "selectTrip": "Wähle eine Fahrt aus, um die Haltestellenfolge zu sehen.",
+      "loading": "Laden...",
+      "vehicleError": "Fehler beim Laden der Fahrzeugdaten.",
+      "tripNotStarted": "Keine Fahrzeugdaten verfügbar. Die Fahrt hat noch nicht begonnen.",
+      "liveMap": "Echtzeit-Karte aufrufen",
+      "noDisruption": "Keine Störung",
+      "disruption": "Aktuelle Störung",
+      "replacementBus": "SEV",
+      "replacementBusHint": "Schienenersatzverkehr: Bus statt Straßenbahn"
     },
     "ParkingLot": {
       "title": "Parkplätze"

@@ -25,7 +25,10 @@ export default async function PublicTransportPage({
       ? parseInt(stopIdParam)
       : defaultStop.stopId;
 
-  const initialDepartures = await getDeparturesAtStop(stopId, 12);
+  // SWU being down must not break the page: the client retries on mount
+  const initialDepartures = await getDeparturesAtStop(stopId, 12).catch(
+    () => [],
+  );
 
   return (
     <SiteLayout className="px-0 md:px-4">

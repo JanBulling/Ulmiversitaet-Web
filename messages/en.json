@@ -20,7 +20,24 @@
       "moreStops": "More stops",
       "onTime": "On time",
       "delayed": "Delayed",
-      "noDepartures": "No departures found."
+      "noDepartures": "No departures found.",
+      "departed": "Departed",
+      "now": "Now",
+      "selectStop": "Select a stop...",
+      "searchStop": "Search stops...",
+      "stopNotFound": "Stop not found.",
+      "findNearbyStops": "Find stops near you",
+      "revertStops": "Back to the default stops",
+      "passageTitle": "Departures",
+      "selectTrip": "Select a trip to see its upcoming stops.",
+      "loading": "Loading...",
+      "vehicleError": "Failed to load vehicle data.",
+      "tripNotStarted": "No vehicle data available. The trip hasn't started yet.",
+      "liveMap": "Open live map",
+      "noDisruption": "No disruptions",
+      "disruption": "Current disruption",
+      "replacementBus": "Replacement bus",
+      "replacementBusHint": "Rail replacement service: bus instead of tram"
     },
     "ParkingLot": {
       "title": "Parking Lots"
